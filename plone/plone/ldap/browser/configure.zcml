@@ -1,0 +1,97 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <adapter
+      factory=".controlpanel.LDAPBindingFactory"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      provides="simplon.plone.ldap.engine.interfaces.ILDAPBinding"
+      />
+
+    <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="ldap-controlpanel"
+      class=".controlpanel.LDAPControlPanel"
+      permission="cmf.ManagePortal"
+      allowed_attributes="template"
+      />
+
+<!-- LDAP server handling
+  -->
+    <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="+ldapserver"
+      class=".server.ServerAdding"
+      allowed_interface="simplon.plone.ldap.browser.interfaces.IServerAdding"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="simplon.plone.ldap.browser.interfaces.IServerAdding"
+      name="plone.LdapServer"
+      class=".server.ServerAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="simplon.plone.ldap.engine.interfaces.ILDAPServer"
+      name="edit"
+      class=".server.ServerEditForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <adapter
+      factory=".server.ServerNamespace"
+      name="ldapserver"
+      />
+
+    <configure package="Products.CMFDefault.skin">
+        <browser:page
+            name="five_template"
+            for="simplon.plone.ldap.engine.interfaces.ILDAPServer"
+            template="five_template.pt"
+            permission="zope2.View"
+            />
+    </configure>
+
+<!-- LDAP schema handling
+  -->
+    <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="+ldapschema"
+      class=".schema.PropertyAdding"
+      allowed_interface="simplon.plone.ldap.browser.interfaces.IPropertyAdding"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="simplon.plone.ldap.browser.interfaces.IPropertyAdding"
+      name="plone.LdapProperty"
+      class=".schema.PropertyAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="simplon.plone.ldap.engine.interfaces.ILDAPProperty"
+      name="edit"
+      class=".schema.PropertyEditForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <adapter
+      factory=".schema.SchemaNamespace"
+      name="ldapschema"
+      />
+
+    <configure package="Products.CMFDefault.skin">
+        <browser:page
+            name="five_template"
+            for="simplon.plone.ldap.engine.interfaces.ILDAPProperty"
+            template="five_template.pt"
+            permission="zope2.View"
+            />
+    </configure>
+
+</configure>
+
+

@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="plone">
+
+  <!-- We need to register this as a package so CMFQuickInstaller can
+       pick us up.
+    -->
+  <five:registerPackage package="."/>
+
+  <include package=".browser" />
+  <include package=".engine" />
+  <include package=".ploneldap" />
+
+  <genericsetup:registerProfile
+      name="ldap"
+      title="LDAP support"
+      directory="profiles/default"
+      description="Manage LDAP and Active Directory support for Plone."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+
+</configure>

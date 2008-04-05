@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <utilities>
+  <utility
+     interface="simplon.plone.ldap.engine.interfaces.ILDAPConfiguration"
+     factory="simplon.plone.ldap.engine.storage.LDAPConfiguration"/>
+ </utilities>
+</componentregistry>

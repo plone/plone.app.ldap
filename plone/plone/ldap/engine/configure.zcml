@@ -1,0 +1,43 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="plone">
+ 
+    <adapter
+      provides="zope.app.container.interfaces.INameChooser"
+      for=".interfaces.ILDAPServerStorage"
+      factory="plone.app.contentrules.namechooser.RuleNameChooser"
+      />
+
+    <adapter
+      provides="zope.app.container.interfaces.INameChooser"
+      for=".interfaces.ILDAPSchema"
+      factory="plone.app.contentrules.namechooser.RuleNameChooser"
+      />
+
+    <utility
+      component=".vocabulary.LDAPScopeVocabularyFactory"
+      name="simplon.plone.ldap.engine.LDAPScopes"
+      />
+
+    <utility
+      component=".vocabulary.LDAPAttributesVocabularyFactory"
+      name="simplon.plone.ldap.engine.LDAPAttributes"
+      />
+
+    <utility
+      component=".vocabulary.LDAPSingleValueAttributesVocabularyFactory"
+      name="simplon.plone.ldap.engine.LDAPSingleValueAttributes"
+      />
+
+    <utility
+      component=".vocabulary.LDAPServerTypeVocabularyFactory"
+      name="simplon.plone.ldap.engine.LDAPServerTypes"
+      />
+
+    <utility
+      component=".vocabulary.LDAPConnectionTypeVocabularyFactory"
+      name="simplon.plone.ldap.engine.LDAPConnectionTypes"
+      />
+
+</configure>
+

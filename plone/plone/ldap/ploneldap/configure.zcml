@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber handler=".global.HandleModified" />
+
+  <subscriber handler=".schema.HandleCreated" />
+  <subscriber handler=".schema.HandleModified" />
+  <subscriber handler=".schema.HandleRemoved" />
+
+  <subscriber handler=".server.HandleCreated" />
+  <subscriber handler=".server.HandleModified" />
+  <subscriber handler=".server.HandleRemoved" />
+
+</configure>
+
