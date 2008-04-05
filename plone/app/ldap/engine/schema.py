@@ -1,6 +1,6 @@
 from OFS.SimpleItem import SimpleItem
 from zope.interface import implements
-from simplon.plone.ldap.engine.interfaces import ILDAPProperty
+from plone.app.ldap.engine.interfaces import ILDAPProperty
 
 class LDAPProperty(SimpleItem):
     implements(ILDAPProperty)

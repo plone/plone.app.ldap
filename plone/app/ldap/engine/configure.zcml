@@ -16,27 +16,27 @@
 
     <utility
       component=".vocabulary.LDAPScopeVocabularyFactory"
-      name="simplon.plone.ldap.engine.LDAPScopes"
+      name="plone.app.ldap.engine.LDAPScopes"
       />
 
     <utility
       component=".vocabulary.LDAPAttributesVocabularyFactory"
-      name="simplon.plone.ldap.engine.LDAPAttributes"
+      name="plone.app.ldap.engine.LDAPAttributes"
       />
 
     <utility
       component=".vocabulary.LDAPSingleValueAttributesVocabularyFactory"
-      name="simplon.plone.ldap.engine.LDAPSingleValueAttributes"
+      name="plone.app.ldap.engine.LDAPSingleValueAttributes"
       />
 
     <utility
       component=".vocabulary.LDAPServerTypeVocabularyFactory"
-      name="simplon.plone.ldap.engine.LDAPServerTypes"
+      name="plone.app.ldap.engine.LDAPServerTypes"
       />
 
     <utility
       component=".vocabulary.LDAPConnectionTypeVocabularyFactory"
-      name="simplon.plone.ldap.engine.LDAPConnectionTypes"
+      name="plone.app.ldap.engine.LDAPConnectionTypes"
       />
 
 </configure>

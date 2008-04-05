@@ -2,12 +2,12 @@ from Persistence import Persistent
 from zope.interface import implements
 from zope.app.container.ordered import OrderedContainer
 from zope.app.container.interfaces import INameChooser
-from simplon.plone.ldap.engine.interfaces import ILDAPServerStorage
-from simplon.plone.ldap.engine.interfaces import ILDAPSchema
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPServerStorage
+from plone.app.ldap.engine.interfaces import ILDAPSchema
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from BTrees.OOBTree import OOBTree
 from ldap import SCOPE_SUBTREE
-from simplon.plone.ldap.engine.schema import LDAPProperty
+from plone.app.ldap.engine.schema import LDAPProperty
 
 
 class LDAPConfiguration(Persistent):

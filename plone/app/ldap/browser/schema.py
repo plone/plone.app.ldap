@@ -10,13 +10,13 @@ from zope.formlib.form import applyChanges
 from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFPlone import PloneMessageFactory as _
-from simplon.plone.ldap.browser.interfaces import IPropertyAdding
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
-from simplon.plone.ldap.engine.interfaces import ILDAPPropertyConfiguration
-from simplon.plone.ldap.engine.schema import LDAPProperty
-from simplon.plone.ldap.browser.baseform import LDAPAddForm
-from simplon.plone.ldap.browser.baseform import LDAPEditForm
-from simplon.plone.ldap.browser.baseform import Adding
+from plone.app.ldap.browser.interfaces import IPropertyAdding
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPPropertyConfiguration
+from plone.app.ldap.engine.schema import LDAPProperty
+from plone.app.ldap.browser.baseform import LDAPAddForm
+from plone.app.ldap.browser.baseform import LDAPEditForm
+from plone.app.ldap.browser.baseform import Adding
 
 
 class PropertyAdding(Adding):

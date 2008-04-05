@@ -10,13 +10,13 @@ from zope.app.container.interfaces import INameChooser
 from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFPlone import PloneMessageFactory as _
-from simplon.plone.ldap.browser.interfaces import IServerAdding
-from simplon.plone.ldap.engine.interfaces import ILDAPServerConfiguration
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
-from simplon.plone.ldap.engine.server import LDAPServer
-from simplon.plone.ldap.browser.baseform import LDAPAddForm
-from simplon.plone.ldap.browser.baseform import LDAPEditForm
-from simplon.plone.ldap.browser.baseform import Adding
+from plone.app.ldap.browser.interfaces import IServerAdding
+from plone.app.ldap.engine.interfaces import ILDAPServerConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.server import LDAPServer
+from plone.app.ldap.browser.baseform import LDAPAddForm
+from plone.app.ldap.browser.baseform import LDAPEditForm
+from plone.app.ldap.browser.baseform import Adding
 
 
 class ServerAdding(Adding):

@@ -1,12 +1,12 @@
 from zope.app.component.hooks import getSite
 from zope.component import getUtility
 from zope.interface import directlyProvides
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from Products.CMFCore.utils import getToolByName
 from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
 from Products.PloneLDAP.factory import genericPluginCreation
-from simplon.plone.ldap.ploneldap.interfaces import IManagedLDAPPlugin
+from plone.app.ldap.ploneldap.interfaces import IManagedLDAPPlugin
 
 
 def getPAS():

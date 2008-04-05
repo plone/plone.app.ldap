@@ -3,7 +3,7 @@ from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.component import getUtility
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 import ldap
 
 

@@ -7,8 +7,8 @@ from zope.formlib.form import action
 from zope.formlib.form import FormFields
 from zope.event import notify
 from zope.component import getUtility
-from simplon.plone.ldap.engine.interfaces import ILDAPConfiguration
-from simplon.plone.ldap.engine.interfaces import ILDAPBinding
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPBinding
 from plone.memoize.instance import memoize
 from Products.Five.formlib.formbase import EditForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -20,7 +20,7 @@ class LDAPBindFailure(ValidationError):
     __doc__ = _(u"LDAP server refused your credentials")
 
 
-logger = logging.getLogger("simplon.plone.ldap")
+logger = logging.getLogger("plone.app.ldap")
 
 def LDAPBindingFactory(context):
     return getUtility(ILDAPConfiguration)

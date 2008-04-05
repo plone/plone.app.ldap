@@ -25,7 +25,7 @@ class ILDAPBinding(Interface):
                         u"LDAP servers. For Active Directory the read-only "
                         u"LDAP interface which is enabled for all Active "
                         u"Directory servers can be used."),
-            vocabulary="simplon.plone.ldap.engine.LDAPServerTypes",
+            vocabulary="plone.app.ldap.engine.LDAPServerTypes",
             default=u"LDAP",
             required=True)
 
@@ -39,7 +39,7 @@ class ILDAPBinding(Interface):
                         u"either the users full name ('cn' property) or the "
                         u"userid ('uid' property)."),
             default="uid",
-            vocabulary="simplon.plone.ldap.engine.LDAPSingleValueAttributes",
+            vocabulary="plone.app.ldap.engine.LDAPSingleValueAttributes",
             required=True)
 
     userid_attribute = Choice(
@@ -49,7 +49,7 @@ class ILDAPBinding(Interface):
                 default=u"This attribute is used as the userid inside Plone "
                         u"for LDAP users. It has to be unique for all users."),
             default="uid",
-            vocabulary="simplon.plone.ldap.engine.LDAPSingleValueAttributes",
+            vocabulary="plone.app.ldap.engine.LDAPSingleValueAttributes",
             required=True)
 
     login_attribute = Choice(
@@ -60,7 +60,7 @@ class ILDAPBinding(Interface):
                         u"users logging into your site. In most cases this "
                         u"should be the same as the user id attribute."),
             default="uid",
-            vocabulary="simplon.plone.ldap.engine.LDAPSingleValueAttributes",
+            vocabulary="plone.app.ldap.engine.LDAPSingleValueAttributes",
             required=True)
 
     user_object_classes = ASCIILine(
@@ -112,7 +112,7 @@ class ILDAPBinding(Interface):
                         u"SUBTREE will allow the server to also look in "
                         u"subfolders of the user base location."),
             default=SCOPE_SUBTREE,
-            vocabulary="simplon.plone.ldap.engine.LDAPScopes",
+            vocabulary="plone.app.ldap.engine.LDAPScopes",
             required=True)
 
     group_base = ASCIILine(
@@ -139,7 +139,7 @@ class ILDAPBinding(Interface):
                         u"SUBTREE will allow the server to also look in "
                         u"subfolders of the group base location."),
             default=SCOPE_SUBTREE,
-            vocabulary="simplon.plone.ldap.engine.LDAPScopes",
+            vocabulary="plone.app.ldap.engine.LDAPScopes",
             required=True)
 
 
@@ -159,7 +159,7 @@ class ILDAPServerStorage(IOrderedContainer, IContainerNamesContainer):
     """A storage for rules.
     """
 
-    contains("simplon.plone.ldap.engine.interfaces.ILDAPServer")
+    contains("plone.app.ldap.engine.interfaces.ILDAPServer")
 
 
 class ILDAPServerConfiguration(Interface):
@@ -186,7 +186,7 @@ class ILDAPServerConfiguration(Interface):
                 default=u"LDAP connection type"),
             description=_(u"help_ldap_connection_type",
                 default=u""),
-            vocabulary="simplon.plone.ldap.engine.LDAPConnectionTypes",
+            vocabulary="plone.app.ldap.engine.LDAPConnectionTypes",
             default=0,
             required=True)
 
@@ -223,7 +223,7 @@ class ILDAPSchema(IOrderedContainer, IContainerNamesContainer):
     """A storage for an LDAP schema.
     """
 
-    contains("simplon.plone.ldap.engine.interfaces.ILDAPProperty")
+    contains("plone.app.ldap.engine.interfaces.ILDAPProperty")
 
 
 class ILDAPPropertyConfiguration(Interface):
