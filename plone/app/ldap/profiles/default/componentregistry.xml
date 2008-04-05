@@ -2,7 +2,7 @@
 <componentregistry>
  <utilities>
   <utility
-     interface="simplon.plone.ldap.engine.interfaces.ILDAPConfiguration"
-     factory="simplon.plone.ldap.engine.storage.LDAPConfiguration"/>
+     interface="plone.app.ldap.engine.interfaces.ILDAPConfiguration"
+     factory="plone.app.ldap.engine.storage.LDAPConfiguration"/>
  </utilities>
 </componentregistry>
