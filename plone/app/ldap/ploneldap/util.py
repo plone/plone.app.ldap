@@ -109,7 +109,7 @@ def addMandatorySchemaItems():
         required = [ ("dn", "Distinguished Name"),
                      ("objectGUID", "AD Object GUID"),
                      ("cn", "Canonical Name"),
-                     ("memberOf", "Group DNs", "memberOf", True)]
+                     ("memberOf", "Group DNs", True, "memberOf")]
     else:
         required = []
 
