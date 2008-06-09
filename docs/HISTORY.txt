@@ -1,0 +1,14 @@
+Changelog for plone.app.ldap
+
+    (name of developer listed in brackets)
+
+plone.app.ldap - 1.1 Unreleased
+
+    - Fix ldap schema config for Active Directory
+      [elro]
+
+simplon.plone.ldap - 1.0
+
+    - Initial package structure.
+      [zopeskel]
+

@@ -59,10 +59,10 @@ Zope instance. This can be done by installing it in either your system
 path packages or in the lib/python directory in your Zope instance.
 
 After installing the package it needs to be registered in your Zope instance.
-This can be done by putting a simplon.plone.currency-configure.zcml file in the
+This can be done by putting a plone.app.ldap-configure.zcml file in the
 etc/pakage-includes directory with this content::
 
-  <include package="simplon.plone.currency" />
+  <include package="plone.app.ldap" />
 
 or, alternatively, you can add that line to the configure.zcml in a
 package or Product that is already registered.
@@ -70,18 +70,28 @@ package or Product that is already registered.
 Installing with buildout
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are using `buildout`_ to manage your instance installing
-simplon.plone.currency is even simpler. You can install it by adding
-it to the eggs line for your instance::
+If you are using `buildout`_ to manage your instance installing plone.app.ldap 
+is even simpler. You can install it by adding it to the eggs line for your 
+instance::
 
   [instance]
   eggs = plone.app.ldap
   zcml = plone.app.ldap
 
-The last line tells buildout to generate a zcml snippet that tells Zope
-to configure plone.app.ldap.
+The last line tells buildout to generate a zcml snippet that tells Zope to 
+configure plone.app.ldap.
 
 .. _buildout: http://pypi.python.org/pypi/zc.buildout
+
+
+Installing the development version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To specify the current `development`_ version you may use::
+
+  eggs = plone.app.ldap==dev
+
+.. _development: https://svn.plone.org/svn/plone/plone.app.ldap/trunk#egg=plone.app.ldap-dev
 
 
 Copyright and credits
