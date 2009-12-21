@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xml:lang="en" lang="en"
       metal:use-macro="here/prefs_main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="plone.app.ldap">
 
 <metal:block metal:fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
@@ -18,6 +18,7 @@
 
     <a href=""
        class="link-parent"
+       i18n:domain="plone"
        tal:attributes="href string: $portal_url/plone_control_panel"
        i18n:translate="label_up_to_plone_setup">
     Up to Site Setup
@@ -71,6 +72,7 @@
 
                   <span class="fieldRequired"
                         title="Required"
+                        i18n:domain="plone"
                         i18n:attributes="title title_required;"
                         i18n:translate="label_required"
                         tal:condition="widget/required">
@@ -78,7 +80,6 @@
                   </span>
 
                   <div class="formHelp"
-                       i18n:translate=""
                        tal:content="description"
                        tal:condition="description">
                     field description
@@ -100,6 +101,7 @@
                          name="form.actions.apply" 
                          class="context"
                          value="Save"
+                         i18n:domain="plone"
                          i18n:attributes="value label_save;" />
               </div>
           </form>
@@ -221,7 +223,7 @@
                              Server
                          </th>
                          <th class="smallColumn" i18n:translate="label_ldap_connection_type">
-                             Connection Type
+                             Connection type
                          </th>
                          <th class="smallColumn" i18n:translate="label_ldap_connection_timeout">
                              Connection timeout

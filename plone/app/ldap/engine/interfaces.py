@@ -12,7 +12,7 @@ from zope.app.container.interfaces import IOrderedContainer
 from zope.app.container.interfaces import IContainerNamesContainer
 from zope.app.container.constraints import contains
 
-from Products.CMFPlone import PloneMessageFactory as _
+from plone.app.ldap import LDAPMessageFactory as _
 
 from ldap import SCOPE_SUBTREE
 
@@ -167,7 +167,7 @@ class ILDAPServerConfiguration(Interface):
     """
     enabled = Bool(
             title=_(u"label_ldap_enabled",
-                default=u"Enabled"),
+                default=u"Active"),
             description=_(u"help_ldap_enabled",
                 default=u"Use this LDAP server"),
             default=False,
@@ -175,7 +175,7 @@ class ILDAPServerConfiguration(Interface):
 
     server = ASCIILine(
             title=_(u"label_ldap_server",
-                default=u"LDAP server"),
+                default=u"Server"),
             description=_(u"help_ldap_server",
                 default="The address or hostname of the LDAP server."),
             default="localhost",
@@ -183,7 +183,7 @@ class ILDAPServerConfiguration(Interface):
 
     connection_type = Choice(
             title=_(u"label_ldap_connection_type",
-                default=u"LDAP connection type"),
+                default=u"Connection type"),
             description=_(u"help_ldap_connection_type",
                 default=u""),
             vocabulary="plone.app.ldap.engine.LDAPConnectionTypes",

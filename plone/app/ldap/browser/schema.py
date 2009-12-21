@@ -9,7 +9,7 @@ from zope.formlib.form import FormFields
 from zope.formlib.form import applyChanges
 from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFPlone import PloneMessageFactory as _
+from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.interfaces import IPropertyAdding
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from plone.app.ldap.engine.interfaces import ILDAPPropertyConfiguration

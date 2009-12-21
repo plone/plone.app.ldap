@@ -3,12 +3,16 @@ from Acquisition import aq_inner, aq_parent
 from zope.component import getMultiAdapter
 from zope.formlib.form import action, applyChanges
 from zope.event import notify
+from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import ObjectModifiedEvent
 from Products.Five import BrowserView
 from Products.Five.formlib.formbase import AddFormBase
 from Products.Five.formlib.formbase import EditFormBase
 from plone.app.form.validators import null_validator
-from Products.CMFPlone import PloneMessageFactory as _
+from plone.app.ldap import LDAPMessageFactory as _
+
+PMF = MessageFactory('plone')
+
 
 class Adding(Implicit, BrowserView):
     __allow_access_to_unprotected_subobjects__ = True
@@ -51,12 +55,12 @@ class LDAPAddForm(AddFormBase):
         return url + "/@@ldap-controlpanel"
 
 
-    @action(_(u"label_save", default=u"Save"), name=u'save')
+    @action(PMF(u"label_save", default=u"Save"), name=u'save')
     def handle_save_action(self, action, data):
         self.createAndAdd(data)
     
 
-    @action(_(u"label_cancel", default=u"Cancel"),
+    @action(PMF(u"label_cancel", default=u"Cancel"),
                  validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()
@@ -73,7 +77,7 @@ class LDAPEditForm(EditFormBase):
     """
     fieldset = None
 
-    @action(_(u"label_save", default=u"Save"), name=u'save')
+    @action(PMF(u"label_save", default=u"Save"), name=u'save')
     def handle_save_action(self, action, data):
         if applyChanges(self.context, self.form_fields, data, self.adapters):
             notify(ObjectModifiedEvent(self.context))
@@ -87,7 +91,7 @@ class LDAPEditForm(EditFormBase):
         return ''
 
 
-    @action(_(u"label_cancel", default=u"Cancel"),
+    @action(PMF(u"label_cancel", default=u"Cancel"),
                  validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()

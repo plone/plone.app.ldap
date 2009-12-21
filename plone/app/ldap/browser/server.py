@@ -9,7 +9,7 @@ from zope.formlib.form import applyChanges
 from zope.app.container.interfaces import INameChooser
 from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFPlone import PloneMessageFactory as _
+from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.interfaces import IServerAdding
 from plone.app.ldap.engine.interfaces import ILDAPServerConfiguration
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration

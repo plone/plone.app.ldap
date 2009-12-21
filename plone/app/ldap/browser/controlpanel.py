@@ -7,12 +7,12 @@ from zope.formlib.form import action
 from zope.formlib.form import FormFields
 from zope.event import notify
 from zope.component import getUtility
+from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from plone.app.ldap.engine.interfaces import ILDAPBinding
 from plone.memoize.instance import memoize
 from Products.Five.formlib.formbase import EditForm
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFPlone import PloneMessageFactory as _
 from zope.schema.interfaces import ValidationError
 from zope.app.form.interfaces import WidgetInputError
 
