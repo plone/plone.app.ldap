@@ -1,11 +1,12 @@
 from setuptools import setup, find_packages
 
-version = '1.1'
+version = '1.2dev'
 
 setup(name='plone.app.ldap',
       version=version,
       description="LDAP control panel for Plone 3",
-      long_description=open("README.txt").read(),
+      long_description=open("README.txt").read() + "\n" +
+                       open("CHANGES.txt").read(),
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",

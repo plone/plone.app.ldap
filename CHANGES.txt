@@ -1,0 +1,23 @@
+Changelog 
+=========
+
+1.2 (unreleased)
+----------------
+
+- Changed i18n domain from plone to plone.app.ldap.
+  Registered locales directory.
+  [vincentfretin]
+
+
+1.1 (2008-08-16)
+----------------
+
+- Fix ldap schema config for Active Directory
+  [elro]
+
+
+simplon.plone.ldap - 1.0
+------------------------
+
+- Initial package structure.
+  [zopeskel]

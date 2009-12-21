@@ -97,8 +97,6 @@ To specify the current `development`_ version you may use::
 Copyright and credits
 ---------------------
 
-:
-
 Copyright
     plone.app.ldap is Copyright 2007, 2008 by the Plone Foundation.
     Simplon_ donated the simplon.plone.ldap code to the Plone Foundation.
