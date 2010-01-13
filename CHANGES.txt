@@ -4,6 +4,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Fixed i18n domain changes from Vincent. The message factory was defined in
+  the wrong ``__init__.py``.
+  [hannosch]
+
 - Changed i18n domain from plone to plone.app.ldap.
   Registered locales directory.
   [vincentfretin]
