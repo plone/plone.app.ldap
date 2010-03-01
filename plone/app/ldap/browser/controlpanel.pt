@@ -11,24 +11,41 @@
 
 <body>
 
-<div metal:fill-slot="prefs_configlet_main">
+<metal:main fill-slot="prefs_configlet_main">
+
+    <metal:form metal:define-macro="form">
+
+    <metal:block define-macro="header">
+
+        <dl tal:define="status view/status"
+             tal:condition="status"
+             class="portalMessage info">
+            <dt i18n:translate="">
+                Info
+            </dt>
+            <dd tal:content="view/status" />
+        </dl>
+
+    </metal:block>
 
     <h1 class="documentFirstHeading"
-        i18n:translate="title_manage_ldap">LDAP configuration</h1>
+        i18n:translate="title_manage_ldap"
+        metal:define-slot="heading">
+        LDAP configuration
+    </h1>
+
+    <div class="documentDescription" i18n:translate="description-ldap-controlpanel">
+        Description
+    </div>
+
+    <div id="content-core">
 
     <a href=""
        class="link-parent"
-       i18n:domain="plone"
-       tal:attributes="href string: $portal_url/plone_control_panel"
+       tal:attributes="href string:$portal_url/plone_control_panel"
        i18n:translate="label_up_to_plone_setup">
-    Up to Site Setup
+        Up to Site Setup
     </a>
-    
-    <p i18n:translate="description-ldap-controlpanel">
-        In this control panel you can configure an LDAP connection. You
-        can either use a standard LDAP server or a Microsoft Active Directory
-        Server. 
-    </p>
 
     <div class="form-status"
        tal:define="status view/status"
@@ -48,7 +65,7 @@
     </div>
 
 
-    <div class="enableFormTabbing">
+    <form class="enableFormTabbing">
       <fieldset id="fieldset-global">
         <legend id="fieldsetlegend-global" i18n:translate="legend-ldap-globalsettings">
           Global Settings
@@ -303,8 +320,14 @@
                      i18n:attributes="value label_server_add;" />
          </form>
      </fieldset>
-   </div>
-</div>
+     <script type="text/javascript" 
+              tal:define="extra_script view/extra_script | nothing" 
+              tal:condition="extra_script" 
+              tal:content="structure extra_script"> 
+     </script>
+   </form>
+   </metal:form>
+</metal:main>
 </body>
 </html>
 

@@ -4,6 +4,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Updated the HTML to wrap all control panel forms in a form tag so that
+  tabs are properly displayed in Plone 4.
+  [kteague]
+
 - Fixed i18n domain changes from Vincent. The message factory was defined in
   the wrong ``__init__.py``.
   [hannosch]

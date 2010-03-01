@@ -31,8 +31,8 @@ class LDAPControlPanel(EditForm):
 
     form_fields = FormFields(ILDAPBinding)
     label = u"LDAP Control Panel"
-    description = u"XXXXX"
-    form_name = u"LDAP Control Panel form name"
+    description = u"In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server."
+    form_name = u"LDAP Control Panel"
 
 
     @action(_("Apply"), condition=haveInputWidgets)
