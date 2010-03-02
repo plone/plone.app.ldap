@@ -63,7 +63,7 @@ def createLDAPPlugin():
     else:
         klass=PloneLDAPMultiPlugin
 
-    id="ldap"
+    id="ldap-plugin"
 
     genericPluginCreation(pas, klass, 
             id=id,
