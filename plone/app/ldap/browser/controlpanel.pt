@@ -73,6 +73,7 @@
              </p>
             <form name="ldapSettings" method="POST"
                   tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
+                <input type="hidden" name="fieldset_id" value="fieldsetlegend-global" />
                 <tal:block tal:repeat="widget view/widgets">
                   <div class="field"
                        tal:define="description widget/hint;
@@ -144,7 +145,9 @@
                  metal:define-macro="ldap_schema_form"
                  tal:define="schema view/schema"
                  tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
-
+             
+                 <input type="hidden" name="fieldset_id" value="fieldsetlegend-schema" />
+             
                  <table class="listing nosort controlpanel-listing"
                         tal:condition="schema">
                      <thead>
@@ -196,8 +199,8 @@
                  </table>
                  <tal:buttons condition="schema">
                      <input class="context destructive" type="submit" value="Delete"
-                             name="form.button.DeleteProperty"
-                             i18n:attributes="value label_delete;" />
+                             name="form.actions.DeleteProperty"
+                             i18n:attributes="value label_delete_property;" />
                  </tal:buttons>
              </form>
              <form class="inlineDisplay" method="POST"
@@ -224,6 +227,8 @@
                  metal:define-macro="ldap_servers_form"
                  tal:define="servers view/servers"
                  tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
+
+                 <input type="hidden" name="fieldset_id" value="fieldsetlegend-servers" />
 
                  <table class="listing nosort controlpanel-listing"
                         tal:condition="servers">
@@ -299,13 +304,13 @@
                  </table>
                  <tal:buttons condition="servers">
                      <input class="context" type="submit" value="Enable"
-                             name="form.button.EnableServer"
+                             name="form.actions.EnableServer"
                              i18n:attributes="value label_enable;" />
                      <input class="context" type="submit" value="Disable"
-                             name="form.button.DisableServer"
+                             name="form.actions.DisableServer"
                              i18n:attributes="value label_disable;" />
                      <input class="context" type="submit" value="Delete"
-                             name="form.button.DeleteServer"
+                             name="form.actions.DeleteServer"
                              class="destructive"
                              i18n:attributes="value label_delete;" />
                  </tal:buttons>

@@ -6,6 +6,7 @@ from zope.formlib.form import applyChanges
 from zope.formlib.form import action
 from zope.formlib.form import FormFields
 from zope.event import notify
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
@@ -25,7 +26,6 @@ logger = logging.getLogger("plone.app.ldap")
 def LDAPBindingFactory(context):
     return getUtility(ILDAPConfiguration)
 
-
 class LDAPControlPanel(EditForm):
     template = ViewPageTemplateFile("controlpanel.pt")
 
@@ -33,7 +33,6 @@ class LDAPControlPanel(EditForm):
     label = u"LDAP Control Panel"
     description = u"In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server."
     form_name = u"LDAP Control Panel"
-
 
     @action(_("Apply"), condition=haveInputWidgets)
     def handle_edit_actions(self, action, data):
@@ -52,43 +51,48 @@ class LDAPControlPanel(EditForm):
                         LDAPBindFailure("value"))
                 self.errors += (widget.error,)
                 self.status= _("There were errors")
-                return
+        return self.request.response.redirect(self.nextURL())
 
+    @action(_(u'label_enable', default=u'Enable'), name=u'EnableServer')
+    def handle_enable_server(self, action, data):
+        for id in self.request.form.get("serverId", []):
+            if id in self.storage.servers:
+                self.storage.servers[id].enabled=True
+        return self.request.response.redirect(self.nextURL())
+    
+    @action(_(u'label_disable', default=u'Disable'), name=u'DisableServer')
+    def handle_disable_server(self, action, data):
+        for id in self.request.form.get("serverId", []):
+            if id in self.storage.servers:
+                self.storage.servers[id].enabled=False
+        return self.request.response.redirect(self.nextURL())
+
+    @action(_(u'label_delete', default=u'Delete'), name=u'DeleteServer')
+    def handle_delete_server(self, action, data):
+        for id in self.request.form.get("serverId", []):
+            if id in self.storage.servers:
+                del self.storage.servers[id]
+        return self.request.response.redirect(self.nextURL())
+
+    @action(_(u'label_delete_property', default=u'Delete Property'), name=u'DeleteProperty')
+    def handle_delete_property(self, action, data):
+        for id in self.request.form.get("propertyId", []):
+            if id in self.storage.schema:
+                del self.storage.schema[id]
+        return self.request.response.redirect(self.nextURL())
+    
+    def nextURL(self):
+        url = str(
+            getMultiAdapter(
+                (self.context, self.request), name=u"absolute_url"
+            )
+        )
+        return url + "/@@ldap-controlpanel#" + self.request.form.get('fieldset_id', '')
 
     @property
     @memoize
     def storage(self):
         return getUtility(ILDAPConfiguration)
-
-
-    def update(self):
-        form = self.request.form
-
-        storage=self.storage
-        propertyIds=form.get("propertyId", [])
-        schema=storage.schema
-        serverIds=form.get("serverId", [])
-        servers=storage.servers
-
-        if form.get("form.button.DeleteProperty", None) is not None:
-            for id in propertyIds:
-                if id in schema:
-                    del schema[id]
-        elif form.get("form.button.EnableServer", None) is not None:
-            for id in serverIds:
-                if id in servers:
-                    servers[id].enabled=True
-        elif form.get("form.button.DisableServer", None) is not None:
-            for id in serverIds:
-                if id in servers:
-                    servers[id].enabled=False
-        elif form.get("form.button.DeleteServer", None) is not None:
-            for id in serverIds:
-                if id in servers:
-                    del servers[id]
-
-        return EditForm.update(self)
-
 
     def servers(self):
         def contype(c):
@@ -107,7 +111,6 @@ class LDAPControlPanel(EditForm):
                       operation_timeout=s.operation_timeout)
                  for s in self.storage.servers.values() ]
 
-
     def schema(self):
         storage=self.storage
 
@@ -123,5 +126,3 @@ class LDAPControlPanel(EditForm):
                       multi_valued=p.multi_valued,
                       protected=protected(p))
                  for p in storage.schema.values() ]
-
-
