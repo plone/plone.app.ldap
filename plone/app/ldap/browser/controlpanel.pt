@@ -35,7 +35,7 @@
     </h1>
 
     <div class="documentDescription" i18n:translate="description-ldap-controlpanel">
-        Description
+        In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server.
     </div>
 
     <div id="content-core">
