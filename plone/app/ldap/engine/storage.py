@@ -10,9 +10,9 @@ from ldap import SCOPE_SUBTREE
 from plone.app.ldap.engine.schema import LDAPProperty
 
 
-class LDAPConfiguration(Persistent):
+class LDAPConfiguration(OrderedContainer):
     implements(ILDAPConfiguration)
-
+    
     ldap_type = u"LDAP"
     rdn_attribute = "uid"
     userid_attribute = "uid"

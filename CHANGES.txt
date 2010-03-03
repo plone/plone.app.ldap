@@ -4,6 +4,12 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Changed the base class for LDAPConfiguration so that it gets properly
+  rooted in the site (otherwise LDAPConfiguration.__parent__ goes into
+  an infinite loop, pointing to a fresh PersistenComponents instance who's
+  parent is in turn LDAPConfiguration).
+  [kteague]
+
 - Updated the HTML to wrap all control panel forms in a form tag so that
   tabs are properly displayed in Plone 4.
   [kteague]
