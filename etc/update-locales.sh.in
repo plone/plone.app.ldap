@@ -1,0 +1,2 @@
+${buildout:bin-directory}/i18ndude rebuild-pot --pot ./plone/app/ldap/locales/plone.app.ldap.pot --create plone.app.ldap ./plone/app/ldap
+${buildout:bin-directory}/i18ndude sync --pot ./plone/app/ldap/locales/plone.app.ldap.pot ./plone/app/ldap/locales/*/LC_MESSAGES/plone.app.ldap.po
