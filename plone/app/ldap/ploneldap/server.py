@@ -57,7 +57,7 @@ def HandleRemoved(server, event):
     servers=luf.getServers()
 
     for i in range(len(servers)):
-        if servers[i].host==server.server and servers[i].port==server.port:
+        if servers[i]['host']==server.server and servers[i]['port']==server.port:
             luf.manage_deleteServers((i,))
             return
 

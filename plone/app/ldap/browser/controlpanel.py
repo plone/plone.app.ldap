@@ -1,6 +1,6 @@
 from ldap import LDAPError
 import logging
-from zope.lifecycleevent import ObjectModifiedEvent
+from zope.lifecycleevent import ObjectModifiedEvent, ObjectRemovedEvent
 from zope.formlib.form import haveInputWidgets
 from zope.formlib.form import applyChanges
 from zope.formlib.form import action
@@ -57,20 +57,27 @@ class LDAPControlPanel(EditForm):
     def handle_enable_server(self, action, data):
         for id in self.request.form.get("serverId", []):
             if id in self.storage.servers:
-                self.storage.servers[id].enabled=True
+                server = self.storage.servers[id]
+                if server.enabled == False:
+                    server.enabled = True
+                    notify(ObjectModifiedEvent(server))
         return self.request.response.redirect(self.nextURL())
     
     @action(_(u'label_disable', default=u'Disable'), name=u'DisableServer')
     def handle_disable_server(self, action, data):
         for id in self.request.form.get("serverId", []):
             if id in self.storage.servers:
-                self.storage.servers[id].enabled=False
+                server = self.storage.servers[id]
+                if server.enabled == True:
+                    server.enabled = False
+                    notify(ObjectModifiedEvent(server))
         return self.request.response.redirect(self.nextURL())
 
     @action(_(u'label_delete', default=u'Delete'), name=u'DeleteServer')
     def handle_delete_server(self, action, data):
         for id in self.request.form.get("serverId", []):
             if id in self.storage.servers:
+                notify(ObjectRemovedEvent(self.storage.servers[id]))
                 del self.storage.servers[id]
         return self.request.response.redirect(self.nextURL())
 
@@ -78,6 +85,7 @@ class LDAPControlPanel(EditForm):
     def handle_delete_property(self, action, data):
         for id in self.request.form.get("propertyId", []):
             if id in self.storage.schema:
+                notify(ObjectRemovedEvent(self.storage.schema[id]))
                 del self.storage.schema[id]
         return self.request.response.redirect(self.nextURL())
     

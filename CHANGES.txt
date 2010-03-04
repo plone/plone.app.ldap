@@ -4,6 +4,10 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Send out notification events for all object additions/modifications/removals
+  so that configuration always gets propogated to the LDAPUserFolder object.
+  [kteague]
+
 - Changed the base class for LDAPConfiguration so that it gets properly
   rooted in the site (otherwise LDAPConfiguration.__parent__ goes into
   an infinite loop, pointing to a fresh PersistenComponents instance who's

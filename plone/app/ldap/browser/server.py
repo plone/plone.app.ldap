@@ -1,22 +1,24 @@
 from Acquisition import Implicit
-from zope.component import adapts
-from zope.component import getUtility
-from zope.interface import implements
-from zope.traversing.interfaces import ITraversable
-from zope.publisher.interfaces.browser import IBrowserRequest
-from zope.formlib.form import FormFields
-from zope.formlib.form import applyChanges
-from zope.app.container.interfaces import INameChooser
-from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
+from Products.Five import BrowserView
 from plone.app.ldap import LDAPMessageFactory as _
-from plone.app.ldap.browser.interfaces import IServerAdding
-from plone.app.ldap.engine.interfaces import ILDAPServerConfiguration
-from plone.app.ldap.engine.interfaces import ILDAPConfiguration
-from plone.app.ldap.engine.server import LDAPServer
+from plone.app.ldap.browser.baseform import Adding
 from plone.app.ldap.browser.baseform import LDAPAddForm
 from plone.app.ldap.browser.baseform import LDAPEditForm
-from plone.app.ldap.browser.baseform import Adding
+from plone.app.ldap.browser.interfaces import IServerAdding
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.interfaces import ILDAPServerConfiguration
+from plone.app.ldap.engine.server import LDAPServer
+from zope.app.container.interfaces import INameChooser
+from zope.component import adapts
+from zope.component import getUtility
+from zope.event import notify
+from zope.formlib.form import FormFields
+from zope.formlib.form import applyChanges
+from zope.interface import implements
+from zope.lifecycleevent import ObjectCreatedEvent, ObjectModifiedEvent
+from zope.publisher.interfaces.browser import IBrowserRequest
+from zope.traversing.interfaces import ITraversable
 
 
 class ServerAdding(Adding):
@@ -48,6 +50,7 @@ class ServerAddForm(LDAPAddForm):
     def create(self, data):
         server = LDAPServer()
         applyChanges(server, self.form_fields, data)
+        notify(ObjectCreatedEvent(server))
         return server
 
 
