@@ -44,12 +44,19 @@ deleting users and groups is supported.
 Installing
 ----------
 
-This package is made to be used as a normal python package within Zope 2.10
-and needs Plone 3.0 or later. 
+This package works with Plone 3 and Plone 4. Plone 3 users should install a version in the 1.1.* series (e.g. plone.app.ldap < 1.2), as releases after version 1.2 are only tested in Plone 4.
 
 You need to install PloneLDAP_ and its requirements in your Zope instance
 before you can use plone.app.ldap. This can easily be done by downloading
 its product bundle and extracting that in your Products directory.
+
+Once the package is installed, it will be available as an add-on named
+"LDAP support", and this add-on can be activated in a Plone instance
+using the Add-ons section of the Plone Control Panel. Be careful, as this
+package also currently installs LDAPUserFolder as a dependency, which makes
+the add-on "LDAPUserFolder CMF Tools" available. Do not install this add-on!
+It will replace the portal_membership tool and make your Plone site
+unusable.
 
 Install without buildout
 ~~~~~~~~~~~~~~~~~~~~~~~~
