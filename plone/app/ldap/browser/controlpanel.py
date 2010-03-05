@@ -82,7 +82,7 @@ class LDAPControlPanel(EditForm):
                 del self.storage.servers[id]
         return self.request.response.redirect(self.nextURL())
 
-    @action(_(u'label_delete_property', default=u'Delete Property'), name=u'DeleteProperty')
+    @action(_(u'label_delete_property', default=u'Delete'), name=u'DeleteProperty')
     def handle_delete_property(self, action, data):
         for id in self.request.form.get("propertyId", []):
             if id in self.storage.schema:

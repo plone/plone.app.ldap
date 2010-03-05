@@ -371,7 +371,7 @@
                   </div>
 
                   <div class="field">
-                      <label i18n:translate="label_auth_cache">Anonymous Cache</label>
+                      <label i18n:translate="label_anon_cache">Anonymous Cache</label>
                       <div class="formHelp" i18n:translate="help-seconds">
                           An integer representing seconds.
                       </div>

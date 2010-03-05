@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-03-03 22:29+0000\n"
+"POT-Creation-Date: 2010-03-05 22:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Add Property"
 msgstr ""
 
-#: ./plone/app/ldap/browser/server.py:43
+#: ./plone/app/ldap/browser/server.py:45
 msgid "Add Server"
 msgstr ""
 
@@ -29,11 +29,11 @@ msgstr ""
 msgid "Add a LDAP property to the schema."
 msgstr ""
 
-#: ./plone/app/ldap/browser/server.py:44
+#: ./plone/app/ldap/browser/server.py:46
 msgid "Add an new LDAP or ActiveDirectory server."
 msgstr ""
 
-#: ./plone/app/ldap/browser/controlpanel.py:37
+#: ./plone/app/ldap/browser/controlpanel.py:38
 msgid "Apply"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Configure property"
 msgstr ""
 
-#: ./plone/app/ldap/browser/server.py:45
+#: ./plone/app/ldap/browser/server.py:47
 msgid "Configure server"
 msgstr ""
 
@@ -49,11 +49,11 @@ msgstr ""
 msgid "Edit Property"
 msgstr ""
 
-#: ./plone/app/ldap/browser/server.py:58
+#: ./plone/app/ldap/browser/server.py:61
 msgid "Edit Server"
 msgstr ""
 
-#: ./plone/app/ldap/browser/server.py:59
+#: ./plone/app/ldap/browser/server.py:62
 msgid "Edit a LDAP or ActiveDirectory server."
 msgstr ""
 
@@ -65,12 +65,17 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ./plone/app/ldap/browser/controlpanel.py:21
+#: ./plone/app/ldap/browser/controlpanel.py:22
 msgid "LDAP server refused your credentials"
 msgstr ""
 
-#: ./plone/app/ldap/browser/controlpanel.py:53
+#: ./plone/app/ldap/browser/controlpanel.py:54
 msgid "There were errors"
+msgstr ""
+
+#. Default: "Clear the caches, and adjust the cache timeouts."
+#: ./plone/app/ldap/browser/controlpanel.pt:330
+msgid "description-caches"
 msgstr ""
 
 #. Default: "In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server."
@@ -96,6 +101,31 @@ msgstr ""
 #. Default: "Overview of all configured LDAP servers. If multiple servers are used the will be tried in top-to-bottom order."
 #: ./plone/app/ldap/browser/controlpanel.pt:219
 msgid "description-servers"
+msgstr ""
+
+#. Default: "Cache Timeouts"
+#: ./plone/app/ldap/browser/controlpanel.pt:358
+msgid "heading-cache-timeouts"
+msgstr ""
+
+#. Default: "Cached Users"
+#: ./plone/app/ldap/browser/controlpanel.pt:405
+msgid "heading-cached-users"
+msgstr ""
+
+#. Default: "Purge All Caches"
+#: ./plone/app/ldap/browser/controlpanel.pt:341
+msgid "heading-purge-all-caches"
+msgstr ""
+
+#. Default: "Empty all caches and force reloading of user records from LDAP."
+#: ./plone/app/ldap/browser/controlpanel.pt:345
+msgid "help-purge-cache"
+msgstr ""
+
+#. Default: "An integer representing seconds."
+#: ./plone/app/ldap/browser/controlpanel.pt:361
+msgid "help-seconds"
 msgstr ""
 
 #. Default: "The timeout in seconds to wait for a connection to the LDAP server to be established."
@@ -192,6 +222,16 @@ msgstr ""
 msgid "help_plone_property"
 msgstr ""
 
+#. Default: "Anonymous Cache"
+#: ./plone/app/ldap/browser/controlpanel.pt:374
+msgid "label_anon_cache"
+msgstr ""
+
+#. Default: "Authenticated Cache"
+#: ./plone/app/ldap/browser/controlpanel.pt:360
+msgid "label_auth_cache"
+msgstr ""
+
 #. Default: "Connection timeout"
 #: ./plone/app/ldap/engine/interfaces.py:194
 msgid "label_connection_timeout"
@@ -199,25 +239,25 @@ msgstr ""
 
 #. Default: "Delete"
 #: ./plone/app/ldap/browser/controlpanel.pt:312
-#: ./plone/app/ldap/browser/controlpanel.py:70
+#: ./plone/app/ldap/browser/controlpanel.py:77
 msgid "label_delete"
 msgstr ""
 
-#. Default: "Delete Property"
+#. Default: "Delete"
 #: ./plone/app/ldap/browser/controlpanel.pt:201
-#: ./plone/app/ldap/browser/controlpanel.py:77
+#: ./plone/app/ldap/browser/controlpanel.py:85
 msgid "label_delete_property"
 msgstr ""
 
 #. Default: "Disable"
 #: ./plone/app/ldap/browser/controlpanel.pt:309
-#: ./plone/app/ldap/browser/controlpanel.py:63
+#: ./plone/app/ldap/browser/controlpanel.py:67
 msgid "label_disable"
 msgstr ""
 
 #. Default: "Enable"
 #: ./plone/app/ldap/browser/controlpanel.pt:306
-#: ./plone/app/ldap/browser/controlpanel.py:56
+#: ./plone/app/ldap/browser/controlpanel.py:57
 msgid "label_enable"
 msgstr ""
 
@@ -339,6 +379,11 @@ msgstr ""
 msgid "label_multi_valued"
 msgstr ""
 
+#. Default: "Negative Cache"
+#: ./plone/app/ldap/browser/controlpanel.pt:388
+msgid "label_negative_cache"
+msgstr ""
+
 #. Default: "No"
 #: ./plone/app/ldap/browser/controlpanel.pt:191
 msgid "label_no"
@@ -364,6 +409,12 @@ msgstr ""
 msgid "label_property_description"
 msgstr ""
 
+#. Default: "Purge"
+#: ./plone/app/ldap/browser/controlpanel.pt:344
+#: ./plone/app/ldap/browser/controlpanel.py:93
+msgid "label_purge"
+msgstr ""
+
 #. Default: "Add LDAP server"
 #: ./plone/app/ldap/browser/controlpanel.pt:320
 msgid "label_server_add"
@@ -374,9 +425,20 @@ msgstr ""
 msgid "label_up_to_plone_setup"
 msgstr ""
 
+#. Default: "Update Cache Timeouts"
+#: ./plone/app/ldap/browser/controlpanel.pt:401
+#: ./plone/app/ldap/browser/controlpanel.py:100
+msgid "label_update_cache_timeouts"
+msgstr ""
+
 #. Default: "Yes"
 #: ./plone/app/ldap/browser/controlpanel.pt:190
 msgid "label_yes"
+msgstr ""
+
+#. Default: "Caches"
+#: ./plone/app/ldap/browser/controlpanel.pt:326
+msgid "legend-caches"
 msgstr ""
 
 #. Default: "Global Settings"
