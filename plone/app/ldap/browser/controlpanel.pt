@@ -322,6 +322,123 @@
                          i18n:attributes="value label_server_add;" />
              </form>
           </fieldset>
+          <fieldset>
+              <legend id="fieldsetlegend-caches" i18n:translate="legend-caches">
+                  Caches
+              </legend>
+
+              <p i18n:translate="description-caches">
+                  Clear the caches, and adjust the cache timeouts.
+              </p>
+              
+              <form style="display: inline" method="POST"
+                  id="ldap_caches_form"
+                  metal:define-macro="ldap_caches_form"
+                  tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
+
+                  <input type="hidden" name="fieldset_id" value="fieldsetlegend-caches" />
+                  
+                  <h2 i18n:translate="heading-purge-all-caches">Purge All Caches</h2>
+                  
+                  <div class="field">
+                      <label i18n:translate="label_purge">Purge</label>
+                      <div class="formHelp" i18n:translate="help-purge-cache">
+                          Empty all caches and force reloading of user
+                          records from LDAP.
+                      </div>
+
+                    <div class="widget">
+                      <input type="submit" class="context"
+                        value="Purge" name="form.actions.Purge"
+                        i18n:attributes="value label_purge;"/>
+                    </div>
+                  
+                  </div>
+                  
+                  <h2 i18n:translate="heading-cache-timeouts">Cache Timeouts</h2>
+                  <div class="field">
+                      <label i18n:translate="label_auth_cache">Authenticated Cache</label>
+                      <div class="formHelp" i18n:translate="help-seconds">
+                          An integer representing seconds.
+                      </div>
+
+                    <div class="widget">
+                      <input type="text"
+                        name="form.auth_cache_seconds"
+                        tal:attributes="value view/auth_cache_seconds"/>
+                    </div>
+                  
+                  </div>
+
+                  <div class="field">
+                      <label i18n:translate="label_auth_cache">Anonymous Cache</label>
+                      <div class="formHelp" i18n:translate="help-seconds">
+                          An integer representing seconds.
+                      </div>
+
+                    <div class="widget">
+                      <input type="text"
+                        name="form.anon_cache_seconds"
+                        tal:attributes="value view/anon_cache_seconds"/>
+                    </div>
+                  
+                  </div>
+                  
+                  <div class="field">
+                      <label i18n:translate="label_negative_cache">Negative Cache</label>
+                      <div class="formHelp" i18n:translate="help-seconds">
+                          An integer representing seconds.
+                      </div>
+
+                    <div class="widget">
+                      <input type="text"
+                        name="form.negative_cache_seconds"
+                        tal:attributes="value view/negative_cache_seconds"/>
+                    </div>
+                  
+                  </div>  
+                  
+                  <input type="submit" class="context"
+                    value="Update Cache Timeouts" name="form.actions.UpdateCacheTimeouts"
+                    i18n:attributes="value label_update_cache_timeouts;"/>
+            
+                 <h2 i18n:translate="heading-cached-users">Cached Users</h2>
+                 
+                 <p tal:condition="python: not view.anon_cache() or view.auth_cache()">
+                 No users in cache
+                 (superuser is never cached)
+                 </p>
+                 
+                 <table class="listing controlpanel-listing" tal:condition="python: view.auth_cache() or view.anon_cache()">
+                   <thead>
+                   <tr>
+                     <th>Login Name</th>
+                     <th>User ID</th>
+                     <th>Roles</th>
+                     <th>Creation time</th>
+                     <th>Cache Type</th>
+                   </tr>
+                   </thead>
+                   
+                   <tbody>
+                   <tal:users tal:repeat="user python: view.auth_cache() + view.anon_cache()">
+                   <tr tal:define="oddrow repeat/user/odd"
+                       tal:attributes="class python:oddrow and 'even' or 'odd'">
+                       <td tal:content="user/getUserName">Login Name</td>
+                       <td tal:content="user/getId">User ID</td>
+                       <td>
+                            <p tal:repeat="role user/getRoles"><span tal:replace="role" /></p>
+                       </td>
+                       <td tal:content="user/getCreationTime">Creation Time</td>
+                       <td tal:content="user/cache_type">anonymous</td>                       
+                   </tr>
+                   </tal:users>
+                   </tbody>
+                   
+                 </table>
+                 
+              </form>
+          </fieldset>
           <script type="text/javascript" 
                    tal:define="extra_script view/extra_script | nothing" 
                    tal:condition="extra_script" 

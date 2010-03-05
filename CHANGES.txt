@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Added a tab for display and modifying the cache settings.
+  [kteague]
+
 - Send out notification events for all object additions/modifications/removals
   so that configuration always gets propogated to the LDAPUserFolder object.
   [kteague]

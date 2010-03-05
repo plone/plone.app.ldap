@@ -1,21 +1,22 @@
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five.formlib.formbase import EditForm
 from ldap import LDAPError
-import logging
-from zope.lifecycleevent import ObjectModifiedEvent, ObjectRemovedEvent
-from zope.formlib.form import haveInputWidgets
-from zope.formlib.form import applyChanges
-from zope.formlib.form import action
-from zope.formlib.form import FormFields
-from zope.event import notify
+from plone.app.ldap import LDAPMessageFactory as _
+from plone.app.ldap.engine.interfaces import ILDAPBinding
+from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.ploneldap.util import getLDAPPlugin
+from plone.memoize.instance import memoize
+from zope.app.form.interfaces import WidgetInputError
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-from plone.app.ldap import LDAPMessageFactory as _
-from plone.app.ldap.engine.interfaces import ILDAPConfiguration
-from plone.app.ldap.engine.interfaces import ILDAPBinding
-from plone.memoize.instance import memoize
-from Products.Five.formlib.formbase import EditForm
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.event import notify
+from zope.formlib.form import FormFields
+from zope.formlib.form import action
+from zope.formlib.form import applyChanges
+from zope.formlib.form import haveInputWidgets
+from zope.lifecycleevent import ObjectModifiedEvent, ObjectRemovedEvent
 from zope.schema.interfaces import ValidationError
-from zope.app.form.interfaces import WidgetInputError
+import logging
 
 class LDAPBindFailure(ValidationError):
     __doc__ = _(u"LDAP server refused your credentials")
@@ -88,6 +89,87 @@ class LDAPControlPanel(EditForm):
                 notify(ObjectRemovedEvent(self.storage.schema[id]))
                 del self.storage.schema[id]
         return self.request.response.redirect(self.nextURL())
+
+    @action(_(u'label_purge', default=u'Purge'), name=u'Purge')
+    def handle_cache_purge(self, action, data):
+        luf=getLDAPPlugin()._getLDAPUserFolder()
+        luf.manage_reinit()
+        self.status = 'User caches cleared'
+        return self.request.response.redirect(self.nextURL())
+    
+    @action(_(u'label_update_cache_timeouts', default=u'Update Cache Timeouts'), name=u'UpdateCacheTimeouts')
+    def handle_update_cache_timeouts(self, action, data):
+        luf=getLDAPPlugin()._getLDAPUserFolder()
+        for cache_type, cache_value_name in [
+            ('authenticated','auth_cache_seconds'),
+            ('anonymous','anon_cache_seconds'),
+            ('negative','negative_cache_seconds'),]:
+            cache_value = self.request.form['form.' + cache_value_name]
+            try:
+                cache_value = int(cache_value)
+            except ValueError:
+                continue
+            if cache_value != getattr(self, cache_value_name, None):
+                luf.setCacheTimeout(
+                    cache_type = cache_type,
+                    timeout = cache_value,
+                )
+                self.status = 'Cache timeout changed'        
+        return self.request.response.redirect(self.nextURL())
+
+    # cache properties delegate to the LDAPUserFolder instance
+    def get_auth_cache_seconds(self):
+        try:
+            luf=getLDAPPlugin()._getLDAPUserFolder()
+        except KeyError:
+            return 600
+        return luf.getCacheTimeout('authenticated')
+    def set_auth_cache_seconds(self, value):
+        luf=getLDAPPlugin()._getLDAPUserFolder()
+        self._cache('authenticated').setTimeout(value)
+    auth_cache_seconds = property(get_auth_cache_seconds, set_auth_cache_seconds)
+    
+    def get_anon_cache_seconds(self):
+        try:
+            luf=getLDAPPlugin()._getLDAPUserFolder()
+        except KeyError:
+            return 600
+        return luf.getCacheTimeout('anonymous')
+    def set_anon_cache_seconds(self, value):
+        luf=getLDAPPlugin()._getLDAPUserFolder()
+        self._cache('anonymous').setTimeout(value)
+    anon_cache_seconds = property(get_anon_cache_seconds, set_anon_cache_seconds)
+
+    def get_negative_cache_seconds(self):
+        try:
+            luf=getLDAPPlugin()._getLDAPUserFolder()
+        except KeyError:
+            return 600
+        return luf.getCacheTimeout('negative')
+    def set_negative_cache_seconds(self, value):
+        luf=getLDAPPlugin()._getLDAPUserFolder()
+        self._cache('negative').setTimeout(value)
+    negative_cache_seconds = property(get_negative_cache_seconds, set_negative_cache_seconds)
+
+    def anon_cache(self):
+        try:
+            luf=getLDAPPlugin()._getLDAPUserFolder()
+        except KeyError:
+            return []
+        users = luf.getUsers(authenticated=0)
+        for user in users:
+            user.cache_type = 'anonymous'
+        return users
+    
+    def auth_cache(self):
+        try:
+            luf=getLDAPPlugin()._getLDAPUserFolder()
+        except KeyError:
+            return []
+        users = luf.getUsers(authenticated=1)
+        for user in users:
+            user.cache_type = 'authenticated'
+        return users
     
     def nextURL(self):
         url = str(
