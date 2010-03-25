@@ -1,7 +1,7 @@
 Changelog 
 =========
 
-1.2 (unreleased)
+1.2 (2010-03-25)
 ----------------
 
 - Added a tab for display and modifying the cache settings.
