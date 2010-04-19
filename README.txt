@@ -44,7 +44,7 @@ deleting users and groups is supported.
 Installing
 ----------
 
-This package works with Plone 3 and Plone 4. Plone 3 users should install a version in the 1.1.* series (e.g. plone.app.ldap < 1.2), as releases after version 1.2 are only tested in Plone 4.
+This package works with Plone 3 and Plone 4. Plone 3 users should install a version in the 1.2.* series (e.g. plone.app.ldap < 1.3), as releases after version 1.3 will only work with Plone 4.
 
 You need to install PloneLDAP_ and its requirements in your Zope instance
 before you can use plone.app.ldap. This can easily be done by downloading

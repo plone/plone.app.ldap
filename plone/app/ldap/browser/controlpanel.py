@@ -14,9 +14,14 @@ from zope.formlib.form import FormFields
 from zope.formlib.form import action
 from zope.formlib.form import applyChanges
 from zope.formlib.form import haveInputWidgets
-from zope.lifecycleevent import ObjectModifiedEvent, ObjectRemovedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
 from zope.schema.interfaces import ValidationError
 import logging
+
+try:
+    from zope.lifecycleevent import ObjectRemovedEvent
+except:
+    from zope.app.container.contained import ObjectRemovedEvent
 
 class LDAPBindFailure(ValidationError):
     __doc__ = _(u"LDAP server refused your credentials")

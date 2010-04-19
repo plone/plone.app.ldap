@@ -322,7 +322,7 @@
                          i18n:attributes="value label_server_add;" />
              </form>
           </fieldset>
-          <fieldset>
+          <fieldset id="fieldset-caches">
               <legend id="fieldsetlegend-caches" i18n:translate="legend-caches">
                   Caches
               </legend>

@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.3dev'
+version = '1.2.1dev'
 
 setup(name='plone.app.ldap',
       version=version,
@@ -16,6 +16,8 @@ setup(name='plone.app.ldap',
       keywords='plone ldap',
       author='Wichert Akkerman - Simplon',
       author_email='wichert@simplon.biz',
+      maintainer='Kevin Teague',
+      maintainer_email='kevin@bud.ca',
       url='http://pypi.python.org/pypi/plone.app.ldap',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
