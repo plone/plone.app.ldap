@@ -1,8 +1,8 @@
 Changelog 
 =========
 
-1.2.1 (unreleased)
-----------------
+1.2.1 (2010-04-19)
+------------------
 
 - Fallback to Plone 3 compatible imports. Fix display of cache tab in Plone 3.
   [kteague]
