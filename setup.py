@@ -4,7 +4,7 @@ version = '1.3dev'
 
 setup(name='plone.app.ldap',
       version=version,
-      description="LDAP control panel for Plone 3",
+      description="LDAP control panel for Plone 3 and Plone 4",
       long_description=open("README.txt").read() + "\n" +
                        open("CHANGES.txt").read(),
       classifiers=[
