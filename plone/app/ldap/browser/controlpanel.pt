@@ -152,7 +152,7 @@
                         tal:condition="schema">
                      <thead>
                          <tr>
-                             <th class="smallColumn">&nbsp;</th>
+                             <th class="smallColumn">&#160;</th>
                              <th class="smallColumn" i18n:translate="label_ldap_ldap_property">
                                  LDAP property
                              </th>
@@ -174,7 +174,7 @@
                              <td>
                                  <input type="checkbox" name="propertyId:list"
                                         tal:condition="not:property/protected"
-                                        tal:attributes="value property/id">
+                                        tal:attributes="value property/id" />
                              </td>
                              <td>
                                <a href=""
@@ -234,7 +234,7 @@
                         tal:condition="servers">
                      <thead>
                          <tr>
-                             <th class="smallColumn">&nbsp;</th>
+                             <th class="smallColumn">&#160;</th>
                              <th class="smallColumn" i18n:translate="label_ldap_enabled">
                                  Active
                              </th>
@@ -258,7 +258,7 @@
                              tal:attributes="class python:oddrow and 'even' or 'odd'">
                              <td>
                                  <input type="checkbox" name="serverId:list"
-                                 tal:attributes="value server/id">
+                                 tal:attributes="value server/id" />
                              </td>
                              <td class="checker">
                                <img tal:replace="structure context/confirm_icon.gif"
@@ -309,9 +309,8 @@
                      <input class="context" type="submit" value="Disable"
                              name="form.actions.DisableServer"
                              i18n:attributes="value label_disable;" />
-                     <input class="context" type="submit" value="Delete"
+                     <input class="context destructive" type="submit" value="Delete"
                              name="form.actions.DeleteServer"
-                             class="destructive"
                              i18n:attributes="value label_delete;" />
                  </tal:buttons>
              </form>
