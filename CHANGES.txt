@@ -4,6 +4,10 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Removed locales directory. You can translate this package
+  in the plone.app.locales package now.
+  [vincentfretin]
+
 - cleaned templates to work with cmf.pt
   [pilz]
 
