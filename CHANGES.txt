@@ -1,8 +1,19 @@
 Changelog 
 =========
 
-1.3 (unreleased)
+1.2.2 (unreleased)
 ----------------
+
+- LDAPProperty fields can now be marked as a Binary property.
+  [kteague]
+  
+- Ability to import/export an LDAP configuration using generic setup.
+  This feature is the same as the one provided by collective.genericsetup.ldap
+  and exports made with that product can be imported into plone.app.ldap.
+  During import all existing servers, general settings and schema
+  will be overwritten from config file - but no interfaces or cache
+  settings are changed.
+  [kteague]
 
 - Removed locales directory. You can translate this package
   in the plone.app.locales package now.

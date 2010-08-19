@@ -162,6 +162,9 @@
                              <th class="smallColumn" i18n:translate="label_ldap_multi_valued">
                                  Multi-valued
                              </th>
+                             <th class="smallColumn" i18n:translate="label_ldap_binary">
+                                 Binary
+                             </th>
                              <th class="smallColumn" i18n:translate="label_ldap_description">
                                  Description
                              </th>
@@ -189,6 +192,10 @@
                              <td>
                                  <span i18n:translate="label_yes" tal:condition="property/multi_valued">Yes</span>
                                  <span i18n:translate="label_no" tal:condition="not:property/multi_valued">No</span>
+                             </td>
+                             <td>
+                                 <span i18n:translate="label_yes" tal:condition="property/binary">Yes</span>
+                                 <span i18n:translate="label_no" tal:condition="not:property/binary">No</span>
                              </td>
                              <td tal:content="property/description">
                                  Full name

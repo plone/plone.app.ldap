@@ -24,4 +24,16 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
 
+  <genericsetup:importStep name="ldap-settings-import"
+      title="LDAP Settings Import"
+      description="Import custom LDAP and AD settings."
+      handler=".ploneldap.exportimport.importLDAPSettings"
+      />
+
+  <genericsetup:exportStep name="ldap-settings-export"
+      title="LDAP Settings Export"
+      description="Export custom LDAP and AD settings."
+      handler=".ploneldap.exportimport.exportLDAPSettings"
+      />
+
 </configure>

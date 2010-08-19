@@ -219,5 +219,6 @@ class LDAPControlPanel(EditForm):
                       ldap_name=p.ldap_name,
                       plone_name=p.plone_name,
                       multi_valued=p.multi_valued,
+                      binary=p.binary,
                       protected=protected(p))
                  for p in storage.schema.values() ]

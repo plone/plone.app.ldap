@@ -24,7 +24,8 @@ def HandleCreated(property, event):
             ldap_name=str(property.ldap_name),
             friendly_name=property.description,
             public_name=str(property.plone_name),
-            multivalued=property.multi_valued)
+            multivalued=property.multi_valued,
+            binary=property.binary)
 
 
 @adapter(ILDAPProperty, IObjectModifiedEvent)

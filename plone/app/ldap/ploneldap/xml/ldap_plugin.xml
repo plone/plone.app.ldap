@@ -1,0 +1,48 @@
+<?xml version="1.0"  ?>
+<ldapplugins xmlns:tal="http://xml.zope.org/namespaces/tal" tal:define="info options/info">
+    <tal:rep repeat="plugin info" omit-tag="">
+        <ldapplugin 
+            title="PLUGIN TITLE"
+            id="ID"
+            meta_type=""
+            tal:attributes="title plugin/title;id plugin/id; meta_type plugin/meta_type"
+            update="False">
+            
+            <interface tal:repeat="iface plugin/interfaces" value="" tal:attributes="value iface" />
+            <plugin_property id="ID" type="TYPE" mode="MODE" value="VALUE" 
+                tal:repeat="prop plugin/plugin_props"
+                tal:attributes="id prop/id;
+                                type prop/type;
+                                mode prop/mode;
+                                value prop/value;"
+                                /> 
+            <property id="ID" type="TYPE" 
+                tal:repeat="property plugin/properties"
+                tal:attributes="id property/id;
+                               type property/type">
+                <item 
+                    value="VALUE"
+                    tal:repeat="value_item property/value" 
+                    tal:attributes="value value_item" />
+            </property>
+            <schema>
+                <attr id="ID" 
+                    tal:repeat="a_item plugin/schema" 
+                    tal:attributes="id a_item/id" >
+                    <item 
+                        id="id" value="value"
+                        tal:repeat="c_item a_item/content"
+                        tal:attributes="id c_item/id; value c_item/value"
+                        />                
+                </attr>
+            </schema>
+            <server tal:repeat="server plugin/servers" update="False" delete="False">
+                <item 
+                    id="id" value="value" type="type"
+                    tal:repeat="s_item server/content"
+                    tal:attributes="id s_item/id; value s_item/value; type s_item/type"
+                    />
+            </server>
+        </ldapplugin>
+    </tal:rep>
+</ldapplugins>

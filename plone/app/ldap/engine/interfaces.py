@@ -257,6 +257,13 @@ class ILDAPPropertyConfiguration(Interface):
                 default=u"Select if this property can have multiple values."),
             required=True)
 
+    binary = Bool(
+            title=_(u"label_binary",
+                default=u"Binary property"),
+            description=_(u"help_binary",
+                default=u"Select if this property can have binary values."),
+            required=True)
+
 
 class ILDAPProperty(IContained, ILDAPPropertyConfiguration):
     """A LDAP property
