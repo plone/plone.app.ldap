@@ -1,8 +1,8 @@
 Changelog 
 =========
 
-1.2.2 (unreleased)
-----------------
+1.2.2 (2010-08-18)
+------------------
 
 - LDAPProperty fields can now be marked as a Binary property.
   [kteague]
