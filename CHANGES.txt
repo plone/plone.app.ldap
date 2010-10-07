@@ -4,7 +4,8 @@ Changelog
 1.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix: Login Name, User ID  and RDN attributes were not set correctly on creation.
+  [elro]
 
 
 1.2.2 (2010-08-18)
