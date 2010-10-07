@@ -1,7 +1,7 @@
 Changelog 
 =========
 
-1.2.3 (unreleased)
+1.2.3 (2010-10-07)
 ------------------
 
 - Fix: Login Name, User ID  and RDN attributes were not set correctly on creation.
