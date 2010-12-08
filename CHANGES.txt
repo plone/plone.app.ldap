@@ -1,7 +1,7 @@
 Changelog 
 =========
 
-1.2.4 (unreleased)
+1.2.4 (2010-12-07)
 ------------------
 
 - Fix bug where generic setup exports were exporting boolean values
