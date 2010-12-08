@@ -52,10 +52,11 @@ class LDAPPluginExportImport:
         val_type = 'str'
         if isinstance(value, list):
             val_type = 'list'
-        elif isinstance(value, int):
-            val_type = 'int'
+        # check for bool before int as a bool is also an instance of int
         elif isinstance(value, bool):
             val_type = 'bool'
+        elif isinstance(value, int):
+            val_type = 'int'
         return val_type
 
     def _getExportInfo(self, context):
