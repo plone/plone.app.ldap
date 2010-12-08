@@ -53,7 +53,8 @@ class LDAPContainer(OrderedContainer):
 
     def addItem(self, item):
         chooser=INameChooser(self)
-        self[chooser.chooseName(None, item)]=item
+        item_id = getattr(item, 'ldap_name', None) or chooser.chooseName(None, item)
+        self[item_id]=item
 
 
 class LDAPServerStorage(LDAPContainer):

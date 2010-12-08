@@ -8,6 +8,9 @@ Changelog
   as type int.
   [kteague]
 
+- Fix bug where generic setup imports weren't choosing names correctly.
+  [kteague]
+
 
 1.2.3 (2010-10-07)
 ------------------
