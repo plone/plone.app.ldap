@@ -42,11 +42,11 @@ class LDAPPluginExportImport:
     """
 
     def exportData(self, context, out):
-        template = PageTemplateFile('xml/%s' % _FILENAME, globals()) #.__of__(context.getSite())
+        template = PageTemplateFile('xml/%s' % _FILENAME, globals())  # .__of__(context.getSite())
         info = self._getExportInfo(context)
         if info:
             context.writeDataFile('%s' % _FILENAME, template(info=info), 'text/xml')
-            print >> out , "GenericSetup Configuration for ldap exported"
+            print >> out, "GenericSetup Configuration for ldap exported"
 
     def getTypeStr(self, value):
         val_type = 'str'
@@ -95,7 +95,7 @@ class LDAPPluginExportImport:
                     c_info['servers'].append(c_server)
                 schema = uf.getSchemaConfig()
                 for key in schema.keys():
-                    a_item = {'id': key, 'content': [] }
+                    a_item = {'id': key, 'content': []}
                     for subkey in schema[key]:
                         s_item = {'id': subkey, 'value': schema[key][subkey], 'type': self.getTypeStr(schema[key][subkey])}
                         a_item['content'].append(s_item)
@@ -205,6 +205,9 @@ class LDAPPluginExportImport:
         config.bind_dn = settings['_binduid']
         config.bind_password = settings['_bindpwd']
         config.user_object_classes = ','.join(settings['_user_objclasses'])
+        config.password_encryption = settings['_pwd_encryption']
+        config.default_user_roles = ','.join(settings['_roles'])
+        config.activated_plugins = interfaces
 
         # servers
         config.servers = LDAPServerStorage()

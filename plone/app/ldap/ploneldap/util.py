@@ -77,7 +77,8 @@ def createLDAPPlugin():
             groups_scope=config.group_scope,
             binduid=config.bind_dn or "",
             bindpwd=config.bind_password or "",
-            roles="Member",
+        encryption=config.password_encryption,
+            roles=config.default_user_roles or "",
             obj_classes=config.user_object_classes)
 
     plugin=getattr(pas, id)
@@ -161,7 +162,10 @@ def enablePASInterfaces():
     if config.ldap_type==u"AD":
         plugin.manage_activateInterfaces(ad_interfaces)
     else:
-        plugin.manage_activateInterfaces(ldap_interfaces)
+        if config.activated_plugins:
+            plugin.manage_activateInterfaces(config.activated_plugins)
+        else:
+            plugin.manage_activateInterfaces(ldap_interfaces)
         plugins=getPAS().plugins
 
         iface=plugins._getInterfaceFromName("IUserAdderPlugin")

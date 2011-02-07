@@ -74,3 +74,20 @@ class LDAPSinglueValueAttributesVocabulary(object):
 
 LDAPSingleValueAttributesVocabularyFactory = LDAPAttributesVocabulary()
 
+
+class LDAPPasswordEncryptionVocabulary(object):
+    """Vocabulary factory for LDAP Password encryption.
+    """
+    implements(IVocabularyFactory)
+
+    def __call__(self, context):
+        return SimpleVocabulary([
+            SimpleTerm('crypt', u"crypt"),
+            SimpleTerm('SHA', u"SHA"),
+            SimpleTerm('SSHA', u"SSHA"),
+            SimpleTerm('md5', u"md5"),
+            SimpleTerm('clear', u"clear"),
+            ])
+
+LDAPPasswordEncryptionVocabularyFactory = LDAPPasswordEncryptionVocabulary()
+

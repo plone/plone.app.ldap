@@ -39,5 +39,10 @@
       name="plone.app.ldap.engine.LDAPConnectionTypes"
       />
 
+    <utility
+      component=".vocabulary.LDAPPasswordEncryptionVocabularyFactory"
+      name="plone.app.ldap.engine.LDAPPasswordEncryption"
+      />
+
 </configure>
 

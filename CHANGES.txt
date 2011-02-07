@@ -4,7 +4,8 @@ Changelog
 1.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- added import-support for activated interfaces, user_default_roles
+  and password_encryption [awello]
 
 
 1.2.4 (2010-12-07)

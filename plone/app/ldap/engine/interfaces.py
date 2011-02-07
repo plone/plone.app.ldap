@@ -6,6 +6,7 @@ from zope.schema import Int
 from zope.schema import Password
 from zope.schema import ASCIILine
 from zope.schema import TextLine
+from zope.schema import List
 
 from zope.app.container.interfaces import IContained
 from zope.app.container.interfaces import IOrderedContainer
@@ -142,6 +143,16 @@ class ILDAPBinding(Interface):
             vocabulary="plone.app.ldap.engine.LDAPScopes",
             required=True)
 
+    password_encryption = Choice(
+            title =_(u"User password encryption"),
+            default="crypt",
+            vocabulary="plone.app.ldap.engine.LDAPPasswordEncryption",)
+
+    default_user_roles = ASCIILine(
+            title=_(u"label_ldap_default_user_roles"),
+            default="Member",
+            required=True,)
+
 
 class ILDAPConfiguration(ILDAPBinding):
     """LDAP configuration utility"""
@@ -153,6 +164,10 @@ class ILDAPConfiguration(ILDAPBinding):
     schema = Container(title=u"LDAP schema",
             description=u"The LDAP schema contains information on used LDAP properties",
             required=True)
+
+    activated_plugins = List(title=_(u"activated Plugins"),
+            value_type=ASCIILine(
+                title=_(u"interface"),))    
 
 
 class ILDAPServerStorage(IOrderedContainer, IContainerNamesContainer):
@@ -250,7 +265,7 @@ class ILDAPPropertyConfiguration(Interface):
                         u"user id or rDN."),
             required=False)
 
-    multi_valued  = Bool(
+    multi_valued = Bool(
             title=_(u"label_multi_valued",
                 default=u"Multi-valued property"),
             description=_(u"help_multi_valued",

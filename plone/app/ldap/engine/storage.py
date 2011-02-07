@@ -26,6 +26,9 @@ class LDAPConfiguration(OrderedContainer):
     user_scope = SCOPE_SUBTREE
     group_base = ""
     group_scope = SCOPE_SUBTREE
+    password_encryption = ""
+    default_user_roles = ""
+    activated_interfaces = []
 
     def __init__(self):
         self.servers=LDAPServerStorage()
