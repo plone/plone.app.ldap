@@ -77,7 +77,7 @@ def createLDAPPlugin():
             groups_scope=config.group_scope,
             binduid=config.bind_dn or "",
             bindpwd=config.bind_password or "",
-        encryption=config.password_encryption,
+            encryption=config.password_encryption,
             roles=config.default_user_roles or "",
             obj_classes=config.user_object_classes)
 

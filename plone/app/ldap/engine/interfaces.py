@@ -144,12 +144,14 @@ class ILDAPBinding(Interface):
             required=True)
 
     password_encryption = Choice(
-            title =_(u"User password encryption"),
+            title =_(u"label_ldap_user_password_encryption",
+                default=u"User password encryption"),
             default="crypt",
             vocabulary="plone.app.ldap.engine.LDAPPasswordEncryption",)
 
     default_user_roles = ASCIILine(
-            title=_(u"label_ldap_default_user_roles"),
+            title=_(u"label_ldap_default_user_roles",
+                default=u"Default user roles"),
             default="Member",
             required=True,)
 
@@ -165,9 +167,9 @@ class ILDAPConfiguration(ILDAPBinding):
             description=u"The LDAP schema contains information on used LDAP properties",
             required=True)
 
-    activated_plugins = List(title=_(u"activated Plugins"),
+    activated_plugins = List(title=_(u"Activated plugins"),
             value_type=ASCIILine(
-                title=_(u"interface"),))    
+                title=u"interface",))    
 
 
 class ILDAPServerStorage(IOrderedContainer, IContainerNamesContainer):
