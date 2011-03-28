@@ -6,6 +6,8 @@ Changelog
 
 - added import-support for activated interfaces, user_default_roles
   and password_encryption [awello]
+- update imports for zope.formlib bump in Plone 4.1 
+  [eleddy]
 
 
 1.2.4 (2010-12-07)

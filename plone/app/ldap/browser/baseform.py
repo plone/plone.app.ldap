@@ -6,8 +6,12 @@ from zope.event import notify
 from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import ObjectModifiedEvent
 from Products.Five import BrowserView
-from Products.Five.formlib.formbase import AddFormBase
-from Products.Five.formlib.formbase import EditFormBase
+try: # >= 4.1
+    from zope.formlib.form import AddFormBase
+    from zope.formlib.form import EditFormBase
+except ImportError: # < 4.1
+    from Products.Five.formlib.formbase import AddFormBase
+    from Products.Five.formlib.formbase import EditFormBase
 from plone.app.form.validators import null_validator
 from plone.app.ldap import LDAPMessageFactory as _
 

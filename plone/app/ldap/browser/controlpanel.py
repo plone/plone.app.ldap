@@ -1,5 +1,8 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.Five.formlib.formbase import EditForm
+try: # 4.1+
+    from zope.formlib.form import EditForm
+except ImportError: # < 4.1
+    from Products.Five.formlib.formbase import EditForm
 from ldap import LDAPError
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.engine.interfaces import ILDAPBinding
