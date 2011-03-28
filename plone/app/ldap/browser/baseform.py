@@ -7,8 +7,8 @@ from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import ObjectModifiedEvent
 from Products.Five import BrowserView
 try: # >= 4.1
-    from zope.formlib.form import AddFormBase
-    from zope.formlib.form import EditFormBase
+    from five.formlib.formbase import AddFormBase
+    from five.formlib.formbase import EditFormBase
 except ImportError: # < 4.1
     from Products.Five.formlib.formbase import AddFormBase
     from Products.Five.formlib.formbase import EditFormBase

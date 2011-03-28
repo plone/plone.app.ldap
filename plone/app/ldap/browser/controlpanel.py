@@ -1,6 +1,6 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 try: # 4.1+
-    from zope.formlib.form import EditForm
+    from five.formlib.formbase import EditForm
 except ImportError: # < 4.1
     from Products.Five.formlib.formbase import EditForm
 from ldap import LDAPError
