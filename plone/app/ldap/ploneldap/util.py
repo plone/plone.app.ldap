@@ -55,15 +55,13 @@ def getLDAPPlugin():
     raise KeyError
 
 
-def createLDAPPlugin():
+def createLDAPPlugin(id="ldap-plugin"):
     pas=getPAS()
     config=getUtility(ILDAPConfiguration)
     if config.ldap_type==u"AD":
         klass=PloneActiveDirectoryMultiPlugin
     else:
         klass=PloneLDAPMultiPlugin
-
-    id="ldap-plugin"
 
     genericPluginCreation(pas, klass, 
             id=id,
