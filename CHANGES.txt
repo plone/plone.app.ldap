@@ -8,6 +8,11 @@ Changelog
   and password_encryption [awello]
 - update imports for zope.formlib bump in Plone 4.1 
   [eleddy]
+- update GS import to support plugin id, and update parameter
+  [eleddy]
+- update GS import to read interfaces config for AD plugins, 
+  apply cache parameter
+  [eleddy]
 
 
 1.2.4 (2010-12-07)

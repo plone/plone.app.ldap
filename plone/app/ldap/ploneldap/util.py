@@ -83,7 +83,7 @@ def createLDAPPlugin(id="ldap-plugin"):
     plugin.groupid_attr="cn"
     directlyProvides(plugin, IManagedLDAPPlugin)
     enablePASInterfaces()
-    enableCaching()
+    enableCaching(config.cache)
 
 
 def configureLDAPServers():
@@ -156,29 +156,32 @@ def enablePASInterfaces():
             ]
 
     ad_interfaces = common_interfaces
-
-    if config.ldap_type==u"AD":
-        plugin.manage_activateInterfaces(ad_interfaces)
+    
+    if config.activated_plugins:
+        plugin.manage_activateInterfaces(config.activated_plugins)
     else:
-        if config.activated_plugins:
-            plugin.manage_activateInterfaces(config.activated_plugins)
+        if config.ldap_type==u"AD":
+            plugin.manage_activateInterfaces(ad_interfaces)
         else:
             plugin.manage_activateInterfaces(ldap_interfaces)
+            
+    
+    if config.ldap_type != u"AD":
         plugins=getPAS().plugins
-
+    
         iface=plugins._getInterfaceFromName("IUserAdderPlugin")
         for i in range(len(plugins.listPlugins(iface))-1):
             plugins.movePluginsUp(iface, [plugin.getId()])
-
+    
         iface=plugins._getInterfaceFromName("IPropertiesPlugin")
         for i in range(len(plugins.listPlugins(iface))-1):
             plugins.movePluginsUp(iface, [plugin.getId()])
 
 
-def enableCaching():
+def enableCaching(cache_manager="RAMCache"):
     pas=getPAS()
     if pas.ZCacheable_getManager() is None:
-        pas.ZCacheable_setManagerId(manager_id="RAMCache")
-    getLDAPPlugin().ZCacheable_setManagerId(manager_id="RAMCache")
+        pas.ZCacheable_setManagerId(manager_id=cache_manager)
+    getLDAPPlugin().ZCacheable_setManagerId(manager_id=cache_manager)
 
 

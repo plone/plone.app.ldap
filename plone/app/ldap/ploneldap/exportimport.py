@@ -138,13 +138,17 @@ class LDAPPluginExportImport:
 
         for iface in root.getElementsByTagName('interface'):
             interfaces.append(iface.getAttribute('value'))
-
+    
         caches = list()
         for node in root.getElementsByTagName('cache'):
             caches.append(node.getAttribute('value'))
-
+    
         if len(caches) > 1:
             raise ValueError('You can not define multiple <cache> properties')
+        
+        cache = ''
+        if len(caches):    
+            cache = caches[0]
 
         for prop in root.getElementsByTagName('property'):
             type = prop.getAttribute('type')
@@ -233,6 +237,7 @@ class LDAPPluginExportImport:
             config.password_encryption = settings['_pwd_encryption']
             config.default_user_roles = ','.join(settings['_roles'])
             config.activated_plugins = interfaces
+            config.cache = cache
     
             # servers
             config.servers = LDAPServerStorage()
