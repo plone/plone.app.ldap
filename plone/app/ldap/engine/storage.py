@@ -29,7 +29,9 @@ class LDAPConfiguration(OrderedContainer):
     password_encryption = ""
     default_user_roles = ""
     activated_interfaces = []
-
+    activated_plugins = None
+    cache = ''
+    
     def __init__(self):
         self.servers=LDAPServerStorage()
         self.schema=LDAPSchema()
