@@ -45,7 +45,7 @@ class ILDAPBinding(Interface):
 
     userid_attribute = Choice(
             title=_(u"label_ldap_userid_attribute",
-                default=u"user id attribute"),
+                default=u"User id attribute"),
             description=_(u"help_ldap_userid_attribute",
                 default=u"This attribute is used as the userid inside Plone "
                         u"for LDAP users. It has to be unique for all users."),
@@ -55,7 +55,7 @@ class ILDAPBinding(Interface):
 
     login_attribute = Choice(
             title=_(u"label_ldap_login_attribute",
-                default=u"login name attribute"),
+                default=u"Login name attribute"),
             description=_(u"help_ldap_login_attribute",
                 default=u"The attribute is used as the login name for LDAP "
                         u"users logging into your site. In most cases this "

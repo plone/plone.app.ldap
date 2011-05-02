@@ -63,69 +63,71 @@
           </ul>
         </div>
 
-        <form class="enableFormTabbing">
-          <fieldset id="fieldset-global">
-            <legend id="fieldsetlegend-global" i18n:translate="legend-ldap-globalsettings">
+        <dl class="enableFormTabbing">
+            <dt id="fieldsetlegend-global" i18n:translate="legend-ldap-globalsettings">
               Global Settings
-            </legend>
-            <p i18n:translate="description-ldap-globalsettings">
-                 The following settings affect rules globally.
-             </p>
-            <form name="ldapSettings" method="POST"
-                  tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
-                <input type="hidden" name="fieldset_id" value="fieldsetlegend-global" />
-                <tal:block tal:repeat="widget view/widgets">
-                  <div class="field"
-                       tal:define="description widget/hint;
-                                   error widget/error"
-                       tal:attributes="class python:'field'+(error and ' error' or '')">
+            </dt>
+            <dd id="fieldset-global">
             
-                    <label i18n:translate=""
-                           tal:attributes="for widget/name"
-                           tal:content="widget/label">
-                      label
-                    </label>
+                <p i18n:translate="description-ldap-globalsettings">
+                     The following settings affect rules globally.
+                 </p>
+                <form name="ldapSettings" method="POST"
+                      tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
+                    <input type="hidden" name="fieldset_id" value="fieldsetlegend-global" />
+                    <tal:block tal:repeat="widget view/widgets">
+                      <div class="field"
+                           tal:define="description widget/hint;
+                                       error widget/error"
+                           tal:attributes="class python:'field'+(error and ' error' or '')">
             
-                    <span class="fieldRequired"
-                          title="Required"
-                          i18n:domain="plone"
-                          i18n:attributes="title title_required;"
-                          i18n:translate="label_required"
-                          tal:condition="widget/required">
-                      (Required)
-                    </span>
+                        <label i18n:translate=""
+                               tal:attributes="for widget/name"
+                               tal:content="widget/label">
+                          label
+                        </label>
             
-                    <div class="formHelp"
-                         tal:content="description"
-                         tal:condition="description">
-                      field description
+                        <span class="fieldRequired"
+                              title="Required"
+                              i18n:domain="plone"
+                              i18n:attributes="title title_required;"
+                              i18n:translate="label_required"
+                              tal:condition="widget/required">
+                          (Required)
+                        </span>
+            
+                        <div class="formHelp"
+                             tal:content="description"
+                             tal:condition="description">
+                          field description
+                        </div>
+            
+                        <div tal:condition="error"
+                             tal:content="structure error">
+                          The Error
+                        </div>
+            
+                        <div class="widget" tal:content="structure widget">
+                          <input type="text" />
+                        </div>
+                      </div>
+                    </tal:block>
+            
+                    <div class="formControls">
+                        <input type="submit" 
+                               name="form.actions.apply" 
+                               class="context"
+                               value="Save"
+                               i18n:domain="plone"
+                               i18n:attributes="value label_save;" />
                     </div>
+                </form>
+            </dd>
             
-                    <div tal:condition="error"
-                         tal:content="structure error">
-                      The Error
-                    </div>
-            
-                    <div class="widget" tal:content="structure widget">
-                      <input type="text" />
-                    </div>
-                  </div>
-                </tal:block>
-            
-                <div class="formControls">
-                    <input type="submit" 
-                           name="form.actions.apply" 
-                           class="context"
-                           value="Save"
-                           i18n:domain="plone"
-                           i18n:attributes="value label_save;" />
-                </div>
-            </form>
-          </fieldset>
-          <fieldset id="fieldset-schema">
-             <legend id="fieldsetlegend-schema" i18n:translate="legend-schema">
+            <dt id="fieldsetlegend-schema" i18n:translate="legend-schema">
                  LDAP Schema
-             </legend>
+            </dt>
+            <dd id="fieldset-schema">
 
              <p i18n:translate="description-schema">
              The LDAP schema defines the LDAP properties which can be used
@@ -216,13 +218,15 @@
                          name="form.button.Add"
                          i18n:attributes="value label_property_add;" />
              </form>
-          </fieldset>
-
-          <fieldset id="fieldset-servers">
-             <legend id="fieldsetlegend-servers" i18n:translate="legend-servers">
-                 LDAP Servers
-             </legend>
-
+             
+          </dd>
+          
+         <dt id="fieldsetlegend-servers" i18n:translate="legend-servers">
+             LDAP Servers
+         </dt>
+          
+          <dd id="fieldset-servers">
+          
              <p i18n:translate="description-servers">
                  Overview of all configured LDAP servers. If multiple servers
                  are used the will be tried in top-to-bottom order.
@@ -327,11 +331,13 @@
                          name="form.button.Add"
                          i18n:attributes="value label_server_add;" />
              </form>
-          </fieldset>
-          <fieldset id="fieldset-caches">
-              <legend id="fieldsetlegend-caches" i18n:translate="legend-caches">
-                  Caches
-              </legend>
+          </dd>
+          
+          <dt id="fieldsetlegend-caches" i18n:translate="legend-caches">
+              Caches
+          </dt>
+          
+          <dd id="fieldset-caches">
 
               <p i18n:translate="description-caches">
                   Clear the caches, and adjust the cache timeouts.
@@ -444,13 +450,13 @@
                  </table>
                  
               </form>
-          </fieldset>
+          </dd>
           <script type="text/javascript" 
                    tal:define="extra_script view/extra_script | nothing" 
                    tal:condition="extra_script" 
                    tal:content="structure extra_script"> 
           </script>
-        </form>
+        </dl>
    </div>
    </metal:form>
 </metal:main>
