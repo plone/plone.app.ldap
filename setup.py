@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.2.5dev'
+version = '1.2.5'
 
 setup(name='plone.app.ldap',
       version=version,

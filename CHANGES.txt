@@ -1,15 +1,18 @@
 Changelog 
 =========
 
-1.2.5 (unreleased)
+1.2.5 (2011-05-02)
 ------------------
 
 - added import-support for activated interfaces, user_default_roles
   and password_encryption [awello]
+  
 - update imports for zope.formlib bump in Plone 4.1 
   [eleddy]
+
 - update GS import to support plugin id, and update parameter
   [eleddy]
+
 - update GS import to read interfaces config for AD plugins, 
   apply cache parameter
   [eleddy]
