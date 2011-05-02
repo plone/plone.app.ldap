@@ -146,12 +146,16 @@ class ILDAPBinding(Interface):
     password_encryption = Choice(
             title =_(u"label_ldap_user_password_encryption",
                 default=u"User password encryption"),
+            description=_(u"help_ldap_user_password_encryption",
+                default=u"Method of encryption used for user passwords"),
             default="crypt",
             vocabulary="plone.app.ldap.engine.LDAPPasswordEncryption",)
 
     default_user_roles = ASCIILine(
             title=_(u"label_ldap_default_user_roles",
                 default=u"Default user roles"),
+            description=_(u"help_ldap_default_user_roles",
+                default=u"Default roles for new users"),
             default="Member",
             required=True,)
 
