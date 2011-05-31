@@ -1,19 +1,26 @@
-Changelog 
+Changelog
 =========
+
+1.2.6 (Unreleased)
+------------------
+
+- Include Products.CMFCore for Plone 4.1 compatibility.
+  [WouterVH]
+
 
 1.2.5 (2011-05-02)
 ------------------
 
-- added import-support for activated interfaces, user_default_roles
+- Added import-support for activated interfaces, user_default_roles
   and password_encryption [awello]
-  
-- update imports for zope.formlib bump in Plone 4.1 
+
+- Update imports for zope.formlib bump in Plone 4.1
   [eleddy]
 
-- update GS import to support plugin id, and update parameter
+- Update GS import to support plugin id, and update parameter
   [eleddy]
 
-- update GS import to read interfaces config for AD plugins, 
+- Update GS import to read interfaces config for AD plugins,
   apply cache parameter
   [eleddy]
 
@@ -41,7 +48,7 @@ Changelog
 
 - LDAPProperty fields can now be marked as a Binary property.
   [kteague]
-  
+
 - Ability to import/export an LDAP configuration using generic setup.
   This feature is the same as the one provided by collective.genericsetup.ldap
   and exports made with that product can be imported into plone.app.ldap.
@@ -54,7 +61,7 @@ Changelog
   in the plone.app.locales package now.
   [vincentfretin]
 
-- cleaned templates to work with cmf.pt
+- Cleaned templates to work with cmf.pt
   [pilz]
 
 

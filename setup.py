@@ -26,6 +26,7 @@ setup(name='plone.app.ldap',
       zip_safe=False,
       install_requires=[
 #          "python-ldap",
+          "Products.CMFCore",
           "Products.PloneLDAP",
           "setuptools"
       ],
