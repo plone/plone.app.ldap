@@ -1,10 +1,15 @@
-from zope.app.schema.vocabulary import IVocabularyFactory
 from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.component import getUtility
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 import ldap
+
+try: 
+    from zope.schema.interfaces import IVocabularyFactory 
+except ImportError: 
+    # < Zope 2.10 
+    from zope.app.schema.vocabulary import IVocabularyFactory
 
 
 class LDAPServerTypeVocabulary(object):

@@ -4,6 +4,9 @@ Changelog
 1.2.6 (Unreleased)
 ------------------
 
+- Add Plone 4.1 compatibility when importing IVocabularyFactory.
+  [fvandijk]
+
 - Include Products.CMFCore for Plone 4.1 compatibility.
   [WouterVH]
 
