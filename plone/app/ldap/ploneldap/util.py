@@ -63,7 +63,7 @@ def createLDAPPlugin(id="ldap-plugin"):
     else:
         klass=PloneLDAPMultiPlugin
 
-    genericPluginCreation(pas, klass, 
+    genericPluginCreation(pas, klass,
             id=id,
             title="Plone managed LDAP",
             login_attr=str(config.schema[config.login_attribute].ldap_name),
@@ -156,7 +156,7 @@ def enablePASInterfaces():
             ]
 
     ad_interfaces = common_interfaces
-    
+
     if config.activated_plugins:
         plugin.manage_activateInterfaces(config.activated_plugins)
     else:
@@ -164,18 +164,20 @@ def enablePASInterfaces():
             plugin.manage_activateInterfaces(ad_interfaces)
         else:
             plugin.manage_activateInterfaces(ldap_interfaces)
-            
-    
+
+
     if config.ldap_type != u"AD":
         plugins=getPAS().plugins
-    
-        iface=plugins._getInterfaceFromName("IUserAdderPlugin")
-        for i in range(len(plugins.listPlugins(iface))-1):
-            plugins.movePluginsUp(iface, [plugin.getId()])
-    
-        iface=plugins._getInterfaceFromName("IPropertiesPlugin")
-        for i in range(len(plugins.listPlugins(iface))-1):
-            plugins.movePluginsUp(iface, [plugin.getId()])
+
+        if "IUserAdderPlugin" in config.activated_plugins:
+            iface=plugins._getInterfaceFromName("IUserAdderPlugin")
+            for i in range(len(plugins.listPlugins(iface))-1):
+                plugins.movePluginsUp(iface, [plugin.getId()])
+
+        if "IPropertiesPlugin" in config.activated_plugins:
+            iface=plugins._getInterfaceFromName("IPropertiesPlugin")
+            for i in range(len(plugins.listPlugins(iface))-1):
+                plugins.movePluginsUp(iface, [plugin.getId()])
 
 
 def enableCaching(cache_manager="RAMCache"):
@@ -183,5 +185,3 @@ def enableCaching(cache_manager="RAMCache"):
     if pas.ZCacheable_getManager() is None:
         pas.ZCacheable_setManagerId(manager_id=cache_manager)
     getLDAPPlugin().ZCacheable_setManagerId(manager_id=cache_manager)
-
-
