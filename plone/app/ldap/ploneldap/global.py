@@ -24,7 +24,8 @@ def HandleModified(config, event):
             groups_scope=config.group_scope,
             binduid=str(config.bind_dn) or "",
             bindpwd=str(config.bind_password) or "",
-            roles="Member",
+            encryption=config.password_encryption,
+            roles=config.default_user_roles or "",
             read_only=config.read_only,
             obj_classes=config.user_object_classes)
 
