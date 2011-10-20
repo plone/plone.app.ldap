@@ -4,6 +4,11 @@ Changelog
 1.2.7 (Unreleased)
 ------------------
 
+ - Expose the 'Read Only' attribute of LDAP plugins for modification with
+   plone.app.ldap (http://dev.plone.org/ticket/12292)
+   [kteague]
+
+
 1.2.6 (2011-07-17)
 ------------------
 

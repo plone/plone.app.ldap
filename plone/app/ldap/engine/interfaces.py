@@ -159,6 +159,14 @@ class ILDAPBinding(Interface):
             default="Member",
             required=True,)
 
+    read_only = Bool(
+            title=_(u"label_ldap_read_only",
+                default=u"Read Only"),
+            description=_(u"help_ldap_read_only",
+                default=u"Control whether Plone should attempt to modify "
+                        u"objects and properties on the server."),
+            default=False,)
+
 
 class ILDAPConfiguration(ILDAPBinding):
     """LDAP configuration utility"""

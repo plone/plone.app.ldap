@@ -236,6 +236,7 @@ class LDAPPluginExportImport:
             config.user_object_classes = ','.join(settings['_user_objclasses'])
             config.password_encryption = settings['_pwd_encryption']
             config.default_user_roles = ','.join(settings['_roles'])
+            config.read_only = settings['read_only']
             config.activated_plugins = interfaces
             config.cache = cache
     

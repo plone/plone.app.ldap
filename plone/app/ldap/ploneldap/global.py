@@ -25,5 +25,6 @@ def HandleModified(config, event):
             binduid=str(config.bind_dn) or "",
             bindpwd=str(config.bind_password) or "",
             roles="Member",
+            read_only=config.read_only,
             obj_classes=config.user_object_classes)
 
