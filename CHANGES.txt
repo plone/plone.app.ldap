@@ -10,13 +10,13 @@ Changelog
 1.2.7 (2011-10-19)
 ------------------
 
- - Expose the 'Read Only' attribute of LDAP plugins for modification with
-   plone.app.ldap (http://dev.plone.org/ticket/12292)
-   [kteague]
+- Expose the 'Read Only' attribute of LDAP plugins for modification with
+  plone.app.ldap (http://dev.plone.org/ticket/12292)
+  [kteague]
 
- - Fix bug where changes to the Default User Roles option were being
-   discarded (http://dev.plone.org/ticket/12293)
-   [kteague]
+- Fix bug where changes to the Default User Roles option were being
+  discarded (http://dev.plone.org/ticket/12293)
+  [kteague]
 
 
 1.2.6 (2011-07-17)
