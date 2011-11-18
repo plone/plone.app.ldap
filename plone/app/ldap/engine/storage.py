@@ -26,8 +26,8 @@ class LDAPConfiguration(OrderedContainer):
     user_scope = SCOPE_SUBTREE
     group_base = ""
     group_scope = SCOPE_SUBTREE
-    password_encryption = ""
-    default_user_roles = ""
+    password_encryption = "crypt"
+    default_user_roles = "Member"
     read_only = False
     activated_interfaces = []
     activated_plugins = None
