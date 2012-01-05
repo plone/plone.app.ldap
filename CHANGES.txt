@@ -4,7 +4,8 @@ Changelog
 1.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added a z3c.autoinclude entry point to mark this as a Plone add-on.
+  [WouterVH]
 
 
 1.2.7 (2011-10-19)
