@@ -30,7 +30,7 @@ class LDAPConfiguration(OrderedContainer):
     default_user_roles = "Member"
     read_only = False
     activated_interfaces = []
-    activated_plugins = None
+    activated_plugins = []
     cache = ''
     
     def __init__(self):
