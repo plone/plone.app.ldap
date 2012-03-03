@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.8 (unreleased)
+1.2.8 (2012-03-02)
 ------------------
 
 - Added a z3c.autoinclude entry point to mark this as a Plone add-on.
