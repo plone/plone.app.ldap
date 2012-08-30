@@ -45,7 +45,7 @@ class LDAPPluginExportImport:
         template = PageTemplateFile('xml/%s' % _FILENAME, globals())  # .__of__(context.getSite())
         info = self._getExportInfo(context)
         if info:
-            context.writeDataFile('%s' % _FILENAME, template(info=info), 'text/xml')
+            context.writeDataFile('%s' % _FILENAME, template(info=info).encode('utf-8'), 'text/xml')
             print >> out, "GenericSetup Configuration for ldap exported"
 
     def getTypeStr(self, value):
@@ -122,7 +122,7 @@ class LDAPPluginExportImport:
     def extractData(self, root, pas, out):
         plug_id = str(root.getAttribute('id'))
         update = root.getAttribute('update') == 'True'
-        
+
         settings = {}
         interfaces = []
         plugin_props = []
@@ -138,16 +138,16 @@ class LDAPPluginExportImport:
 
         for iface in root.getElementsByTagName('interface'):
             interfaces.append(iface.getAttribute('value'))
-    
+
         caches = list()
         for node in root.getElementsByTagName('cache'):
             caches.append(node.getAttribute('value'))
-    
+
         if len(caches) > 1:
             raise ValueError('You can not define multiple <cache> properties')
-        
+
         cache = ''
-        if len(caches):    
+        if len(caches):
             cache = caches[0]
 
         for prop in root.getElementsByTagName('property'):
@@ -188,11 +188,11 @@ class LDAPPluginExportImport:
                     value = int(value)
                 c_server[id] = value
             servers.append(c_server)
-                
+
         # always update if it doesn't exist
         if plug_id not in pas.objectIds():
             update = True
-        
+
         if update:
             # delete existing LDAP plug-in
             if plug_id in pas.objectIds():
@@ -203,24 +203,24 @@ class LDAPPluginExportImport:
                 except KeyError:
                     # pass
                     """
-                    There are two reasons to not pass here. First, if we pass 
-                    and go to recreate later and both plugins have the same it, it 
-                    will error out for the id already existing. Second, if they 
-                    don't have the same id but have the same settings, they will then 
-                    in practice (if its set up correct) have duplicate users, which 
-                    will subsequently break any group or role lookups which assert 
-                    on the duplicate users. I don't see any tests on this so if there 
-                    is an argument to leave this as a pass let me know. 
+                    There are two reasons to not pass here. First, if we pass
+                    and go to recreate later and both plugins have the same it, it
+                    will error out for the id already existing. Second, if they
+                    don't have the same id but have the same settings, they will then
+                    in practice (if its set up correct) have duplicate users, which
+                    will subsequently break any group or role lookups which assert
+                    on the duplicate users. I don't see any tests on this so if there
+                    is an argument to leave this as a pass let me know.
                     """
                     logging.error("There is an ldap multi plugin in your "+
-                        "system (%s) that is not managed "%plug_id + 
+                        "system (%s) that is not managed "%plug_id +
                         "by this generic setup script. To have everything "+
-                        "managed by GS, please delete and " + 
+                        "managed by GS, please delete and " +
                         "reinstall or set update=False in your ldap_plugin.xml"+
                         " root.")
                     logging.error("Installing LDAP Plugin with GS failed")
                     return
-                    
+
 
             # base configuration
             config = getUtility(ILDAPConfiguration)
@@ -239,7 +239,7 @@ class LDAPPluginExportImport:
             config.read_only = settings['read_only']
             config.activated_plugins = interfaces
             config.cache = cache
-    
+
             # servers
             config.servers = LDAPServerStorage()
             for server in servers:
@@ -249,7 +249,7 @@ class LDAPPluginExportImport:
                                  operation_timeout=server['op_timeout'],
                                  enabled=True)
                 config.servers.addItem(obj)
-    
+
             # schema
             config.schema = LDAPSchema()
             for property in schema.itervalues():
