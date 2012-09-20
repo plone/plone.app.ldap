@@ -48,7 +48,7 @@ class LDAPControlPanel(EditForm):
         # Filter out non-required fields that have no value so their
         # existing value is not overwritten. This protects us from
         # overwriting the bind password.
-        data = dict([(key,value) for (key,value) in data.iteritems() 
+        data = dict([(key,value) for (key,value) in data.iteritems()
                         if value is not None])
         if applyChanges(self.context, self.form_fields, data, self.adapters):
             try:
@@ -71,7 +71,7 @@ class LDAPControlPanel(EditForm):
                     server.enabled = True
                     notify(ObjectModifiedEvent(server))
         return self.request.response.redirect(self.nextURL())
-    
+
     @action(_(u'label_disable', default=u'Disable'), name=u'DisableServer')
     def handle_disable_server(self, action, data):
         for id in self.request.form.get("serverId", []):
@@ -104,7 +104,7 @@ class LDAPControlPanel(EditForm):
         luf.manage_reinit()
         self.status = 'User caches cleared'
         return self.request.response.redirect(self.nextURL())
-    
+
     @action(_(u'label_update_cache_timeouts', default=u'Update Cache Timeouts'), name=u'UpdateCacheTimeouts')
     def handle_update_cache_timeouts(self, action, data):
         luf=getLDAPPlugin()._getLDAPUserFolder()
@@ -122,7 +122,7 @@ class LDAPControlPanel(EditForm):
                     cache_type = cache_type,
                     timeout = cache_value,
                 )
-                self.status = 'Cache timeout changed'        
+                self.status = 'Cache timeout changed'
         return self.request.response.redirect(self.nextURL())
 
     # cache properties delegate to the LDAPUserFolder instance
@@ -136,7 +136,7 @@ class LDAPControlPanel(EditForm):
         luf=getLDAPPlugin()._getLDAPUserFolder()
         self._cache('authenticated').setTimeout(value)
     auth_cache_seconds = property(get_auth_cache_seconds, set_auth_cache_seconds)
-    
+
     def get_anon_cache_seconds(self):
         try:
             luf=getLDAPPlugin()._getLDAPUserFolder()
@@ -168,7 +168,7 @@ class LDAPControlPanel(EditForm):
         for user in users:
             user.cache_type = 'anonymous'
         return users
-    
+
     def auth_cache(self):
         try:
             luf=getLDAPPlugin()._getLDAPUserFolder()
@@ -178,7 +178,7 @@ class LDAPControlPanel(EditForm):
         for user in users:
             user.cache_type = 'authenticated'
         return users
-    
+
     def nextURL(self):
         url = str(
             getMultiAdapter(

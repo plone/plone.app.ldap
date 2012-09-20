@@ -181,7 +181,7 @@ class ILDAPConfiguration(ILDAPBinding):
 
     activated_plugins = List(title=_(u"Activated plugins"),
             value_type=ASCIILine(
-                title=u"interface",))    
+                title=u"interface",))
 
 
 class ILDAPServerStorage(IOrderedContainer, IContainerNamesContainer):

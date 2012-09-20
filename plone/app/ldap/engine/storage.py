@@ -12,7 +12,7 @@ from plone.app.ldap.engine.schema import LDAPProperty
 
 class LDAPConfiguration(OrderedContainer):
     implements(ILDAPConfiguration)
-    
+
     ldap_type = u"LDAP"
     rdn_attribute = "uid"
     userid_attribute = "uid"
@@ -32,7 +32,7 @@ class LDAPConfiguration(OrderedContainer):
     activated_interfaces = []
     activated_plugins = []
     cache = ''
-    
+
     def __init__(self):
         self.servers=LDAPServerStorage()
         self.schema=LDAPSchema()

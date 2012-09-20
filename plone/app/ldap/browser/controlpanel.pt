@@ -68,7 +68,7 @@
               Global Settings
             </dt>
             <dd id="fieldset-global">
-            
+
                 <p i18n:translate="description-ldap-globalsettings">
                      The following settings affect rules globally.
                  </p>
@@ -80,13 +80,13 @@
                            tal:define="description widget/hint;
                                        error widget/error"
                            tal:attributes="class python:'field'+(error and ' error' or '')">
-            
+
                         <label i18n:translate=""
                                tal:attributes="for widget/name"
                                tal:content="widget/label">
                           label
                         </label>
-            
+
                         <span class="fieldRequired"
                               title="Required"
                               i18n:domain="plone"
@@ -95,27 +95,27 @@
                               tal:condition="widget/required">
                           (Required)
                         </span>
-            
+
                         <div class="formHelp"
                              tal:content="description"
                              tal:condition="description">
                           field description
                         </div>
-            
+
                         <div tal:condition="error"
                              tal:content="structure error">
                           The Error
                         </div>
-            
+
                         <div class="widget" tal:content="structure widget">
                           <input type="text" />
                         </div>
                       </div>
                     </tal:block>
-            
+
                     <div class="formControls">
-                        <input type="submit" 
-                               name="form.actions.apply" 
+                        <input type="submit"
+                               name="form.actions.apply"
                                class="context"
                                value="Save"
                                i18n:domain="plone"
@@ -123,7 +123,7 @@
                     </div>
                 </form>
             </dd>
-            
+
             <dt id="fieldsetlegend-schema" i18n:translate="legend-schema">
                  LDAP Schema
             </dt>
@@ -147,9 +147,9 @@
                  metal:define-macro="ldap_schema_form"
                  tal:define="schema view/schema"
                  tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
-             
+
                  <input type="hidden" name="fieldset_id" value="fieldsetlegend-schema" />
-             
+
                  <table class="listing nosort controlpanel-listing"
                         tal:condition="schema">
                      <thead>
@@ -218,15 +218,15 @@
                          name="form.button.Add"
                          i18n:attributes="value label_property_add;" />
              </form>
-             
+
           </dd>
-          
+
          <dt id="fieldsetlegend-servers" i18n:translate="legend-servers">
              LDAP Servers
          </dt>
-          
+
           <dd id="fieldset-servers">
-          
+
              <p i18n:translate="description-servers">
                  Overview of all configured LDAP servers. If multiple servers
                  are used the will be tried in top-to-bottom order.
@@ -332,26 +332,26 @@
                          i18n:attributes="value label_server_add;" />
              </form>
           </dd>
-          
+
           <dt id="fieldsetlegend-caches" i18n:translate="legend-caches">
               Caches
           </dt>
-          
+
           <dd id="fieldset-caches">
 
               <p i18n:translate="description-caches">
                   Clear the caches, and adjust the cache timeouts.
               </p>
-              
+
               <form style="display: inline" method="POST"
                   id="ldap_caches_form"
                   metal:define-macro="ldap_caches_form"
                   tal:attributes="action string:${context/absolute_url}/@@ldap-controlpanel">
 
                   <input type="hidden" name="fieldset_id" value="fieldsetlegend-caches" />
-                  
+
                   <h2 i18n:translate="heading-purge-all-caches">Purge All Caches</h2>
-                  
+
                   <div class="field">
                       <label i18n:translate="label_purge">Purge</label>
                       <div class="formHelp" i18n:translate="help-purge-cache">
@@ -364,9 +364,9 @@
                         value="Purge" name="form.actions.Purge"
                         i18n:attributes="value label_purge;"/>
                     </div>
-                  
+
                   </div>
-                  
+
                   <h2 i18n:translate="heading-cache-timeouts">Cache Timeouts</h2>
                   <div class="field">
                       <label i18n:translate="label_auth_cache">Authenticated Cache</label>
@@ -379,7 +379,7 @@
                         name="form.auth_cache_seconds"
                         tal:attributes="value view/auth_cache_seconds"/>
                     </div>
-                  
+
                   </div>
 
                   <div class="field">
@@ -393,9 +393,9 @@
                         name="form.anon_cache_seconds"
                         tal:attributes="value view/anon_cache_seconds"/>
                     </div>
-                  
+
                   </div>
-                  
+
                   <div class="field">
                       <label i18n:translate="label_negative_cache">Negative Cache</label>
                       <div class="formHelp" i18n:translate="help-seconds">
@@ -407,20 +407,20 @@
                         name="form.negative_cache_seconds"
                         tal:attributes="value view/negative_cache_seconds"/>
                     </div>
-                  
-                  </div>  
-                  
+
+                  </div>
+
                   <input type="submit" class="context"
                     value="Update Cache Timeouts" name="form.actions.UpdateCacheTimeouts"
                     i18n:attributes="value label_update_cache_timeouts;"/>
-            
+
                  <h2 i18n:translate="heading-cached-users">Cached Users</h2>
-                 
+
                  <p tal:condition="python: not view.anon_cache() or view.auth_cache()">
                  No users in cache
                  (superuser is never cached)
                  </p>
-                 
+
                  <table class="listing controlpanel-listing" tal:condition="python: view.auth_cache() or view.anon_cache()">
                    <thead>
                    <tr>
@@ -431,7 +431,7 @@
                      <th>Cache Type</th>
                    </tr>
                    </thead>
-                   
+
                    <tbody>
                    <tal:users tal:repeat="user python: view.auth_cache() + view.anon_cache()">
                    <tr tal:define="oddrow repeat/user/odd"
@@ -442,19 +442,19 @@
                             <p tal:repeat="role user/getRoles"><span tal:replace="role" /></p>
                        </td>
                        <td tal:content="user/getCreationTime">Creation Time</td>
-                       <td tal:content="user/cache_type">anonymous</td>                       
+                       <td tal:content="user/cache_type">anonymous</td>
                    </tr>
                    </tal:users>
                    </tbody>
-                   
+
                  </table>
-                 
+
               </form>
           </dd>
-          <script type="text/javascript" 
-                   tal:define="extra_script view/extra_script | nothing" 
-                   tal:condition="extra_script" 
-                   tal:content="structure extra_script"> 
+          <script type="text/javascript"
+                   tal:define="extra_script view/extra_script | nothing"
+                   tal:condition="extra_script"
+                   tal:content="structure extra_script">
           </script>
         </dl>
    </div>

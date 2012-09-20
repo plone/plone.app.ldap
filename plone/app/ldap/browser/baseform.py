@@ -62,7 +62,7 @@ class LDAPAddForm(AddFormBase):
     @action(PMF(u"label_save", default=u"Save"), name=u'save')
     def handle_save_action(self, action, data):
         self.createAndAdd(data)
-    
+
 
     @action(PMF(u"label_cancel", default=u"Cancel"),
                  validator=null_validator, name=u'cancel')
@@ -88,7 +88,7 @@ class LDAPEditForm(EditFormBase):
             self.status = "Changes saved"
         else:
             self.status = "No changes"
-            
+
         nextURL = self.nextURL()
         if nextURL:
             self.request.response.redirect(self.nextURL())
