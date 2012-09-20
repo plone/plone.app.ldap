@@ -1,18 +1,21 @@
 from setuptools import setup, find_packages
 
-version = '1.2.9dev'
+version = '1.3.0.dev0'
 
 setup(name='plone.app.ldap',
       version=version,
-      description="LDAP control panel for Plone 3 and Plone 4",
-      long_description=open("README.txt").read() + "\n" +
-                       open("CHANGES.rst").read(),
+      description="LDAP control panel for Plone 4.1 and higher",
+      long_description=(open("README.txt").read() + "\n" +
+                        open("CHANGES.rst").read()),
       classifiers=[
-        "Framework :: Plone",
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Topic :: System :: Systems Administration :: Authentication/Directory :: LDAP",
-        ],
+          "Framework :: Plone",
+          "Framework :: Plone :: 4.1",
+          "Framework :: Plone :: 4.2",
+          "Framework :: Plone :: 4.3",
+          "Programming Language :: Python",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Topic :: System :: Systems Administration :: Authentication/Directory :: LDAP",
+          ],
       keywords='plone ldap',
       author='Wichert Akkerman - Simplon',
       author_email='wichert@simplon.biz',
@@ -25,7 +28,7 @@ setup(name='plone.app.ldap',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-#          "python-ldap",
+          # "python-ldap",
           "Products.CMFCore",
           "Products.PloneLDAP",
           "setuptools"

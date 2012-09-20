@@ -7,7 +7,7 @@ from plone.app.ldap.browser.interfaces import IServerAdding
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from plone.app.ldap.engine.interfaces import ILDAPServerConfiguration
 from plone.app.ldap.engine.server import LDAPServer
-from zope.app.container.interfaces import INameChooser
+from zope.container.interfaces import INameChooser
 from zope.component import adapts
 from zope.component import getUtility
 from zope.event import notify

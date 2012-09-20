@@ -1,8 +1,12 @@
 Changelog
 =========
 
-1.2.9 (unreleased)
+1.3.0 (unreleased)
 ------------------
+
+- Add Plone 4.3 compatibility, and break compatibility with Plone 4.0
+  and Plone 3, by not importing from zope.app anymore.
+  [maurits]
 
 - Fix the exporter as GS 1.7 and higher now explicitly only
   understands strings.  Still works for older GS too.

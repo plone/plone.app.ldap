@@ -1,16 +1,12 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-try:  # 4.1+
-    from five.formlib.formbase import EditForm
-    EditForm  # pyflakes
-except ImportError:  # < 4.1
-    from Products.Five.formlib.formbase import EditForm
+from five.formlib.formbase import EditForm
 from ldap import LDAPError
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.engine.interfaces import ILDAPBinding
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from plone.app.ldap.ploneldap.util import getLDAPPlugin
 from plone.memoize.instance import memoize
-from zope.app.form.interfaces import WidgetInputError
+from zope.formlib.interfaces import WidgetInputError
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.event import notify
@@ -26,7 +22,7 @@ try:
     from zope.lifecycleevent import ObjectRemovedEvent
     ObjectRemovedEvent  # pyflakes
 except:
-    from zope.app.container.contained import ObjectRemovedEvent
+    from zope.container.contained import ObjectRemovedEvent
 
 
 class LDAPBindFailure(ValidationError):

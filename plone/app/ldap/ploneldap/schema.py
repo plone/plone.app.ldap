@@ -6,7 +6,7 @@ from plone.app.ldap.ploneldap.util import configureLDAPSchema
 from plone.app.ldap.ploneldap.util import addMandatorySchemaItems
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
-from zope.app.container.interfaces import IObjectRemovedEvent
+from zope.container.interfaces import IObjectRemovedEvent
 
 
 @adapter(ILDAPProperty, IObjectCreatedEvent)

@@ -1,4 +1,4 @@
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from zope.component import getUtility
 from zope.interface import directlyProvides
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration

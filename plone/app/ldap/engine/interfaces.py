@@ -8,10 +8,10 @@ from zope.schema import ASCIILine
 from zope.schema import TextLine
 from zope.schema import List
 
-from zope.app.container.interfaces import IContained
-from zope.app.container.interfaces import IOrderedContainer
-from zope.app.container.interfaces import IContainerNamesContainer
-from zope.app.container.constraints import contains
+from zope.container.interfaces import IContained
+from zope.container.interfaces import IOrderedContainer
+from zope.container.interfaces import IContainerNamesContainer
+from zope.container.constraints import contains
 
 from plone.app.ldap import LDAPMessageFactory as _
 

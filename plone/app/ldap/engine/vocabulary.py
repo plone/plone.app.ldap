@@ -5,12 +5,7 @@ from zope.component import getUtility
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 import ldap
 
-try:
-    from zope.schema.interfaces import IVocabularyFactory
-    IVocabularyFactory  # pyflakes
-except ImportError:
-    # < Zope 2.10
-    from zope.app.schema.vocabulary import IVocabularyFactory
+from zope.schema.interfaces import IVocabularyFactory
 
 
 class LDAPServerTypeVocabulary(object):

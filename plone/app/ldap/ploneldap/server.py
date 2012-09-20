@@ -5,7 +5,7 @@ from plone.app.ldap.ploneldap.util import getLDAPPlugin
 from plone.app.ldap.ploneldap.util import configureLDAPServers
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
-from zope.app.container.interfaces import IObjectRemovedEvent
+from zope.container.interfaces import IObjectRemovedEvent
 
 
 def FindServerIndex(luf, server):

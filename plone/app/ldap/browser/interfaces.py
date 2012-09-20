@@ -1,4 +1,4 @@
-from zope.app.container.interfaces import IAdding
+from zope.browser.interfaces import IAdding
 
 
 class IServerAdding(IAdding):
