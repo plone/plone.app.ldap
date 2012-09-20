@@ -105,14 +105,14 @@ class LDAPControlPanel(EditForm):
 
     @action(_(u'label_purge', default=u'Purge'), name=u'Purge')
     def handle_cache_purge(self, action, data):
-        luf=getLDAPPlugin()._getLDAPUserFolder()
+        luf = getLDAPPlugin()._getLDAPUserFolder()
         luf.manage_reinit()
         self.status = 'User caches cleared'
         return self.request.response.redirect(self.nextURL())
 
     @action(_(u'label_update_cache_timeouts', default=u'Update Cache Timeouts'), name=u'UpdateCacheTimeouts')
     def handle_update_cache_timeouts(self, action, data):
-        luf=getLDAPPlugin()._getLDAPUserFolder()
+        luf = getLDAPPlugin()._getLDAPUserFolder()
         for cache_type, cache_value_name in [
                 ('authenticated', 'auth_cache_seconds'),
                 ('anonymous', 'anon_cache_seconds'),
@@ -123,50 +123,47 @@ class LDAPControlPanel(EditForm):
             except ValueError:
                 continue
             if cache_value != getattr(self, cache_value_name, None):
-                luf.setCacheTimeout(
-                    cache_type = cache_type,
-                    timeout = cache_value,
-                )
+                luf.setCacheTimeout(cache_type=cache_type, timeout=cache_value)
                 self.status = 'Cache timeout changed'
         return self.request.response.redirect(self.nextURL())
 
     # cache properties delegate to the LDAPUserFolder instance
     def get_auth_cache_seconds(self):
         try:
-            luf=getLDAPPlugin()._getLDAPUserFolder()
+            luf = getLDAPPlugin()._getLDAPUserFolder()
         except KeyError:
             return 600
         return luf.getCacheTimeout('authenticated')
     def set_auth_cache_seconds(self, value):
         luf = getLDAPPlugin()._getLDAPUserFolder()
-        luf.setCacheTimeout(cache_type = 'authenticated', timeout = value)
+        luf.setCacheTimeout(cache_type='authenticated', timeout=value)
     auth_cache_seconds = property(get_auth_cache_seconds, set_auth_cache_seconds)
 
     def get_anon_cache_seconds(self):
         try:
-            luf=getLDAPPlugin()._getLDAPUserFolder()
+            luf = getLDAPPlugin()._getLDAPUserFolder()
         except KeyError:
             return 600
         return luf.getCacheTimeout('anonymous')
     def set_anon_cache_seconds(self, value):
         luf = getLDAPPlugin()._getLDAPUserFolder()
-        luf.setCacheTimeout(cache_type = 'anonymous', timeout = value)
+        luf.setCacheTimeout(cache_type='anonymous', timeout=value)
     anon_cache_seconds = property(get_anon_cache_seconds, set_anon_cache_seconds)
 
     def get_negative_cache_seconds(self):
         try:
-            luf=getLDAPPlugin()._getLDAPUserFolder()
+            luf = getLDAPPlugin()._getLDAPUserFolder()
         except KeyError:
             return 600
         return luf.getCacheTimeout('negative')
     def set_negative_cache_seconds(self, value):
         luf = getLDAPPlugin()._getLDAPUserFolder()
-        luf.setCacheTimeout(cache_type = 'negative', timeout = value)
+        luf.setCacheTimeout(cache_type='negative', timeout=value)
     negative_cache_seconds = property(get_negative_cache_seconds, set_negative_cache_seconds)
 
     def anon_cache(self):
         try:
-            luf=getLDAPPlugin()._getLDAPUserFolder()
+            luf = getLDAPPlugin()._getLDAPUserFolder()
         except KeyError:
             return []
         users = luf.getUsers(authenticated=0)
@@ -176,7 +173,7 @@ class LDAPControlPanel(EditForm):
 
     def auth_cache(self):
         try:
-            luf=getLDAPPlugin()._getLDAPUserFolder()
+            luf = getLDAPPlugin()._getLDAPUserFolder()
         except KeyError:
             return []
         users = luf.getUsers(authenticated=1)
