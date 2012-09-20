@@ -4,7 +4,9 @@ Changelog
 1.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix the exporter as GS 1.7 and higher now explicitly only
+  understands strings.  Still works for older GS too.
+  [sneridagh]
 
 
 1.2.8 (2012-03-02)
