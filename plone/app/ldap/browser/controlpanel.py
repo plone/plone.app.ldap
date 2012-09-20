@@ -138,8 +138,8 @@ class LDAPControlPanel(EditForm):
             return 600
         return luf.getCacheTimeout('authenticated')
     def set_auth_cache_seconds(self, value):
-        luf=getLDAPPlugin()._getLDAPUserFolder()
-        self._cache('authenticated').setTimeout(value)
+        luf = getLDAPPlugin()._getLDAPUserFolder()
+        luf.setCacheTimeout(cache_type = 'authenticated', timeout = value)
     auth_cache_seconds = property(get_auth_cache_seconds, set_auth_cache_seconds)
 
     def get_anon_cache_seconds(self):
@@ -149,8 +149,8 @@ class LDAPControlPanel(EditForm):
             return 600
         return luf.getCacheTimeout('anonymous')
     def set_anon_cache_seconds(self, value):
-        luf=getLDAPPlugin()._getLDAPUserFolder()
-        self._cache('anonymous').setTimeout(value)
+        luf = getLDAPPlugin()._getLDAPUserFolder()
+        luf.setCacheTimeout(cache_type = 'anonymous', timeout = value)
     anon_cache_seconds = property(get_anon_cache_seconds, set_anon_cache_seconds)
 
     def get_negative_cache_seconds(self):
@@ -160,8 +160,8 @@ class LDAPControlPanel(EditForm):
             return 600
         return luf.getCacheTimeout('negative')
     def set_negative_cache_seconds(self, value):
-        luf=getLDAPPlugin()._getLDAPUserFolder()
-        self._cache('negative').setTimeout(value)
+        luf = getLDAPPlugin()._getLDAPUserFolder()
+        luf.setCacheTimeout(cache_type = 'negative', timeout = value)
     negative_cache_seconds = property(get_negative_cache_seconds, set_negative_cache_seconds)
 
     def anon_cache(self):
