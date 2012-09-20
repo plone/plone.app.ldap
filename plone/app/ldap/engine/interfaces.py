@@ -17,6 +17,7 @@ from plone.app.ldap import LDAPMessageFactory as _
 
 from ldap import SCOPE_SUBTREE
 
+
 class ILDAPBinding(Interface):
     ldap_type = Choice(
             title=_(u"label_ldap_type",
@@ -297,4 +298,3 @@ class ILDAPPropertyConfiguration(Interface):
 class ILDAPProperty(IContained, ILDAPPropertyConfiguration):
     """A LDAP property
     """
-

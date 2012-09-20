@@ -2,6 +2,7 @@ from OFS.SimpleItem import SimpleItem
 from zope.interface import implements
 from plone.app.ldap.engine.interfaces import ILDAPProperty
 
+
 class LDAPProperty(SimpleItem):
     implements(ILDAPProperty)
 
@@ -15,4 +16,3 @@ class LDAPProperty(SimpleItem):
         self.plone_name=plone_name
         self.multi_valued=multi_valued
         self.binary=binary
-

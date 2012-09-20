@@ -8,6 +8,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.app.container.interfaces import IObjectRemovedEvent
 
+
 @adapter(ILDAPProperty, IObjectCreatedEvent)
 def HandleCreated(property, event):
     if guaranteePluginExists():
@@ -48,4 +49,3 @@ def HandleRemoved(property, event):
     luf=getLDAPPlugin()._getLDAPUserFolder()
     luf.manage_deleteLDAPSchemaItems([str(property.ldap_name)])
     addMandatorySchemaItems()
-

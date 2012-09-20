@@ -28,4 +28,3 @@ def HandleModified(config, event):
             roles=config.default_user_roles or "",
             read_only=config.read_only,
             obj_classes=config.user_object_classes)
-

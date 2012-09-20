@@ -1,6 +1,4 @@
-from Acquisition import Implicit
 from Products.CMFCore.interfaces import ISiteRoot
-from Products.Five import BrowserView
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.baseform import Adding
 from plone.app.ldap.browser.baseform import LDAPAddForm
@@ -16,7 +14,7 @@ from zope.event import notify
 from zope.formlib.form import FormFields
 from zope.formlib.form import applyChanges
 from zope.interface import implements
-from zope.lifecycleevent import ObjectCreatedEvent, ObjectModifiedEvent
+from zope.lifecycleevent import ObjectCreatedEvent
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.traversing.interfaces import ITraversable
 
@@ -77,9 +75,6 @@ class ServerNamespace(object):
         self.context=context
         self.request=request
 
-
     def traverse(self, name, ignore):
         storage = getUtility(ILDAPConfiguration).servers
         return storage[name].__of__(self.context)
-
-

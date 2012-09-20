@@ -1,7 +1,8 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-try: # 4.1+
+try:  # 4.1+
     from five.formlib.formbase import EditForm
-except ImportError: # < 4.1
+    EditForm  # pyflakes
+except ImportError:  # < 4.1
     from Products.Five.formlib.formbase import EditForm
 from ldap import LDAPError
 from plone.app.ldap import LDAPMessageFactory as _
@@ -23,8 +24,10 @@ import logging
 
 try:
     from zope.lifecycleevent import ObjectRemovedEvent
+    ObjectRemovedEvent  # pyflakes
 except:
     from zope.app.container.contained import ObjectRemovedEvent
+
 
 class LDAPBindFailure(ValidationError):
     __doc__ = _(u"LDAP server refused your credentials")
@@ -32,8 +35,10 @@ class LDAPBindFailure(ValidationError):
 
 logger = logging.getLogger("plone.app.ldap")
 
+
 def LDAPBindingFactory(context):
     return getUtility(ILDAPConfiguration)
+
 
 class LDAPControlPanel(EditForm):
     template = ViewPageTemplateFile("controlpanel.pt")
@@ -48,16 +53,16 @@ class LDAPControlPanel(EditForm):
         # Filter out non-required fields that have no value so their
         # existing value is not overwritten. This protects us from
         # overwriting the bind password.
-        data = dict([(key,value) for (key,value) in data.iteritems()
-                        if value is not None])
+        data = dict([(key, value) for (key, value) in data.iteritems()
+                     if value is not None])
         if applyChanges(self.context, self.form_fields, data, self.adapters):
             try:
                 notify(ObjectModifiedEvent(self.storage))
-            except LDAPError, e:
+            except LDAPError:
                 widget=self.widgets.get("bind_dn")
 
                 widget.error=WidgetInputError("bind_dn", widget.label,
-                        LDAPBindFailure("value"))
+                                              LDAPBindFailure("value"))
                 self.errors += (widget.error,)
                 self.status= _("There were errors")
         return self.request.response.redirect(self.nextURL())
@@ -67,7 +72,7 @@ class LDAPControlPanel(EditForm):
         for id in self.request.form.get("serverId", []):
             if id in self.storage.servers:
                 server = self.storage.servers[id]
-                if server.enabled == False:
+                if server.enabled is False:
                     server.enabled = True
                     notify(ObjectModifiedEvent(server))
         return self.request.response.redirect(self.nextURL())
@@ -77,7 +82,7 @@ class LDAPControlPanel(EditForm):
         for id in self.request.form.get("serverId", []):
             if id in self.storage.servers:
                 server = self.storage.servers[id]
-                if server.enabled == True:
+                if server.enabled is True:
                     server.enabled = False
                     notify(ObjectModifiedEvent(server))
         return self.request.response.redirect(self.nextURL())
@@ -109,9 +114,9 @@ class LDAPControlPanel(EditForm):
     def handle_update_cache_timeouts(self, action, data):
         luf=getLDAPPlugin()._getLDAPUserFolder()
         for cache_type, cache_value_name in [
-            ('authenticated','auth_cache_seconds'),
-            ('anonymous','anon_cache_seconds'),
-            ('negative','negative_cache_seconds'),]:
+                ('authenticated', 'auth_cache_seconds'),
+                ('anonymous', 'anon_cache_seconds'),
+                ('negative', 'negative_cache_seconds'), ]:
             cache_value = self.request.form['form.' + cache_value_name]
             try:
                 cache_value = int(cache_value)
@@ -201,13 +206,13 @@ class LDAPControlPanel(EditForm):
             else:
                 return "LDAP over IPC"
 
-        return [ dict(id=s.__name__,
-                      enabled=s.enabled,
-                      server=s.server,
-                      connection_type=contype(s.connection_type),
-                      connection_timeout=s.connection_timeout,
-                      operation_timeout=s.operation_timeout)
-                 for s in self.storage.servers.values() ]
+        return [dict(id=s.__name__,
+                     enabled=s.enabled,
+                     server=s.server,
+                     connection_type=contype(s.connection_type),
+                     connection_timeout=s.connection_timeout,
+                     operation_timeout=s.operation_timeout)
+                for s in self.storage.servers.values()]
 
     def schema(self):
         storage=self.storage
@@ -217,11 +222,11 @@ class LDAPControlPanel(EditForm):
                                      storage.userid_attribute,
                                      storage.login_attribute)
 
-        return [ dict(id=p.__name__,
-                      description=p.description,
-                      ldap_name=p.ldap_name,
-                      plone_name=p.plone_name,
-                      multi_valued=p.multi_valued,
-                      binary=p.binary,
-                      protected=protected(p))
-                 for p in storage.schema.values() ]
+        return [dict(id=p.__name__,
+                     description=p.description,
+                     ldap_name=p.ldap_name,
+                     plone_name=p.plone_name,
+                     multi_valued=p.multi_valued,
+                     binary=p.binary,
+                     protected=protected(p))
+                for p in storage.schema.values()]

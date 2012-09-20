@@ -13,8 +13,6 @@ from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 import logging
 
-
-
 ldap_props = ['_login_attr',
               '_uid_attr',
               '_rdnattr',
@@ -36,6 +34,7 @@ ldap_props = ['_login_attr',
 _FILENAME = 'ldap_plugin.xml'
 
 update = True
+
 
 class LDAPPluginExportImport:
     """In- and Exporter for LDAP-PAS-Plugin
@@ -78,9 +77,17 @@ class LDAPPluginExportImport:
                     value = obj.getProperty(prop['id'])
                     if prop['type'] in ['string', 'int']:
                         prop['value'] = obj.getProperty(prop['id'])
-                plugin_props = [ i for i in plugin_props if 'value' in i.keys()]
+                plugin_props = [i for i in plugin_props if 'value' in i.keys()]
 
-                c_info = {'meta_type': obj.meta_type, 'plugin_props': plugin_props, 'interfaces': interfaces, 'properties':[], 'schema':[], 'servers':[], 'id': obj.getId(), 'title': obj.title}
+                c_info = {
+                    'meta_type': obj.meta_type,
+                    'plugin_props': plugin_props,
+                    'interfaces': interfaces,
+                    'properties': [],
+                    'schema': [],
+                    'servers': [],
+                    'id': obj.getId(),
+                    'title': obj.title}
                 uf = getattr(obj, 'acl_users')
                 for prop in ldap_props:
                     value = uf.getProperty(prop)
@@ -89,7 +96,7 @@ class LDAPPluginExportImport:
                         value = [value]
                     c_info['properties'].append({'id': prop, 'type': val_type, 'value': value})
                 for server in uf.getServers():
-                    c_server = {'content':[]}
+                    c_server = {'content': []}
                     for key in server.keys():
                         c_server['content'].append({'id': key, 'value': server[key], 'type': self.getTypeStr(server[key])})
                     c_info['servers'].append(c_server)
@@ -134,7 +141,7 @@ class LDAPPluginExportImport:
                 value = int(value)
             if p_type == 'string':
                 value = str(value)
-            plugin_props.append({'id':p_id, 'type': p_type, 'value': value})
+            plugin_props.append({'id': p_id, 'type': p_type, 'value': value})
 
         for iface in root.getElementsByTagName('interface'):
             interfaces.append(iface.getAttribute('value'))
@@ -220,7 +227,6 @@ class LDAPPluginExportImport:
                         " root.")
                     logging.error("Installing LDAP Plugin with GS failed")
                     return
-
 
             # base configuration
             config = getUtility(ILDAPConfiguration)

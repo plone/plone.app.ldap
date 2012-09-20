@@ -1,4 +1,3 @@
-from Persistence import Persistent
 from zope.interface import implements
 from zope.app.container.ordered import OrderedContainer
 from zope.app.container.interfaces import INameChooser
@@ -49,7 +48,6 @@ class LDAPConfiguration(OrderedContainer):
             ldap_name="sn", description=u"Surname (unused)"))
 
 
-
 class LDAPContainer(OrderedContainer):
     """Base class for our containers.
     """
@@ -69,10 +67,7 @@ class LDAPServerStorage(LDAPContainer):
     implements(ILDAPServerStorage)
 
 
-
 class LDAPSchema(LDAPContainer):
     """A container for LDAP properties.
     """
     implements(ILDAPSchema)
-
-

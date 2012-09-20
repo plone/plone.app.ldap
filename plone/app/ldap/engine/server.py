@@ -2,6 +2,7 @@ from OFS.SimpleItem import SimpleItem
 from zope.interface import implements
 from plone.app.ldap.engine.interfaces import ILDAPServer
 
+
 class LDAPServer(SimpleItem):
     implements(ILDAPServer)
 
@@ -24,5 +25,3 @@ class LDAPServer(SimpleItem):
             return "636"
         else:
             return "0"
-
-

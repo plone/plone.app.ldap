@@ -27,10 +27,10 @@ def guaranteePluginExists():
     try:
         plugin=getLDAPPlugin()
         if plugin.meta_type==PloneActiveDirectoryMultiPlugin.meta_type and \
-            config.ldap_type==u"AD":
+                config.ldap_type==u"AD":
             return False
         if plugin.meta_type==PloneLDAPMultiPlugin.meta_type and \
-            config.ldap_type==u"LDAP":
+                config.ldap_type==u"LDAP":
             return False
 
         # There is a managed plugin, but it is of the wrong type.
@@ -106,10 +106,10 @@ def addMandatorySchemaItems():
     config=getUtility(ILDAPConfiguration)
 
     if config.ldap_type==u"AD":
-        required = [ ("dn", "Distinguished Name"),
-                     ("objectGUID", "AD Object GUID"),
-                     ("cn", "Canonical Name"),
-                     ("memberOf", "Group DNs", True, "memberOf")]
+        required = [("dn", "Distinguished Name"),
+                    ("objectGUID", "AD Object GUID"),
+                    ("cn", "Canonical Name"),
+                    ("memberOf", "Group DNs", True, "memberOf")]
     else:
         required = []
 
@@ -165,7 +165,6 @@ def enablePASInterfaces():
             plugin.manage_activateInterfaces(ad_interfaces)
         else:
             plugin.manage_activateInterfaces(ldap_interfaces)
-
 
     if config.ldap_type != u"AD":
         plugins=getPAS().plugins

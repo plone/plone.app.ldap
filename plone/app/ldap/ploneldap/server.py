@@ -7,6 +7,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.app.container.interfaces import IObjectRemovedEvent
 
+
 def FindServerIndex(luf, server):
     servers=luf.getServers()
 
@@ -60,4 +61,3 @@ def HandleRemoved(server, event):
         if servers[i]['host']==server.server and servers[i]['port']==server.port:
             luf.manage_deleteServers((i,))
             return
-

@@ -6,14 +6,14 @@ from zope.event import notify
 from zope.i18nmessageid import MessageFactory
 from zope.lifecycleevent import ObjectModifiedEvent
 from Products.Five import BrowserView
-try: # >= 4.1
+try:  # >= 4.1
     from five.formlib.formbase import AddFormBase
     from five.formlib.formbase import EditFormBase
-except ImportError: # < 4.1
+    AddFormBase, EditFormBase  # pyflakes
+except ImportError:  # < 4.1
     from Products.Five.formlib.formbase import AddFormBase
     from Products.Five.formlib.formbase import EditFormBase
 from plone.app.form.validators import null_validator
-from plone.app.ldap import LDAPMessageFactory as _
 
 PMF = MessageFactory('plone')
 
@@ -38,9 +38,6 @@ class Adding(Implicit, BrowserView):
         return False
 
 
-
-
-
 class LDAPAddForm(AddFormBase):
     """Base class for add forms.
 
@@ -48,7 +45,6 @@ class LDAPAddForm(AddFormBase):
     management screen and standard form actions.
     """
     fieldset = None
-
 
     def nextURL(self):
         parent = aq_parent(aq_inner(self.context))
@@ -58,14 +54,12 @@ class LDAPAddForm(AddFormBase):
 
         return url + "/@@ldap-controlpanel"
 
-
     @action(PMF(u"label_save", default=u"Save"), name=u'save')
     def handle_save_action(self, action, data):
         self.createAndAdd(data)
 
-
     @action(PMF(u"label_cancel", default=u"Cancel"),
-                 validator=null_validator, name=u'cancel')
+            validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()
         if nextURL:
@@ -94,15 +88,13 @@ class LDAPEditForm(EditFormBase):
             self.request.response.redirect(self.nextURL())
         return ''
 
-
     @action(PMF(u"label_cancel", default=u"Cancel"),
-                 validator=null_validator, name=u'cancel')
+            validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()
         if nextURL:
             self.request.response.redirect(self.nextURL())
         return ''
-
 
     def nextURL(self):
         parent = aq_parent(aq_inner(self.context))
@@ -111,4 +103,3 @@ class LDAPEditForm(EditFormBase):
             return url + "/@@ldap-controlpanel#fieldsetlegend-" + self.fieldset
 
         return url + "/@@ldap-controlpanel"
-

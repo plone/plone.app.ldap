@@ -7,6 +7,7 @@ import ldap
 
 try:
     from zope.schema.interfaces import IVocabularyFactory
+    IVocabularyFactory  # pyflakes
 except ImportError:
     # < Zope 2.10
     from zope.app.schema.vocabulary import IVocabularyFactory
@@ -40,6 +41,7 @@ class LDAPConnectionTypeVocabulary(object):
 
 LDAPConnectionTypeVocabularyFactory = LDAPConnectionTypeVocabulary()
 
+
 class LDAPScopeVocabulary(object):
     """Vocabulary factory for LDAP search scopes.
     """
@@ -52,6 +54,7 @@ class LDAPScopeVocabulary(object):
             ])
 
 LDAPScopeVocabularyFactory = LDAPScopeVocabulary()
+
 
 class LDAPAttributesVocabulary(object):
     """Vocabulary factory for LDAP attributes.
@@ -74,7 +77,7 @@ class LDAPSinglueValueAttributesVocabulary(object):
     def __call__(self, context):
         config=getUtility(ILDAPConfiguration)
         attributes=[(a.ldap_name, a.__name__) for a in config.schema.values()
-                if not a.multi_valued]
+                    if not a.multi_valued]
         return SimpleVocabulary.fromItems(sorted(attributes))
 
 LDAPSingleValueAttributesVocabularyFactory = LDAPAttributesVocabulary()
@@ -95,4 +98,3 @@ class LDAPPasswordEncryptionVocabulary(object):
             ])
 
 LDAPPasswordEncryptionVocabularyFactory = LDAPPasswordEncryptionVocabulary()
-

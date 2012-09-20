@@ -1,5 +1,3 @@
-from Acquisition import aq_inner
-from Acquisition import Implicit
 from zope.component import adapts
 from zope.component import getUtility
 from zope.interface import implements
@@ -7,7 +5,6 @@ from zope.traversing.interfaces import ITraversable
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.formlib.form import FormFields
 from zope.formlib.form import applyChanges
-from Products.Five import BrowserView
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.interfaces import IPropertyAdding
@@ -70,9 +67,6 @@ class SchemaNamespace(object):
         self.context=context
         self.request=request
 
-
     def traverse(self, name, ignore):
         schema = getUtility(ILDAPConfiguration).schema
         return schema[name].__of__(self.context)
-
-
