@@ -11,7 +11,7 @@
     -->
   <five:registerPackage package="."/>
 
-  <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="Products.CMFCore" />
   <include package=".browser" />
   <include package=".engine" />
   <include package=".ploneldap" />

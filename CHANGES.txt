@@ -4,7 +4,9 @@ Changelog
 1.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Plone 3.3 compatibility by including the zcml of
+  Products.CMFCore instead of explicitly permissions.zcml.
+  [maurits]
 
 
 1.2.8 (2012-03-02)
