@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.9 (unreleased)
+1.2.9 (2012-09-28)
 ------------------
 
 - Fix Plone 3.3 compatibility by including the zcml of
