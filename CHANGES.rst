@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3.0 (unreleased)
+1.3.0 (2012-09-28)
 ------------------
 
 - Add Plone 4.3 compatibility, and break compatibility with Plone 4.0
