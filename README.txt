@@ -46,7 +46,7 @@ Installing
 
 This package works with Plone 3 and Plone 4. Plone 3 and Plone 4.0
 users should install a version in the 1.2.* series
-(e.g. plone.app.ldap < 1.3, the latest current release is 1.2.8), as
+(e.g. plone.app.ldap < 1.3, the latest current release is 1.2.9), as
 release 1.3 will only work with Plone 4.1 or higher.
 
 You need to install PloneLDAP_ and its requirements in your Zope instance
