@@ -114,7 +114,7 @@ Copyright
     Simplon_ donated the simplon.plone.ldap code to the Plone Foundation.
 
 Credits
-     Wichert Akkerman <wicher@simplon.biz>
+     Wichert Akkerman <wichert@simplon.biz>
 
 Funding
      CentrePoint_
