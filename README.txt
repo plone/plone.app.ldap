@@ -87,9 +87,11 @@ If you are using `buildout`_ to manage your instance installing plone.app.ldap
 is even simpler. You can install it by adding it to the eggs line for your 
 instance::
 
-  [instance]
-  eggs = plone.app.ldap
-  zcml = plone.app.ldap
+  [buildout]
+  eggs = 
+      plone.app.ldap
+  zcml = 
+      plone.app.ldap
 
 The last line tells buildout to generate a zcml snippet that tells Zope to 
 configure plone.app.ldap.
