@@ -85,10 +85,12 @@ Installing with buildout
 
 If you are using `buildout`_ to manage your instance installing plone.app.ldap 
 is even simpler. You can install it by adding it to the eggs line for your 
-instance::
+zope instance::
 
   [instance]
-  eggs = plone.app.ldap
+  eggs =
+      ...
+      plone.app.ldap
 
 .. _buildout: http://pypi.python.org/pypi/zc.buildout
 
