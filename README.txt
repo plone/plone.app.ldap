@@ -89,10 +89,6 @@ instance::
 
   [instance]
   eggs = plone.app.ldap
-  zcml = plone.app.ldap
-
-The last line tells buildout to generate a zcml snippet that tells Zope to 
-configure plone.app.ldap.
 
 .. _buildout: http://pypi.python.org/pypi/zc.buildout
 
