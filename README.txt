@@ -69,7 +69,8 @@ Install without buildout
 
 First you need to install this package in the python path for your
 Zope instance. This can be done by installing it in either your system
-path packages or in the lib/python directory in your Zope instance.
+path packages (usually with ``pip`` or ``easy_install``) or in the
+lib/python directory in your Zope instance.
 
 After installing the package it needs to be registered in your Zope instance.
 This can be done by putting a plone.app.ldap-configure.zcml file in the
@@ -98,11 +99,25 @@ zope instance::
 Installing the development version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To specify the current `development`_ version you may use::
+To specify the current development version you may use::
 
-  eggs = plone.app.ldap==dev
+  [buildout]
+  find-links =
+      ...
+      http://github.com/plone/plone.app.ldap/tarball/master#egg=plone.app.ldap-dev
 
-.. _development: https://svn.plone.org/svn/plone/plone.app.ldap/trunk#egg=plone.app.ldap-dev
+  [instance]
+  eggs =
+      ...
+     plone.app.ldap==dev
+
+With ``pip`` that would be this::
+
+  pip install -f http://github.com/plone/plone.app.ldap/tarball/master#egg=plone.app.ldap-dev plone.app.ldap==dev
+
+With ``easy_install``::
+
+  easy_install -f http://github.com/plone/plone.app.ldap/tarball/master#egg=plone.app.ldap-dev plone.app.ldap==dev
 
 
 Copyright and credits
