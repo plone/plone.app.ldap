@@ -272,7 +272,7 @@
                                  tal:attributes="value server/id" />
                              </td>
                              <td class="checker">
-                               <img tal:replace="structure context/confirm_icon.gif"
+                               <img tal:replace="structure context/confirm_icon.png"
                                     tal:condition="server/enabled" />
                              </td>
                              <td>
