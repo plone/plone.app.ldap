@@ -4,7 +4,10 @@ Changelog
 1.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use ``.png`` file, not ``.gif``.  Fixes ``KeyError:
+  confirm_icon.gif`` from
+  https://github.com/plone/plone.app.ldap/issues/11
+  [maurits]
 
 
 1.3.0 (2012-09-28)
