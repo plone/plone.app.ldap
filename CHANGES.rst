@@ -4,6 +4,9 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
+- Update package dependencies.
+  [hvelarde]
+
 - Update installation documentation.
   [hvelarde]
 

@@ -30,10 +30,17 @@ setup(name='plone.app.ldap',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          # "python-ldap",
-          "Products.CMFCore",
-          "Products.PloneLDAP",
-          "setuptools"
+          'plone.memoize',
+          'Products.CMFCore',
+          'Products.GenericSetup',
+          'Products.PloneLDAP',
+          'python-ldap',
+          'setuptool',
+          'zope.component',
+          'zope.i18nmessageid',
+          'zope.interface',
+          'zope.lifecycleevent',
+          'zope.schema',
       ],
       entry_points="""
       # -*- Entry points: -*-
