@@ -49,12 +49,11 @@ users should install a version in the 1.2.* series
 (e.g. plone.app.ldap < 1.3, the latest current release is 1.2.9), as
 release 1.3 will only work with Plone 4.1 or higher.
 
-You need to install PloneLDAP_ and its requirements in your Zope instance
-before you can use plone.app.ldap. If you are using Buildout then
-these requirements are pulled in for you automatically (see 
-`Installing with buildout`_). Otherwise, these dependencies would need
-to be installed manually; for instance, by downloading
-its product bundle and extracting that in your Products directory.
+This package depends on ``python-ldap``. In order to build it correctly you
+need to have some development libraries included in your system. On a typical
+Debian-based installation use::
+
+    sudo apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev
 
 Once the package is installed, it will be available as an add-on named
 "LDAP support", and this add-on can be activated in a Plone instance

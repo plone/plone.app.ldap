@@ -4,7 +4,8 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update installation documentation.
+  [hvelarde]
 
 
 1.3.1 (2013-10-01)
