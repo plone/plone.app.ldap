@@ -4,6 +4,9 @@ Changelog
 1.3.2 (unreleased)
 ------------------
 
+- Fix GS import : _user_objclasses and _roles should not be imported as unicode strings
+  [gotcha]
+
 - Update package dependencies.
   [hvelarde]
 

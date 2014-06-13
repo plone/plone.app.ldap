@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# $LastChangedBy: ajung $ - $LastChangedDate: 2009-06-08 10:42:22 +0200 (Mon, 08 Jun 2009) $ - $Revision: 87647 $
 
 from StringIO import StringIO
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
@@ -164,7 +163,12 @@ class LDAPPluginExportImport:
                 values.append(v.getAttribute('value'))
             id = prop.getAttribute('id')
             if type == 'list':
-                value = values
+                # values are unicode strings
+                # _user_objclasses and _roles need to be strings
+                if id in ['_user_objclasses', '_roles']:
+                    value = [item.encode('utf8') for item in values]
+                else:
+                    value = values
             else:
                 value = values[0]
             if type == 'int':
