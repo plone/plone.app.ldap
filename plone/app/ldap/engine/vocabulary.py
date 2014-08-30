@@ -64,7 +64,7 @@ class LDAPAttributesVocabulary(object):
 LDAPAttributesVocabularyFactory = LDAPAttributesVocabulary()
 
 
-class LDAPSinglueValueAttributesVocabulary(object):
+class LDAPSingleValueAttributesVocabulary(object):
     """Vocabulary factory for LDAP attributes.
     """
     implements(IVocabularyFactory)
@@ -75,7 +75,7 @@ class LDAPSinglueValueAttributesVocabulary(object):
                     if not a.multi_valued]
         return SimpleVocabulary.fromItems(sorted(attributes))
 
-LDAPSingleValueAttributesVocabularyFactory = LDAPAttributesVocabulary()
+LDAPSingleValueAttributesVocabularyFactory = LDAPSingleValueAttributesVocabulary()
 
 
 class LDAPPasswordEncryptionVocabulary(object):
