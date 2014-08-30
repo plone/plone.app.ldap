@@ -107,8 +107,9 @@ def addMandatorySchemaItems():
 
     if config.ldap_type==u"AD":
         required = [("dn", "Distinguished Name"),
-                    ("objectGUID", "AD Object GUID"),
+                    ("objectGUID", "AD Object GUID", False, '', True),
                     ("cn", "Canonical Name"),
+                    ("sAMAccountName", "AD User Name"),
                     ("memberOf", "Group DNs", True, "memberOf")]
     else:
         required = []
