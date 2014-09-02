@@ -16,3 +16,11 @@ class LDAPProperty(SimpleItem):
         self.plone_name=plone_name
         self.multi_valued=multi_valued
         self.binary=binary
+
+    def __setattr__(self, name, value):
+        if name in ('ldap_name', 'plone_name', 'description'):
+            # Store blank fields as empty strings to avoid exporting a
+            # literal 'None' with e.g. str(property.attr).
+            self.__dict__[name] = value or u""
+        else:
+            self.__dict__[name] = value
