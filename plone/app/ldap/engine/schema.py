@@ -21,6 +21,5 @@ class LDAPProperty(SimpleItem):
         if name in ('ldap_name', 'plone_name', 'description'):
             # Store blank fields as empty strings to avoid exporting a
             # literal 'None' with e.g. str(property.attr).
-            self.__dict__[name] = value or u""
-        else:
-            self.__dict__[name] = value
+            value = value or u""
+        super(LDAPProperty, self).__setattr__(name, value)
