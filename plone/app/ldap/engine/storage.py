@@ -28,7 +28,6 @@ class LDAPConfiguration(OrderedContainer):
     password_encryption = "crypt"
     default_user_roles = "Member"
     read_only = False
-    activated_interfaces = []
     activated_plugins = []
     cache = ''
 

@@ -165,8 +165,10 @@ def enablePASInterfaces():
     else:
         if config.ldap_type==u"AD":
             plugin.manage_activateInterfaces(ad_interfaces)
+            config.activated_plugins = ad_interfaces
         else:
             plugin.manage_activateInterfaces(ldap_interfaces)
+            config.activated_plugins = ldap_interfaces
 
     plugins=getPAS().plugins
     if "IPropertiesPlugin" in config.activated_plugins:
