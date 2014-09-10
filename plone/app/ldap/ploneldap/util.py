@@ -2,6 +2,7 @@ from zope.component.hooks import getSite
 from zope.component import getUtility
 from zope.interface import directlyProvides
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.schema import LDAPProperty
 from Products.CMFCore.utils import getToolByName
 from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
@@ -102,27 +103,28 @@ def configureLDAPServers():
 
 
 def addMandatorySchemaItems():
-    luf=getLDAPPlugin()._getLDAPUserFolder()
     config=getUtility(ILDAPConfiguration)
 
     if config.ldap_type==u"AD":
-        required = [("dn", "Distinguished Name"),
-                    ("objectGUID", "AD Object GUID", False, '', True),
-                    ("cn", "Canonical Name"),
-                    ("sAMAccountName", "AD User Name"),
-                    ("memberOf", "Group DNs", True, "memberOf")]
+        required = [("dn", {'description': "Distinguished Name"}),
+                    ("objectGUID", {'description': "AD Object GUID",
+                            'multi_valued': False, 'binary': True}),
+                    ("cn", {'description': "Canonical Name"}),
+                    ("sAMAccountName", {'description': "AD User Name"}),
+                    ("memberOf", {'description': "Group DNs",
+                            'multi_valued': True, 'plone_name': "memberOf"})]
     else:
         required = []
 
-    schema=luf.getSchemaConfig()
-    for prop in required:
-        if prop[0] not in schema:
-            luf.manage_addLDAPSchemaItem(*prop)
+    for attr, args in required:
+        if attr not in config.schema:
+            config.schema.addItem(LDAPProperty(ldap_name=attr, **args))
 
 
 def configureLDAPSchema():
     luf=getLDAPPlugin()._getLDAPUserFolder()
     config=getUtility(ILDAPConfiguration)
+    addMandatorySchemaItems()
 
     schema={}
     for property in config.schema.values():
@@ -133,7 +135,6 @@ def configureLDAPSchema():
                 multivalued=property.multi_valued,
                 binary=property.binary)
     luf.setSchemaConfig(schema)
-    addMandatorySchemaItems()
 
 
 def enablePASInterfaces():

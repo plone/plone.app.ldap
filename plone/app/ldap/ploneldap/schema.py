@@ -48,4 +48,4 @@ def HandleRemoved(property, event):
 
     luf=getLDAPPlugin()._getLDAPUserFolder()
     luf.manage_deleteLDAPSchemaItems([str(property.ldap_name)])
-    addMandatorySchemaItems()
+    configureLDAPSchema()
