@@ -119,6 +119,8 @@ def addMandatorySchemaItems():
     for attr, args in required:
         if attr not in config.schema:
             config.schema.addItem(LDAPProperty(ldap_name=attr, **args))
+        if attr not in config.required_attributes:
+            config.required_attributes.append(attr)
 
 
 def configureLDAPSchema():

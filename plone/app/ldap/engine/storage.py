@@ -16,6 +16,7 @@ class LDAPConfiguration(OrderedContainer):
     rdn_attribute = "uid"
     userid_attribute = "uid"
     login_attribute = "uid"
+    required_attributes = []
 
     user_object_classes = "pilotPerson"
 

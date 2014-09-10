@@ -132,14 +132,16 @@
              <p i18n:translate="description-schema">
              The LDAP schema defines the LDAP properties which can be used
              by the Plone. Properties with a Plone property name will be
-             available as standard user properties in Plone. Properties without
-             a Plone property name can be used as user id, login name or
+             available as standard user properties in Plone (see
+             portal_memberdata in the ZMI for a list). Any property which is
+             not multi-valued can be used as the user id, login name or
              relative DN by the LDAP configuration.
              </p>
 
              <p i18n:translate="description-schema-protected">
-             As a safety precaution attributes that are used as login, user or rDN
-             attribute can not be removed.
+             As a safety precaution, attributes that are used as the user id,
+             login name, or rDN attribute or are required for Active Directory
+             cannot be removed.
              </p>
 
              <form style="display: inline" method="POST"
