@@ -180,10 +180,11 @@ def enablePASInterfaces():
             plugins.movePluginsUp(iface, [plugin.getId()])
 
     if config.ldap_type != u"AD":
-        if "IUserAdderPlugin" in config.activated_plugins:
-            iface=plugins._getInterfaceFromName("IUserAdderPlugin")
-            for i in range(len(plugins.listPlugins(iface))-1):
-                plugins.movePluginsUp(iface, [plugin.getId()])
+        for p in ("IUserAdderPlugin", "IGroupManagement"):
+            if p in config.activated_plugins:
+                iface=plugins._getInterfaceFromName(p)
+                for i in range(len(plugins.listPlugins(iface))-1):
+                    plugins.movePluginsUp(iface, [plugin.getId()])
 
 
 
