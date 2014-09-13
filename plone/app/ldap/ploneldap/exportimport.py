@@ -128,6 +128,7 @@ class LDAPPluginExportImport:
     def extractData(self, root, pas, out):
         plug_id = str(root.getAttribute('id'))
         update = root.getAttribute('update') == 'True'
+        meta_type = root.getAttribute('meta_type')
 
         settings = {}
         interfaces = []
@@ -234,6 +235,12 @@ class LDAPPluginExportImport:
 
             # base configuration
             config = getUtility(ILDAPConfiguration)
+            if meta_type in [u"Plone Active Directory plugin",
+                             u"ActiveDirectory Multi Plugin"]:
+                config.ldap_type = u"AD"
+            else:
+                config.ldap_type = u"LDAP"
+
             config.login_attribute = settings['_login_attr']
             config.userid_attribute = settings['_uid_attr']
             config.rdn_attribute = settings['_rdnattr']
