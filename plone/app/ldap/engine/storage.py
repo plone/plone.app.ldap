@@ -31,6 +31,7 @@ class LDAPConfiguration(OrderedContainer):
     extra_user_filter = ""
     local_groups = False
     implicit_mapping = False
+    group_mappings = {}
     read_only = False
     activated_plugins = []
     cache = ''

@@ -90,6 +90,7 @@ def createLDAPPlugin(id="ldap-plugin"):
     luf=plugin._getLDAPUserFolder()
     luf.manage_changeProperty('_extra_user_filter', config.extra_user_filter)
     luf.manage_changeProperty('_implicit_mapping', config.implicit_mapping)
+    luf.manage_changeProperty('_groups_mappings', config.group_mappings)
 
 
 def configureLDAPServers():
