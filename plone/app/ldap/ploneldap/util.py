@@ -78,6 +78,7 @@ def createLDAPPlugin(id="ldap-plugin"):
             bindpwd=config.bind_password or "",
             encryption=config.password_encryption,
             roles=config.default_user_roles or "",
+            local_groups=config.local_groups,
             read_only=config.read_only,
             obj_classes=config.user_object_classes)
 
@@ -86,6 +87,9 @@ def createLDAPPlugin(id="ldap-plugin"):
     directlyProvides(plugin, IManagedLDAPPlugin)
     enablePASInterfaces()
     enableCaching(config.cache)
+    luf=plugin._getLDAPUserFolder()
+    luf.manage_changeProperty('_extra_user_filter', config.extra_user_filter)
+    luf.manage_changeProperty('_implicit_mapping', config.implicit_mapping)
 
 
 def configureLDAPServers():

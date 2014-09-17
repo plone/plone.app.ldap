@@ -251,8 +251,11 @@ class LDAPPluginExportImport:
             config.bind_dn = settings['_binduid']
             config.bind_password = settings['_bindpwd']
             config.user_object_classes = ','.join(settings['_user_objclasses'])
+            config.extra_user_filter = settings['_extra_user_filter']
             config.password_encryption = settings['_pwd_encryption']
             config.default_user_roles = ','.join(settings['_roles'])
+            config.implicit_mapping = settings['_implicit_mapping']
+            config.local_groups = settings['_local_groups']
             config.read_only = settings['read_only']
             config.activated_plugins = interfaces
             config.cache = cache
