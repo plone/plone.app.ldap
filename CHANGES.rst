@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3.2 (unreleased)
+1.3.2 (2015-03-02)
 ------------------
 
 - Fix GS import : _user_objclasses and _roles should not be imported as unicode strings
