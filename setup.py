@@ -42,6 +42,12 @@ setup(name='plone.app.ldap',
           'zope.lifecycleevent',
           'zope.schema',
       ],
+      extras_require={
+          'test': [
+            'plone.app.testing',
+            'plone.testing',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
