@@ -14,7 +14,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=plone.app.ldap)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'plone.app.ldap:default')
+        self.applyProfile(portal, 'plone.app.ldap:ldap')
 
 FIXTURE = Fixture()
 
