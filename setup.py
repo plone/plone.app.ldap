@@ -44,6 +44,7 @@ setup(name='plone.app.ldap',
       ],
       extras_require={
           'test': [
+            'plone.api',
             'plone.app.testing',
             'plone.testing',
           ],
