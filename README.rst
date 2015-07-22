@@ -5,7 +5,7 @@ Overview
 --------
 
 plone.app.ldap provides a user interface in a Plone site to manage
-LDAP and Active Directory servers. 
+LDAP and Active Directory servers.
 
 This package succeeds the simplon.plone.ldap package.
 
@@ -46,7 +46,7 @@ Installing
 
 This package works with Plone 3 and Plone 4. Plone 3 and Plone 4.0
 users should install a version in the 1.2.* series
-(e.g. plone.app.ldap < 1.3, the latest current release is 1.2.9), as
+(e.g. plone.app.ldap < 1.3, the latest current release is 1.3.2), as
 release 1.3 will only work with Plone 4.1 or higher.
 
 This package depends on ``python-ldap``. In order to build it correctly you
@@ -83,8 +83,8 @@ package or Product that is already registered.
 Installing with buildout
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are using `buildout`_ to manage your instance installing plone.app.ldap 
-is even simpler. You can install it by adding it to the eggs line for your 
+If you are using `buildout`_ to manage your instance installing plone.app.ldap
+is even simpler. You can install it by adding it to the eggs line for your
 zope instance::
 
   [instance]

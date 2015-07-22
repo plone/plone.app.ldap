@@ -1,0 +1,29 @@
+language: python
+python: 2.7
+sudo: true
+env:
+- PLONE_VERSION=4.2
+- PLONE_VERSION=4.3
+- PLONE_VERSION=5.0
+matrix:
+  allow_failures:
+  - env: PLONE_VERSION=5.0
+  fast_finish: true
+before_install:
+- sudo apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev
+- wget http://downloads.buildout.org/2/bootstrap.py -O bootstrap.py
+install:
+- sed -ie "s#test-4.3#test-$PLONE_VERSION#" travis.cfg
+- mkdir -p buildout-cache/downloads
+- python bootstrap.py -c travis.cfg
+- bin/buildout -c travis.cfg annotate
+- bin/buildout -c travis.cfg -Nq
+script:
+- bin/code-analysis
+- bin/test
+after_success:
+- bin/createcoverage
+- pip install -q coveralls
+- coveralls
+notifications:
+  irc: irc.freenode.org#plone-testing

@@ -1,15 +1,14 @@
 from setuptools import setup, find_packages
 
-version = '1.3.3.dev0'
+version = '1.4.0.dev0'
 
 setup(name='plone.app.ldap',
       version=version,
-      description="LDAP control panel for Plone 4.1 and higher",
+      description="LDAP control panel for Plone 4.2 and higher",
       long_description=(open("README.rst").read() + "\n" +
                         open("CHANGES.rst").read()),
       classifiers=[
           "Framework :: Plone",
-          "Framework :: Plone :: 4.1",
           "Framework :: Plone :: 4.2",
           "Framework :: Plone :: 4.3",
           "Programming Language :: Python",
@@ -42,6 +41,13 @@ setup(name='plone.app.ldap',
           'zope.lifecycleevent',
           'zope.schema',
       ],
+      extras_require={
+          'test': [
+            'plone.api',
+            'plone.app.testing',
+            'plone.testing',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
