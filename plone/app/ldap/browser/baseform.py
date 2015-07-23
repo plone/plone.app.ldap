@@ -48,17 +48,17 @@ class LDAPAddForm(AddFormBase):
 
     def nextURL(self):
         parent = aq_parent(aq_inner(self.context))
-        url = str(getMultiAdapter((parent, self.request), name=u"absolute_url"))
+        url = str(getMultiAdapter((parent, self.request), name=u'absolute_url'))
         if self.fieldset is not None:
-            return url + "/@@ldap-controlpanel#fieldsetlegend-" + self.fieldset
+            return url + '/@@ldap-controlpanel#fieldsetlegend-' + self.fieldset
 
-        return url + "/@@ldap-controlpanel"
+        return url + '/@@ldap-controlpanel'
 
-    @action(PMF(u"label_save", default=u"Save"), name=u'save')
+    @action(PMF(u'label_save', default=u'Save'), name=u'save')
     def handle_save_action(self, action, data):
         self.createAndAdd(data)
 
-    @action(PMF(u"label_cancel", default=u"Cancel"),
+    @action(PMF(u'label_cancel', default=u'Cancel'),
             validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()
@@ -75,20 +75,20 @@ class LDAPEditForm(EditFormBase):
     """
     fieldset = None
 
-    @action(PMF(u"label_save", default=u"Save"), name=u'save')
+    @action(PMF(u'label_save', default=u'Save'), name=u'save')
     def handle_save_action(self, action, data):
         if applyChanges(self.context, self.form_fields, data, self.adapters):
             notify(ObjectModifiedEvent(self.context))
-            self.status = "Changes saved"
+            self.status = 'Changes saved'
         else:
-            self.status = "No changes"
+            self.status = 'No changes'
 
         nextURL = self.nextURL()
         if nextURL:
             self.request.response.redirect(self.nextURL())
         return ''
 
-    @action(PMF(u"label_cancel", default=u"Cancel"),
+    @action(PMF(u'label_cancel', default=u'Cancel'),
             validator=null_validator, name=u'cancel')
     def handle_cancel_action(self, action, data):
         nextURL = self.nextURL()
@@ -98,8 +98,8 @@ class LDAPEditForm(EditFormBase):
 
     def nextURL(self):
         parent = aq_parent(aq_inner(self.context))
-        url = str(getMultiAdapter((parent, self.request), name=u"absolute_url"))
+        url = str(getMultiAdapter((parent, self.request), name=u'absolute_url'))
         if self.fieldset is not None:
-            return url + "/@@ldap-controlpanel#fieldsetlegend-" + self.fieldset
+            return url + '/@@ldap-controlpanel#fieldsetlegend-' + self.fieldset
 
-        return url + "/@@ldap-controlpanel"
+        return url + '/@@ldap-controlpanel'

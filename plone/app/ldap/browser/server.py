@@ -40,10 +40,10 @@ class ServerAddForm(LDAPAddForm):
     """An add form for LDAP servers.
     """
     form_fields = FormFields(ILDAPServerConfiguration)
-    label = _(u"Add Server")
-    description = _(u"Add an new LDAP or ActiveDirectory server.")
-    form_name = _(u"Configure server")
-    fieldset = "servers"
+    label = _(u'Add Server')
+    description = _(u'Add an new LDAP or ActiveDirectory server.')
+    form_name = _(u'Configure server')
+    fieldset = 'servers'
 
     def create(self, data):
         server = LDAPServer()
@@ -56,10 +56,10 @@ class ServerEditForm(LDAPEditForm):
     """An edit form for LDAP servers.
     """
     form_fields = FormFields(ILDAPServerConfiguration)
-    label = _(u"Edit Server")
-    description = _(u"Edit a LDAP or ActiveDirectory server.")
-    form_name = _(u"Configure server")
-    fieldset = "servers"
+    label = _(u'Edit Server')
+    description = _(u'Edit a LDAP or ActiveDirectory server.')
+    form_name = _(u'Configure server')
+    fieldset = 'servers'
 
 
 class ServerNamespace(object):

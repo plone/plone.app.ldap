@@ -26,10 +26,10 @@ except:
 
 
 class LDAPBindFailure(ValidationError):
-    __doc__ = _(u"LDAP server refused your credentials")
+    __doc__ = _(u'LDAP server refused your credentials')
 
 
-logger = logging.getLogger("plone.app.ldap")
+logger = logging.getLogger('plone.app.ldap')
 
 
 def LDAPBindingFactory(context):
@@ -37,14 +37,14 @@ def LDAPBindingFactory(context):
 
 
 class LDAPControlPanel(EditForm):
-    template = ViewPageTemplateFile("controlpanel.pt")
+    template = ViewPageTemplateFile('controlpanel.pt')
 
     form_fields = FormFields(ILDAPBinding)
-    label = u"LDAP Control Panel"
-    description = u"In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server."
-    form_name = u"LDAP Control Panel"
+    label = u'LDAP Control Panel'
+    description = u'In this control panel you can configure an LDAP connection. You can either use a standard LDAP server or a Microsoft Active Directory Server.'
+    form_name = u'LDAP Control Panel'
 
-    @action(_("Apply"), condition=haveInputWidgets)
+    @action(_('Apply'), condition=haveInputWidgets)
     def handle_edit_actions(self, action, data):
         # Filter out non-required fields that have no value so their
         # existing value is not overwritten. This protects us from
@@ -55,17 +55,17 @@ class LDAPControlPanel(EditForm):
             try:
                 notify(ObjectModifiedEvent(self.storage))
             except LDAPError:
-                widget=self.widgets.get("bind_dn")
+                widget=self.widgets.get('bind_dn')
 
-                widget.error=WidgetInputError("bind_dn", widget.label,
-                                              LDAPBindFailure("value"))
+                widget.error=WidgetInputError('bind_dn', widget.label,
+                                              LDAPBindFailure('value'))
                 self.errors += (widget.error,)
-                self.status= _("There were errors")
+                self.status= _('There were errors')
         return self.request.response.redirect(self.nextURL())
 
     @action(_(u'label_enable', default=u'Enable'), name=u'EnableServer')
     def handle_enable_server(self, action, data):
-        for id in self.request.form.get("serverId", []):
+        for id in self.request.form.get('serverId', []):
             if id in self.storage.servers:
                 server = self.storage.servers[id]
                 if server.enabled is False:
@@ -75,7 +75,7 @@ class LDAPControlPanel(EditForm):
 
     @action(_(u'label_disable', default=u'Disable'), name=u'DisableServer')
     def handle_disable_server(self, action, data):
-        for id in self.request.form.get("serverId", []):
+        for id in self.request.form.get('serverId', []):
             if id in self.storage.servers:
                 server = self.storage.servers[id]
                 if server.enabled is True:
@@ -85,7 +85,7 @@ class LDAPControlPanel(EditForm):
 
     @action(_(u'label_delete', default=u'Delete'), name=u'DeleteServer')
     def handle_delete_server(self, action, data):
-        for id in self.request.form.get("serverId", []):
+        for id in self.request.form.get('serverId', []):
             if id in self.storage.servers:
                 notify(ObjectRemovedEvent(self.storage.servers[id]))
                 del self.storage.servers[id]
@@ -93,7 +93,7 @@ class LDAPControlPanel(EditForm):
 
     @action(_(u'label_delete_property', default=u'Delete'), name=u'DeleteProperty')
     def handle_delete_property(self, action, data):
-        for id in self.request.form.get("propertyId", []):
+        for id in self.request.form.get('propertyId', []):
             if id in self.storage.schema:
                 notify(ObjectRemovedEvent(self.storage.schema[id]))
                 del self.storage.schema[id]
@@ -180,10 +180,10 @@ class LDAPControlPanel(EditForm):
     def nextURL(self):
         url = str(
             getMultiAdapter(
-                (self.context, self.request), name=u"absolute_url"
+                (self.context, self.request), name=u'absolute_url'
             )
         )
-        return url + "/@@ldap-controlpanel#" + self.request.form.get('fieldset_id', '')
+        return url + '/@@ldap-controlpanel#' + self.request.form.get('fieldset_id', '')
 
     @property
     @memoize
@@ -193,11 +193,11 @@ class LDAPControlPanel(EditForm):
     def servers(self):
         def contype(c):
             if c==0:
-                return "LDAP"
+                return 'LDAP'
             elif c==1:
-                return "LDAP over SSL"
+                return 'LDAP over SSL'
             else:
-                return "LDAP over IPC"
+                return 'LDAP over IPC'
 
         return [dict(id=s.__name__,
                      enabled=s.enabled,

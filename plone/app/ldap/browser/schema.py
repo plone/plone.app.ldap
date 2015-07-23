@@ -36,10 +36,10 @@ class PropertyAddForm(LDAPAddForm):
     """An add form for LDAP properties.
     """
     form_fields = FormFields(ILDAPPropertyConfiguration)
-    label = _(u"Add Property")
-    description = _(u"Add a LDAP property to the schema.")
-    form_name = _(u"Configure property")
-    fieldset = "schema"
+    label = _(u'Add Property')
+    description = _(u'Add a LDAP property to the schema.')
+    form_name = _(u'Configure property')
+    fieldset = 'schema'
 
     def create(self, data):
         property = LDAPProperty()
@@ -51,10 +51,10 @@ class PropertyEditForm(LDAPEditForm):
     """An edit form for LDAP properties.
     """
     form_fields = FormFields(ILDAPPropertyConfiguration)
-    label = _(u"Edit Property")
-    description = _(u"Edit a LDAP property.")
-    form_name = _(u"Configure property")
-    fieldset = "schema"
+    label = _(u'Edit Property')
+    description = _(u'Edit a LDAP property.')
+    form_name = _(u'Configure property')
+    fieldset = 'schema'
 
 
 class SchemaNamespace(object):
