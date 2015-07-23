@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implements
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm

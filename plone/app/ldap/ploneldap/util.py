@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.component.hooks import getSite
 from zope.component import getUtility
 from zope.interface import directlyProvides

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from plone.app.ldap.engine.interfaces import ILDAPBinding

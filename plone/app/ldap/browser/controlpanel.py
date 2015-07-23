@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from five.formlib.formbase import EditForm
 from ldap import LDAPError
