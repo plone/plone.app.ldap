@@ -72,8 +72,8 @@ class ServerNamespace(object):
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):
-        self.context=context
-        self.request=request
+        self.context = context
+        self.request = request
 
     def traverse(self, name, ignore):
         storage = getUtility(ILDAPConfiguration).servers

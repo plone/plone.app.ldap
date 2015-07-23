@@ -33,8 +33,8 @@ class LDAPConfiguration(OrderedContainer):
     cache = ''
 
     def __init__(self):
-        self.servers=LDAPServerStorage()
-        self.schema=LDAPSchema()
+        self.servers = LDAPServerStorage()
+        self.schema = LDAPSchema()
 
         self.schema.addItem(LDAPProperty(
             ldap_name='uid', description=u'User id'))
@@ -53,12 +53,12 @@ class LDAPContainer(OrderedContainer):
     """
     def __init__(self):
         OrderedContainer.__init__(self)
-        self._data=OOBTree()
+        self._data = OOBTree()
 
     def addItem(self, item):
-        chooser=INameChooser(self)
+        chooser = INameChooser(self)
         item_id = getattr(item, 'ldap_name', None) or chooser.chooseName(None, item)
-        self[item_id]=item
+        self[item_id] = item
 
 
 class LDAPServerStorage(LDAPContainer):

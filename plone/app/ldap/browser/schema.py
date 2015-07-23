@@ -22,7 +22,7 @@ class PropertyAdding(Adding):
     def add(self, content):
         """Add the property to the schema
         """
-        schema=getUtility(ILDAPConfiguration).schema
+        schema = getUtility(ILDAPConfiguration).schema
         schema.addItem(content)
 
     def namesAccepted(self):
@@ -64,8 +64,8 @@ class SchemaNamespace(object):
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):
-        self.context=context
-        self.request=request
+        self.context = context
+        self.request = request
 
     def traverse(self, name, ignore):
         schema = getUtility(ILDAPConfiguration).schema

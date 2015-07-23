@@ -55,12 +55,12 @@ class LDAPControlPanel(EditForm):
             try:
                 notify(ObjectModifiedEvent(self.storage))
             except LDAPError:
-                widget=self.widgets.get('bind_dn')
+                widget = self.widgets.get('bind_dn')
 
-                widget.error=WidgetInputError('bind_dn', widget.label,
+                widget.error = WidgetInputError('bind_dn', widget.label,
                                               LDAPBindFailure('value'))
                 self.errors += (widget.error,)
-                self.status= _('There were errors')
+                self.status = _('There were errors')
         return self.request.response.redirect(self.nextURL())
 
     @action(_(u'label_enable', default=u'Enable'), name=u'EnableServer')
@@ -192,9 +192,9 @@ class LDAPControlPanel(EditForm):
 
     def servers(self):
         def contype(c):
-            if c==0:
+            if c == 0:
                 return 'LDAP'
-            elif c==1:
+            elif c == 1:
                 return 'LDAP over SSL'
             else:
                 return 'LDAP over IPC'
@@ -208,7 +208,7 @@ class LDAPControlPanel(EditForm):
                 for s in self.storage.servers.values()]
 
     def schema(self):
-        storage=self.storage
+        storage = self.storage
 
         def protected(attr):
             return attr.__name__ in storage.required_attributes + [

@@ -16,7 +16,7 @@ def HandleCreated(property, event):
         # need to do anything anymore.
         return
 
-    luf=getLDAPPlugin()._getLDAPUserFolder()
+    luf = getLDAPPlugin()._getLDAPUserFolder()
     # In case if the user is adding a property which is already present in the
     # backend since it is obligatory we try to delete it first.
     luf.manage_deleteLDAPSchemaItems([str(property.ldap_name)])
@@ -46,5 +46,5 @@ def HandleRemoved(property, event):
         # need to do anything anymore.
         return
 
-    luf=getLDAPPlugin()._getLDAPUserFolder()
+    luf = getLDAPPlugin()._getLDAPUserFolder()
     luf.manage_deleteLDAPSchemaItems([str(property.ldap_name)])

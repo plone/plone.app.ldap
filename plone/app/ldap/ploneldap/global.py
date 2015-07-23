@@ -12,7 +12,7 @@ def HandleModified(config, event):
         # need to do anything anymore.
         return
 
-    luf=getLDAPPlugin()._getLDAPUserFolder()
+    luf = getLDAPPlugin()._getLDAPUserFolder()
     luf.manage_edit(
             title='Plone managed LDAP',
             login_attr=str(config.schema[config.login_attribute].ldap_name),

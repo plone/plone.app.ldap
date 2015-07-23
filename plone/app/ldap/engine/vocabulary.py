@@ -57,8 +57,8 @@ class LDAPAttributesVocabulary(object):
     implements(IVocabularyFactory)
 
     def __call__(self, context):
-        config=getUtility(ILDAPConfiguration)
-        attributes=[(a.ldap_name, a.__name__) for a in config.schema.values()]
+        config = getUtility(ILDAPConfiguration)
+        attributes = [(a.ldap_name, a.__name__) for a in config.schema.values()]
         return SimpleVocabulary.fromItems(sorted(attributes))
 
 LDAPAttributesVocabularyFactory = LDAPAttributesVocabulary()
@@ -70,8 +70,8 @@ class LDAPSingleValueAttributesVocabulary(object):
     implements(IVocabularyFactory)
 
     def __call__(self, context):
-        config=getUtility(ILDAPConfiguration)
-        attributes=[(a.ldap_name, a.__name__) for a in config.schema.values()
+        config = getUtility(ILDAPConfiguration)
+        attributes = [(a.ldap_name, a.__name__) for a in config.schema.values()
                     if not a.multi_valued]
         return SimpleVocabulary.fromItems(sorted(attributes))
 

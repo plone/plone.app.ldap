@@ -223,11 +223,11 @@ class LDAPPluginExportImport:
                     on the duplicate users. I don't see any tests on this so if there
                     is an argument to leave this as a pass let me know.
                     """
-                    logging.error('There is an ldap multi plugin in your '+
-                        'system (%s) that is not managed '%plug_id +
-                        'by this generic setup script. To have everything '+
+                    logging.error('There is an ldap multi plugin in your ' +
+                        'system (%s) that is not managed ' % plug_id +
+                        'by this generic setup script. To have everything ' +
                         'managed by GS, please delete and ' +
-                        'reinstall or set update=False in your ldap_plugin.xml'+
+                        'reinstall or set update=False in your ldap_plugin.xml' +
                         ' root.')
                     logging.error('Installing LDAP Plugin with GS failed')
                     return

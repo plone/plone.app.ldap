@@ -11,17 +11,17 @@ class LDAPServer(SimpleItem):
 
     def __init__(self, server=u'', connection_type=0, connection_timeout=5,
             operation_timeout=-1, enabled=False):
-        self.server=server
-        self.connection_type=connection_type
-        self.connection_timeout=connection_timeout
-        self.operation_timeout=operation_timeout
-        self.enabled=enabled
+        self.server = server
+        self.connection_type = connection_type
+        self.connection_timeout = connection_timeout
+        self.operation_timeout = operation_timeout
+        self.enabled = enabled
 
     @property
     def port(self):
-        if self.connection_type==0:
+        if self.connection_type == 0:
             return '389'
-        elif self.connection_type==1:
+        elif self.connection_type == 1:
             return '636'
         else:
             return '0'

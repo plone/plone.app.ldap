@@ -11,11 +11,11 @@ class LDAPProperty(SimpleItem):
 
     def __init__(self, ldap_name=u'', plone_name=u'', description=u'',
                  multi_valued=False, binary=False):
-        self.description=description
-        self.ldap_name=ldap_name
-        self.plone_name=plone_name
-        self.multi_valued=multi_valued
-        self.binary=binary
+        self.description = description
+        self.ldap_name = ldap_name
+        self.plone_name = plone_name
+        self.multi_valued = multi_valued
+        self.binary = binary
 
     def __setattr__(self, name, value):
         if name in ('ldap_name', 'plone_name', 'description'):
