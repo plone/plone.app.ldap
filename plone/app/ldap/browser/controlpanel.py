@@ -211,9 +211,10 @@ class LDAPControlPanel(EditForm):
         storage=self.storage
 
         def protected(attr):
-            return attr.__name__ in (storage.rdn_attribute,
-                                     storage.userid_attribute,
-                                     storage.login_attribute)
+            return attr.__name__ in storage.required_attributes + [
+                    storage.rdn_attribute,
+                    storage.userid_attribute,
+                    storage.login_attribute]
 
         return [dict(id=p.__name__,
                      description=p.description,

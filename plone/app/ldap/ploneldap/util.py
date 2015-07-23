@@ -2,6 +2,7 @@ from zope.component.hooks import getSite
 from zope.component import getUtility
 from zope.interface import directlyProvides
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
+from plone.app.ldap.engine.schema import LDAPProperty
 from Products.CMFCore.utils import getToolByName
 from Products.PloneLDAP.plugins.ad import PloneActiveDirectoryMultiPlugin
 from Products.PloneLDAP.plugins.ldap import PloneLDAPMultiPlugin
@@ -102,26 +103,30 @@ def configureLDAPServers():
 
 
 def addMandatorySchemaItems():
-    luf=getLDAPPlugin()._getLDAPUserFolder()
     config=getUtility(ILDAPConfiguration)
 
     if config.ldap_type==u"AD":
-        required = [("dn", "Distinguished Name"),
-                    ("objectGUID", "AD Object GUID"),
-                    ("cn", "Canonical Name"),
-                    ("memberOf", "Group DNs", True, "memberOf")]
+        required = [("dn", {'description': "Distinguished Name"}),
+                    ("objectGUID", {'description': "AD Object GUID",
+                            'multi_valued': False, 'binary': True}),
+                    ("cn", {'description': "Canonical Name"}),
+                    ("sAMAccountName", {'description': "AD User Name"}),
+                    ("memberOf", {'description': "Group DNs",
+                            'multi_valued': True, 'plone_name': "memberOf"})]
     else:
         required = []
 
-    schema=luf.getSchemaConfig()
-    for prop in required:
-        if prop[0] not in schema:
-            luf.manage_addLDAPSchemaItem(*prop)
+    for attr, args in required:
+        if attr not in config.schema:
+            config.schema.addItem(LDAPProperty(ldap_name=attr, **args))
+        if attr not in config.required_attributes:
+            config.required_attributes.append(attr)
 
 
 def configureLDAPSchema():
     luf=getLDAPPlugin()._getLDAPUserFolder()
     config=getUtility(ILDAPConfiguration)
+    addMandatorySchemaItems()
 
     schema={}
     for property in config.schema.values():
@@ -129,9 +134,9 @@ def configureLDAPSchema():
                 ldap_name=str(property.ldap_name),
                 friendly_name=property.description,
                 public_name=str(property.plone_name),
-                multivalued=property.multi_valued)
+                multivalued=property.multi_valued,
+                binary=property.binary)
     luf.setSchemaConfig(schema)
-    addMandatorySchemaItems()
 
 
 def enablePASInterfaces():
@@ -163,21 +168,24 @@ def enablePASInterfaces():
     else:
         if config.ldap_type==u"AD":
             plugin.manage_activateInterfaces(ad_interfaces)
+            config.activated_plugins = ad_interfaces
         else:
             plugin.manage_activateInterfaces(ldap_interfaces)
+            config.activated_plugins = ldap_interfaces
+
+    plugins=getPAS().plugins
+    if "IPropertiesPlugin" in config.activated_plugins:
+        iface=plugins._getInterfaceFromName("IPropertiesPlugin")
+        for i in range(len(plugins.listPlugins(iface))-1):
+            plugins.movePluginsUp(iface, [plugin.getId()])
 
     if config.ldap_type != u"AD":
-        plugins=getPAS().plugins
+        for p in ("IUserAdderPlugin", "IGroupManagement"):
+            if p in config.activated_plugins:
+                iface=plugins._getInterfaceFromName(p)
+                for i in range(len(plugins.listPlugins(iface))-1):
+                    plugins.movePluginsUp(iface, [plugin.getId()])
 
-        if "IUserAdderPlugin" in config.activated_plugins:
-            iface=plugins._getInterfaceFromName("IUserAdderPlugin")
-            for i in range(len(plugins.listPlugins(iface))-1):
-                plugins.movePluginsUp(iface, [plugin.getId()])
-
-        if "IPropertiesPlugin" in config.activated_plugins:
-            iface=plugins._getInterfaceFromName("IPropertiesPlugin")
-            for i in range(len(plugins.listPlugins(iface))-1):
-                plugins.movePluginsUp(iface, [plugin.getId()])
 
 
 def enableCaching(cache_manager="RAMCache"):

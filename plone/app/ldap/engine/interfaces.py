@@ -109,10 +109,10 @@ class ILDAPBinding(Interface):
                 default=u"Search scope for users"),
             description=_(u"help_ldap_user_scope",
                 default=u"The search scope determines where the LDAP server "
-                        u"will search for users. With BASE it will only look "
-                        u"for users who directly in the user base location. "
-                        u"SUBTREE will allow the server to also look in "
-                        u"subfolders of the user base location."),
+                        u"will search for users. With \"one level\" it will "
+                        u"only look for users directly in the user base "
+                        u"location; \"subtree\" will allow the server to also "
+                        u"look in subfolders of the user base location."),
             default=SCOPE_SUBTREE,
             vocabulary="plone.app.ldap.engine.LDAPScopes",
             required=True)
@@ -136,10 +136,10 @@ class ILDAPBinding(Interface):
                 default=u"Search scope for groups"),
             description=_(u"help_ldap_group_scope",
                 default=u"The search scope determines where the LDAP server "
-                        u"will search for groups. With BASE it will only look "
-                        u"for users who directly in the group base location. "
-                        u"SUBTREE will allow the server to also look in "
-                        u"subfolders of the group base location."),
+                        u"will search for groups. With \"one level\" it will "
+                        u"only look for groups directly in the group base "
+                        u"location; \"subtree\" will allow the server to also "
+                        u"look in subfolders of the group base location."),
             default=SCOPE_SUBTREE,
             vocabulary="plone.app.ldap.engine.LDAPScopes",
             required=True)
@@ -148,7 +148,7 @@ class ILDAPBinding(Interface):
             title =_(u"label_ldap_user_password_encryption",
                 default=u"User password encryption"),
             description=_(u"help_ldap_user_password_encryption",
-                default=u"Method of encryption used for user passwords"),
+                default=u"Method of encryption used for user passwords."),
             default="crypt",
             vocabulary="plone.app.ldap.engine.LDAPPasswordEncryption",)
 
@@ -156,7 +156,7 @@ class ILDAPBinding(Interface):
             title=_(u"label_ldap_default_user_roles",
                 default=u"Default user roles"),
             description=_(u"help_ldap_default_user_roles",
-                default=u"Default roles for new users"),
+                default=u"Default roles for new users."),
             default="Member",
             required=True,)
 
@@ -275,9 +275,9 @@ class ILDAPPropertyConfiguration(Interface):
                 default= u"Plone property name"),
             description=_(u"help_plone_property",
                 default=u"The name of the property as used in the Plone site. "
-                        u"If no name is specified the property will not be "
-                        u"visible in Plone but still be used as login name, "
-                        u"user id or rDN."),
+                        u"If no name is specified, the property will not be "
+                        u"visible in Plone but may still be used as the login "
+                        u"name, user id, or rDN."),
             required=False)
 
     multi_valued = Bool(

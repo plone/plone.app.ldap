@@ -4,6 +4,7 @@
         name="portal_controlpanel">
  <configlet title="LDAP Connection" action_id="ldap" appId="Plone"
     category="Products" condition_expr=""
+    icon_expr="misc_/PloneLDAP/ldapmultiplugin.png"
     url_expr="string:${portal_url}/@@ldap-controlpanel" visible="True"
     i18n:attributes="title">
   <permission>Manage portal</permission>

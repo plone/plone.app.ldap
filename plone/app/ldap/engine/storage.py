@@ -16,6 +16,7 @@ class LDAPConfiguration(OrderedContainer):
     rdn_attribute = "uid"
     userid_attribute = "uid"
     login_attribute = "uid"
+    required_attributes = []
 
     user_object_classes = "pilotPerson"
 
@@ -28,7 +29,6 @@ class LDAPConfiguration(OrderedContainer):
     password_encryption = "crypt"
     default_user_roles = "Member"
     read_only = False
-    activated_interfaces = []
     activated_plugins = []
     cache = ''
 
