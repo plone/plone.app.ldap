@@ -59,7 +59,9 @@ class LDAPPluginExportImport:
             val_type = 'int'
         return val_type
 
-    def _getExportInfo(self, context):
+    # FIXME: C901 'LDAPPluginExportImport._getExportInfo' is too complex (13)
+    #        https://github.com/plone/plone.app.ldap/issues/28
+    def _getExportInfo(self, context):  # noqa
         info = []
         portal = context.getSite()
         mt = getattr(portal, 'acl_users')
