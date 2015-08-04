@@ -4,7 +4,6 @@ from plone.app.ldap.engine.interfaces import ILDAPProperty
 from plone.app.ldap.ploneldap.util import guaranteePluginExists
 from plone.app.ldap.ploneldap.util import getLDAPPlugin
 from plone.app.ldap.ploneldap.util import configureLDAPSchema
-from plone.app.ldap.ploneldap.util import addMandatorySchemaItems
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from zope.container.interfaces import IObjectRemovedEvent
