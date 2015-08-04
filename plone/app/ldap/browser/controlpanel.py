@@ -22,7 +22,7 @@ import logging
 try:
     from zope.lifecycleevent import ObjectRemovedEvent
     ObjectRemovedEvent  # pyflakes
-except:
+except ImportError:
     from zope.container.contained import ObjectRemovedEvent
 
 
