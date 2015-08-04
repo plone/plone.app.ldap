@@ -183,14 +183,14 @@ def enablePASInterfaces():
     plugins = getPAS().plugins
     if 'IPropertiesPlugin' in config.activated_plugins:
         iface = plugins._getInterfaceFromName('IPropertiesPlugin')
-        for i in range(len(plugins.listPlugins(iface))-1):
+        for i in range(len(plugins.listPlugins(iface)) - 1):
             plugins.movePluginsUp(iface, [plugin.getId()])
 
     if config.ldap_type != u'AD':
         for p in ('IUserAdderPlugin', 'IGroupManagement'):
             if p in config.activated_plugins:
                 iface = plugins._getInterfaceFromName(p)
-                for i in range(len(plugins.listPlugins(iface))-1):
+                for i in range(len(plugins.listPlugins(iface)) - 1):
                     plugins.movePluginsUp(iface, [plugin.getId()])
 
 
