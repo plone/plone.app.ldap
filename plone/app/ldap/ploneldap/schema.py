@@ -23,11 +23,11 @@ def HandleCreated(property, event):
     luf.manage_deleteLDAPSchemaItems([str(property.ldap_name)])
 
     luf.manage_addLDAPSchemaItem(
-            ldap_name=str(property.ldap_name),
-            friendly_name=property.description,
-            public_name=str(property.plone_name),
-            multivalued=property.multi_valued,
-            binary=property.binary)
+        ldap_name=str(property.ldap_name),
+        friendly_name=property.description,
+        public_name=str(property.plone_name),
+        multivalued=property.multi_valued,
+        binary=property.binary)
 
 
 @adapter(ILDAPProperty, IObjectModifiedEvent)
