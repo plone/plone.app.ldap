@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implements
 from zope.container.ordered import OrderedContainer
 from zope.container.interfaces import INameChooser
@@ -12,40 +13,40 @@ from plone.app.ldap.engine.schema import LDAPProperty
 class LDAPConfiguration(OrderedContainer):
     implements(ILDAPConfiguration)
 
-    ldap_type = u"LDAP"
-    rdn_attribute = "uid"
-    userid_attribute = "uid"
-    login_attribute = "uid"
+    ldap_type = u'LDAP'
+    rdn_attribute = 'uid'
+    userid_attribute = 'uid'
+    login_attribute = 'uid'
     required_attributes = []
 
-    user_object_classes = "pilotPerson"
+    user_object_classes = 'pilotPerson'
 
-    bind_dn = ""
-    bind_password = ""
-    user_base = ""
+    bind_dn = ''
+    bind_password = ''
+    user_base = ''
     user_scope = SCOPE_SUBTREE
-    group_base = ""
+    group_base = ''
     group_scope = SCOPE_SUBTREE
-    password_encryption = "crypt"
-    default_user_roles = "Member"
+    password_encryption = 'crypt'
+    default_user_roles = 'Member'
     read_only = False
     activated_plugins = []
     cache = ''
 
     def __init__(self):
-        self.servers=LDAPServerStorage()
-        self.schema=LDAPSchema()
+        self.servers = LDAPServerStorage()
+        self.schema = LDAPSchema()
 
         self.schema.addItem(LDAPProperty(
-            ldap_name="uid", description=u"User id"))
+            ldap_name='uid', description=u'User id'))
         self.schema.addItem(LDAPProperty(
-            ldap_name="mail", plone_name="email",
-            description=u"Email address"))
+            ldap_name='mail', plone_name='email',
+            description=u'Email address'))
         self.schema.addItem(LDAPProperty(
-            ldap_name="cn", plone_name="fullname",
-            description=u"Canonical Name"))
+            ldap_name='cn', plone_name='fullname',
+            description=u'Canonical Name'))
         self.schema.addItem(LDAPProperty(
-            ldap_name="sn", description=u"Surname (unused)"))
+            ldap_name='sn', description=u'Surname (unused)'))
 
 
 class LDAPContainer(OrderedContainer):
@@ -53,12 +54,12 @@ class LDAPContainer(OrderedContainer):
     """
     def __init__(self):
         OrderedContainer.__init__(self)
-        self._data=OOBTree()
+        self._data = OOBTree()
 
     def addItem(self, item):
-        chooser=INameChooser(self)
+        chooser = INameChooser(self)
         item_id = getattr(item, 'ldap_name', None) or chooser.chooseName(None, item)
-        self[item_id]=item
+        self[item_id] = item
 
 
 class LDAPServerStorage(LDAPContainer):

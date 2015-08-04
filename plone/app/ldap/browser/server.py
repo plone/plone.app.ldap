@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.baseform import Adding
@@ -40,10 +41,10 @@ class ServerAddForm(LDAPAddForm):
     """An add form for LDAP servers.
     """
     form_fields = FormFields(ILDAPServerConfiguration)
-    label = _(u"Add Server")
-    description = _(u"Add an new LDAP or ActiveDirectory server.")
-    form_name = _(u"Configure server")
-    fieldset = "servers"
+    label = _(u'Add Server')
+    description = _(u'Add an new LDAP or ActiveDirectory server.')
+    form_name = _(u'Configure server')
+    fieldset = 'servers'
 
     def create(self, data):
         server = LDAPServer()
@@ -56,10 +57,10 @@ class ServerEditForm(LDAPEditForm):
     """An edit form for LDAP servers.
     """
     form_fields = FormFields(ILDAPServerConfiguration)
-    label = _(u"Edit Server")
-    description = _(u"Edit a LDAP or ActiveDirectory server.")
-    form_name = _(u"Configure server")
-    fieldset = "servers"
+    label = _(u'Edit Server')
+    description = _(u'Edit a LDAP or ActiveDirectory server.')
+    form_name = _(u'Configure server')
+    fieldset = 'servers'
 
 
 class ServerNamespace(object):
@@ -72,8 +73,8 @@ class ServerNamespace(object):
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):
-        self.context=context
-        self.request=request
+        self.context = context
+        self.request = request
 
     def traverse(self, name, ignore):
         storage = getUtility(ILDAPConfiguration).servers

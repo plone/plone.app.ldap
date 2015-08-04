@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.component import adapts
 from zope.component import getUtility
 from zope.interface import implements
@@ -22,7 +23,7 @@ class PropertyAdding(Adding):
     def add(self, content):
         """Add the property to the schema
         """
-        schema=getUtility(ILDAPConfiguration).schema
+        schema = getUtility(ILDAPConfiguration).schema
         schema.addItem(content)
 
     def namesAccepted(self):
@@ -36,10 +37,10 @@ class PropertyAddForm(LDAPAddForm):
     """An add form for LDAP properties.
     """
     form_fields = FormFields(ILDAPPropertyConfiguration)
-    label = _(u"Add Property")
-    description = _(u"Add a LDAP property to the schema.")
-    form_name = _(u"Configure property")
-    fieldset = "schema"
+    label = _(u'Add Property')
+    description = _(u'Add a LDAP property to the schema.')
+    form_name = _(u'Configure property')
+    fieldset = 'schema'
 
     def create(self, data):
         property = LDAPProperty()
@@ -51,10 +52,10 @@ class PropertyEditForm(LDAPEditForm):
     """An edit form for LDAP properties.
     """
     form_fields = FormFields(ILDAPPropertyConfiguration)
-    label = _(u"Edit Property")
-    description = _(u"Edit a LDAP property.")
-    form_name = _(u"Configure property")
-    fieldset = "schema"
+    label = _(u'Edit Property')
+    description = _(u'Edit a LDAP property.')
+    form_name = _(u'Configure property')
+    fieldset = 'schema'
 
 
 class SchemaNamespace(object):
@@ -64,8 +65,8 @@ class SchemaNamespace(object):
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):
-        self.context=context
-        self.request=request
+        self.context = context
+        self.request = request
 
     def traverse(self, name, ignore):
         schema = getUtility(ILDAPConfiguration).schema

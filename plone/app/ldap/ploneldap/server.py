@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.component import adapter
 from plone.app.ldap.engine.interfaces import ILDAPServer
 from plone.app.ldap.ploneldap.util import guaranteePluginExists
@@ -9,10 +10,10 @@ from zope.container.interfaces import IObjectRemovedEvent
 
 
 def FindServerIndex(luf, server):
-    servers=luf.getServers()
+    servers = luf.getServers()
 
     for i in range(len(servers)):
-        if servers[i].host==server.server and servers[i].port==server.port:
+        if servers[i].host == server.server and servers[i].port == server.port:
             return i
     raise KeyError
 
@@ -27,7 +28,7 @@ def HandleCreated(server, event):
     if not server.enabled:
         return
 
-    luf=getLDAPPlugin()._getLDAPUserFolder()
+    luf = getLDAPPlugin()._getLDAPUserFolder()
     luf.manage_addServer(host=server.server,
                          port=server.port,
                          use_ssl=server.connection_type,
@@ -54,10 +55,10 @@ def HandleRemoved(server, event):
         # need to do anything anymore.
         return
 
-    luf=getLDAPPlugin()._getLDAPUserFolder()
-    servers=luf.getServers()
+    luf = getLDAPPlugin()._getLDAPUserFolder()
+    servers = luf.getServers()
 
     for i in range(len(servers)):
-        if servers[i]['host']==server.server and servers[i]['port']==server.port:
+        if servers[i]['host'] == server.server and servers[i]['port'] == server.port:
             luf.manage_deleteServers((i,))
             return

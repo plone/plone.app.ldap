@@ -12,23 +12,25 @@ from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 import logging
 
-ldap_props = ['_login_attr',
-              '_uid_attr',
-              '_rdnattr',
-              'users_base',
-              'users_scope',
-              '_local_groups',
-              '_implicit_mapping',
-              'groups_base',
-              'groups_scope',
-              '_binduid',
-              '_bindpwd',
-              '_binduid_usage',
-              'read_only',
-              '_user_objclasses',
-              '_extra_user_filter',
-              '_pwd_encryption',
-              '_roles']
+ldap_props = [
+    '_login_attr',
+    '_uid_attr',
+    '_rdnattr',
+    'users_base',
+    'users_scope',
+    '_local_groups',
+    '_implicit_mapping',
+    'groups_base',
+    'groups_scope',
+    '_binduid',
+    '_bindpwd',
+    '_binduid_usage',
+    'read_only',
+    '_user_objclasses',
+    '_extra_user_filter',
+    '_pwd_encryption',
+    '_roles',
+]
 
 _FILENAME = 'ldap_plugin.xml'
 
@@ -44,7 +46,7 @@ class LDAPPluginExportImport:
         info = self._getExportInfo(context)
         if info:
             context.writeDataFile('%s' % _FILENAME, template(info=info).encode('utf-8'), 'text/xml')
-            print >> out, "GenericSetup Configuration for ldap exported"
+            print >> out, 'GenericSetup Configuration for ldap exported'
 
     def getTypeStr(self, value):
         val_type = 'str'
@@ -57,7 +59,9 @@ class LDAPPluginExportImport:
             val_type = 'int'
         return val_type
 
-    def _getExportInfo(self, context):
+    # FIXME: C901 'LDAPPluginExportImport._getExportInfo' is too complex (13)
+    #        https://github.com/plone/plone.app.ldap/issues/28
+    def _getExportInfo(self, context):  # noqa
         info = []
         portal = context.getSite()
         mt = getattr(portal, 'acl_users')
@@ -125,7 +129,9 @@ class LDAPPluginExportImport:
         for plugin in root.getElementsByTagName('ldapplugin'):
             self.extractData(plugin, pas, out)
 
-    def extractData(self, root, pas, out):
+    # FIXME: C901 'LDAPPluginExportImport.extractData' is too complex (28)
+    #        https://github.com/plone/plone.app.ldap/issues/29
+    def extractData(self, root, pas, out):  # noqa
         plug_id = str(root.getAttribute('id'))
         update = root.getAttribute('update') == 'True'
 
@@ -223,13 +229,14 @@ class LDAPPluginExportImport:
                     on the duplicate users. I don't see any tests on this so if there
                     is an argument to leave this as a pass let me know.
                     """
-                    logging.error("There is an ldap multi plugin in your "+
-                        "system (%s) that is not managed "%plug_id +
-                        "by this generic setup script. To have everything "+
-                        "managed by GS, please delete and " +
-                        "reinstall or set update=False in your ldap_plugin.xml"+
-                        " root.")
-                    logging.error("Installing LDAP Plugin with GS failed")
+                    logging.error(
+                        'There is an ldap multi plugin in your ' +
+                        'system (%s) that is not managed ' % plug_id +
+                        'by this generic setup script. To have everything ' +
+                        'managed by GS, please delete and ' +
+                        'reinstall or set update=False in your ldap_plugin.xml' +
+                        ' root.')
+                    logging.error('Installing LDAP Plugin with GS failed')
                     return
 
             # base configuration
