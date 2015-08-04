@@ -129,7 +129,9 @@ class LDAPPluginExportImport:
         for plugin in root.getElementsByTagName('ldapplugin'):
             self.extractData(plugin, pas, out)
 
-    def extractData(self, root, pas, out):
+    # FIXME: C901 'LDAPPluginExportImport.extractData' is too complex (28)
+    #        https://github.com/plone/plone.app.ldap/issues/29
+    def extractData(self, root, pas, out):  # noqa
         plug_id = str(root.getAttribute('id'))
         update = root.getAttribute('update') == 'True'
 
