@@ -194,7 +194,6 @@ def enablePASInterfaces():
                     plugins.movePluginsUp(iface, [plugin.getId()])
 
 
-
 def enableCaching(cache_manager='RAMCache'):
     pas = getPAS()
     if pas.ZCacheable_getManager() is None:
