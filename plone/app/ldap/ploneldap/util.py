@@ -145,22 +145,22 @@ def enablePASInterfaces():
     config = getUtility(ILDAPConfiguration)
 
     common_interfaces = [
-            'IUserEnumerationPlugin',
-            'IGroupsPlugin',
-            'IGroupEnumerationPlugin',
-            'IRoleEnumerationPlugin',
-            'IAuthenticationPlugin',
-            'ICredentialsResetPlugin',
-            'IPropertiesPlugin',
-            'IRolesPlugin',
-            'IGroupIntrospection',
-            ]
+        'IUserEnumerationPlugin',
+        'IGroupsPlugin',
+        'IGroupEnumerationPlugin',
+        'IRoleEnumerationPlugin',
+        'IAuthenticationPlugin',
+        'ICredentialsResetPlugin',
+        'IPropertiesPlugin',
+        'IRolesPlugin',
+        'IGroupIntrospection',
+    ]
 
     ldap_interfaces = common_interfaces + [
-            'IGroupManagement',
-            'IUserAdderPlugin',
-            'IUserManagement',
-            ]
+        'IGroupManagement',
+        'IUserAdderPlugin',
+        'IUserManagement',
+    ]
 
     ad_interfaces = common_interfaces
 
