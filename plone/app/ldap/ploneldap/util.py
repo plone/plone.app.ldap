@@ -65,22 +65,25 @@ def createLDAPPlugin(id='ldap-plugin'):
     else:
         klass = PloneLDAPMultiPlugin
 
-    genericPluginCreation(pas, klass,
-            id=id,
-            title='Plone managed LDAP',
-            login_attr=str(config.schema[config.login_attribute].ldap_name),
-            uid_attr=str(config.schema[config.userid_attribute].ldap_name),
-            rdn_attr=str(config.schema[config.rdn_attribute].ldap_name),
-            users_base=config.user_base or '',
-            users_scope=config.user_scope,
-            groups_base=config.group_base or '',
-            groups_scope=config.group_scope,
-            binduid=config.bind_dn or '',
-            bindpwd=config.bind_password or '',
-            encryption=config.password_encryption,
-            roles=config.default_user_roles or '',
-            read_only=config.read_only,
-            obj_classes=config.user_object_classes)
+    genericPluginCreation(
+        pas,
+        klass,
+        id=id,
+        title='Plone managed LDAP',
+        login_attr=str(config.schema[config.login_attribute].ldap_name),
+        uid_attr=str(config.schema[config.userid_attribute].ldap_name),
+        rdn_attr=str(config.schema[config.rdn_attribute].ldap_name),
+        users_base=config.user_base or '',
+        users_scope=config.user_scope,
+        groups_base=config.group_base or '',
+        groups_scope=config.group_scope,
+        binduid=config.bind_dn or '',
+        bindpwd=config.bind_password or '',
+        encryption=config.password_encryption,
+        roles=config.default_user_roles or '',
+        read_only=config.read_only,
+        obj_classes=config.user_object_classes,
+    )
 
     plugin = getattr(pas, id)
     plugin.groupid_attr = 'cn'
@@ -107,13 +110,15 @@ def addMandatorySchemaItems():
     config = getUtility(ILDAPConfiguration)
 
     if config.ldap_type == u'AD':
-        required = [('dn', {'description': 'Distinguished Name'}),
-                    ('objectGUID', {'description': 'AD Object GUID',
+        required = [
+            ('dn', {'description': 'Distinguished Name'}),
+            ('objectGUID', {'description': 'AD Object GUID',
                             'multi_valued': False, 'binary': True}),
-                    ('cn', {'description': 'Canonical Name'}),
-                    ('sAMAccountName', {'description': 'AD User Name'}),
-                    ('memberOf', {'description': 'Group DNs',
-                            'multi_valued': True, 'plone_name': 'memberOf'})]
+            ('cn', {'description': 'Canonical Name'}),
+            ('sAMAccountName', {'description': 'AD User Name'}),
+            ('memberOf', {'description': 'Group DNs',
+                          'multi_valued': True, 'plone_name': 'memberOf'}),
+        ]
     else:
         required = []
 
@@ -132,11 +137,12 @@ def configureLDAPSchema():
     schema = {}
     for property in config.schema.values():
         schema[str(property.ldap_name)] = dict(
-                ldap_name=str(property.ldap_name),
-                friendly_name=property.description,
-                public_name=str(property.plone_name),
-                multivalued=property.multi_valued,
-                binary=property.binary)
+            ldap_name=str(property.ldap_name),
+            friendly_name=property.description,
+            public_name=str(property.plone_name),
+            multivalued=property.multi_valued,
+            binary=property.binary,
+        )
     luf.setSchemaConfig(schema)
 
 

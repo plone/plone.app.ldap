@@ -12,23 +12,25 @@ from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 import logging
 
-ldap_props = ['_login_attr',
-              '_uid_attr',
-              '_rdnattr',
-              'users_base',
-              'users_scope',
-              '_local_groups',
-              '_implicit_mapping',
-              'groups_base',
-              'groups_scope',
-              '_binduid',
-              '_bindpwd',
-              '_binduid_usage',
-              'read_only',
-              '_user_objclasses',
-              '_extra_user_filter',
-              '_pwd_encryption',
-              '_roles']
+ldap_props = [
+    '_login_attr',
+    '_uid_attr',
+    '_rdnattr',
+    'users_base',
+    'users_scope',
+    '_local_groups',
+    '_implicit_mapping',
+    'groups_base',
+    'groups_scope',
+    '_binduid',
+    '_bindpwd',
+    '_binduid_usage',
+    'read_only',
+    '_user_objclasses',
+    '_extra_user_filter',
+    '_pwd_encryption',
+    '_roles',
+]
 
 _FILENAME = 'ldap_plugin.xml'
 
@@ -223,7 +225,8 @@ class LDAPPluginExportImport:
                     on the duplicate users. I don't see any tests on this so if there
                     is an argument to leave this as a pass let me know.
                     """
-                    logging.error('There is an ldap multi plugin in your ' +
+                    logging.error(
+                        'There is an ldap multi plugin in your ' +
                         'system (%s) that is not managed ' % plug_id +
                         'by this generic setup script. To have everything ' +
                         'managed by GS, please delete and ' +

@@ -10,8 +10,14 @@ class LDAPServer(SimpleItem):
     __name__ = None
     __parent__ = None
 
-    def __init__(self, server=u'', connection_type=0, connection_timeout=5,
-            operation_timeout=-1, enabled=False):
+    def __init__(
+        self,
+        server=u'',
+        connection_type=0,
+        connection_timeout=5,
+        operation_timeout=-1,
+        enabled=False,
+    ):
         self.server = server
         self.connection_type = connection_type
         self.connection_timeout = connection_timeout

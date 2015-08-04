@@ -72,8 +72,9 @@ class LDAPSingleValueAttributesVocabulary(object):
 
     def __call__(self, context):
         config = getUtility(ILDAPConfiguration)
-        attributes = [(a.ldap_name, a.__name__) for a in config.schema.values()
-                    if not a.multi_valued]
+        attributes = [(a.ldap_name, a.__name__)
+                      for a in config.schema.values()
+                      if not a.multi_valued]
         return SimpleVocabulary.fromItems(sorted(attributes))
 
 LDAPSingleValueAttributesVocabularyFactory = LDAPSingleValueAttributesVocabulary()

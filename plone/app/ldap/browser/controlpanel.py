@@ -58,8 +58,8 @@ class LDAPControlPanel(EditForm):
             except LDAPError:
                 widget = self.widgets.get('bind_dn')
 
-                widget.error = WidgetInputError('bind_dn', widget.label,
-                                              LDAPBindFailure('value'))
+                widget.error = WidgetInputError(
+                    'bind_dn', widget.label, LDAPBindFailure('value'))
                 self.errors += (widget.error,)
                 self.status = _('There were errors')
         return self.request.response.redirect(self.nextURL())
