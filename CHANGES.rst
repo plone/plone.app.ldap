@@ -15,6 +15,8 @@ Changelog
   to portal_setup import/export, including extra_user_filter, group mappings,
   and plugin type (AD/non-AD).
   [adaugherity]
+- Misc. minor bugfixes and documentation improvements.
+  [adaugherity]
 
 
 1.3.2 (2015-03-02)
