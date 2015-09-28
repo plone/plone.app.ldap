@@ -21,17 +21,24 @@ Plone can use both users and groups from an Active Directory system. Writing
 to Active Directory is not supported.
 
 With Active Directory you can use two different properties as login name:
-`userPrincipalName` and `sAMAccountName`. `sAMAccountName` is the plain account
-name without any domain information and is only unique within a single domain.
-If your environment only uses a single AD domain this option is the best
-choice. For environments with multiple names the `userPrincipalName` attribute
-can be used since this includes both account name and domain information.
-
+``userPrincipalName`` and ``sAMAccountName``. ``sAMAccountName`` is the plain
+account name without any domain information and is only unique within a single
+domain.  If your environment only uses a single AD domain this option is the
+best choice. For environments with multiple names the ``userPrincipalName``
+attribute can be used since this includes both account name and domain
+information.
 
 Since Plone does not support binary user ids it is not possible to use the
-`objectGUID` attribute as user ids. Instead you can use either `sAMAccountName`
-or `userPrincipalName`. The same criteria for choosing a login name also
-apply to selecting the user id attribute.
+``objectGUID`` attribute as user ids. Instead you can use either
+``sAMAccountName`` or ``userPrincipalName``. The same criteria for choosing a
+login name also apply to selecting the user id attribute.
+
+Newer versions of Active Directory may also work using the standard LDAP
+plugin, which supports limited writing to AD, including modifying group
+memberships.  If your group objects have ``member`` attributes containing the
+user's full DN, the standard LDAP plugin should work for you.  Note that this
+will not support nested groups.
+
 
 Standard LDAP
 -------------

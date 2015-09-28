@@ -10,6 +10,7 @@ from plone.app.ldap.ploneldap.util import getLDAPPlugin, createLDAPPlugin, \
 from xml.dom.minidom import parseString
 from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
+import ast
 import logging
 
 ldap_props = ['_login_attr',
@@ -19,6 +20,7 @@ ldap_props = ['_login_attr',
               'users_scope',
               '_local_groups',
               '_implicit_mapping',
+              '_groups_mappings',
               'groups_base',
               'groups_scope',
               '_binduid',
@@ -128,6 +130,7 @@ class LDAPPluginExportImport:
     def extractData(self, root, pas, out):
         plug_id = str(root.getAttribute('id'))
         update = root.getAttribute('update') == 'True'
+        meta_type = root.getAttribute('meta_type')
 
         settings = {}
         interfaces = []
@@ -234,6 +237,12 @@ class LDAPPluginExportImport:
 
             # base configuration
             config = getUtility(ILDAPConfiguration)
+            if meta_type in [u"Plone Active Directory plugin",
+                             u"ActiveDirectory Multi Plugin"]:
+                config.ldap_type = u"AD"
+            else:
+                config.ldap_type = u"LDAP"
+
             config.login_attribute = settings['_login_attr']
             config.userid_attribute = settings['_uid_attr']
             config.rdn_attribute = settings['_rdnattr']
@@ -244,8 +253,15 @@ class LDAPPluginExportImport:
             config.bind_dn = settings['_binduid']
             config.bind_password = settings['_bindpwd']
             config.user_object_classes = ','.join(settings['_user_objclasses'])
+            config.extra_user_filter = settings['_extra_user_filter']
             config.password_encryption = settings['_pwd_encryption']
             config.default_user_roles = ','.join(settings['_roles'])
+            config.implicit_mapping = settings['_implicit_mapping']
+            config.local_groups = settings['_local_groups']
+            try:
+                config.group_mappings = ast.literal_eval(settings['_groups_mappings'])
+            except (ValueError, SyntaxError, KeyError):
+                config.group_mappings = {}
             config.read_only = settings['read_only']
             config.activated_plugins = interfaces
             config.cache = cache

@@ -28,6 +28,10 @@ class LDAPConfiguration(OrderedContainer):
     group_scope = SCOPE_SUBTREE
     password_encryption = "crypt"
     default_user_roles = "Member"
+    extra_user_filter = ""
+    local_groups = False
+    implicit_mapping = False
+    group_mappings = {}
     read_only = False
     activated_plugins = []
     cache = ''
