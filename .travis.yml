@@ -18,8 +18,6 @@ addons:
   - libldap2-dev
   - libsasl2-dev
   - libssl-dev
-before_install:
-- wget http://downloads.buildout.org/2/bootstrap.py -O bootstrap.py
 install:
 - sed -ie "s#test-4.3#test-$PLONE_VERSION#" travis.cfg
 - mkdir -p buildout-cache/downloads
