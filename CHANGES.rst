@@ -4,17 +4,25 @@ Changelog
 1.4.0 (unreleased)
 ------------------
 
+- Added ``metadata.xml`` to profile, plus empty upgrade step, so the
+  add-ons control panel does not complain that we have no upgrade
+  procedure.
+  [maurits]
+
 - Drop support for Plone 4.1.
   [hvelarde]
+
 - Fix plugin activation for AD; correctly add mandatory schema items; activate
   group management plugin for non-AD (to allow modifying group memberships via
   Plone).
   [adaugherity]
+
 - Properly store settings made via control panel so that the control panel,
   ZMI, and portal_setup export all show the same data.  Added some more fields
   to portal_setup import/export, including extra_user_filter, group mappings,
   and plugin type (AD/non-AD).
   [adaugherity]
+
 - Misc. minor bugfixes and documentation improvements.
   [adaugherity]
 
