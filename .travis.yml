@@ -1,6 +1,9 @@
 language: python
 python: 2.7
-sudo: true
+sudo: false
+cache:
+  directories:
+    - buildout-cache
 env:
 - PLONE_VERSION=4.2
 - PLONE_VERSION=4.3
@@ -9,8 +12,13 @@ matrix:
   allow_failures:
   - env: PLONE_VERSION=5.0
   fast_finish: true
+addons:
+  apt:
+  - python-dev
+  - libldap2-dev
+  - libsasl2-dev
+  - libssl-dev
 before_install:
-- sudo apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev
 - wget http://downloads.buildout.org/2/bootstrap.py -O bootstrap.py
 install:
 - sed -ie "s#test-4.3#test-$PLONE_VERSION#" travis.cfg
