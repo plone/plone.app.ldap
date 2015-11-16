@@ -29,7 +29,7 @@ Fixes:
   ZMI, and portal_setup export all show the same data.
   [adaugherity]
 
-- Miscelaneous minor bugfixes and documentation improvements.
+- Miscellaneous minor bugfixes and documentation improvements.
   [adaugherity]
 
 
