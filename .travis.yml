@@ -13,7 +13,7 @@ matrix:
   - env: PLONE_VERSION=5.0
   fast_finish: true
 install:
-  - sed -ie "s#test-4.3#test-$PLONE_VERSION#" travis.cfg
+  - sed -ie "s#travis-4.3#travis-$PLONE_VERSION#" travis.cfg
   - mkdir -p buildout-cache/downloads
   - python bootstrap.py -c travis.cfg
   - bin/buildout -c travis.cfg annotate

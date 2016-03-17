@@ -15,7 +15,9 @@ New:
 
 Fixes:
 
-- Fix Travis CI build by pinning ``coverage``.
+- Fix Travis CI build by pinning ``coverage`` and by ensuring different
+  Plone versions are actually tested.
+  [davidjb]
 
 - Added ``metadata.xml`` to profile, plus empty upgrade step, so the
   add-ons control panel does not complain that we have no upgrade
