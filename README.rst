@@ -1,6 +1,9 @@
 LDAP control panel for Plone
 ============================
 
+.. image:: https://travis-ci.org/plone/plone.app.ldap.svg?branch=master
+   :target: https://travis-ci.org/plone/plone.app.ldap
+
 Overview
 --------
 
