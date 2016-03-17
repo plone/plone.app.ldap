@@ -15,6 +15,8 @@ New:
 
 Fixes:
 
+- Fix Travis CI build by pinning ``coverage``.
+
 - Added ``metadata.xml`` to profile, plus empty upgrade step, so the
   add-ons control panel does not complain that we have no upgrade
   procedure.
