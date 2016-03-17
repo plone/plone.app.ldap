@@ -4,6 +4,9 @@ LDAP control panel for Plone
 .. image:: https://travis-ci.org/plone/plone.app.ldap.svg?branch=master
    :target: https://travis-ci.org/plone/plone.app.ldap
 
+.. image:: https://coveralls.io/repos/github/plone/plone.app.ldap/badge.svg?branch=master
+   :target: https://coveralls.io/github/plone/plone.app.ldap?branch=master
+
 Overview
 --------
 
