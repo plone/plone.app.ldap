@@ -1,6 +1,6 @@
 from zope.component import adapts
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 from zope.traversing.interfaces import ITraversable
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.formlib.form import FormFields
@@ -16,8 +16,8 @@ from plone.app.ldap.browser.baseform import LDAPEditForm
 from plone.app.ldap.browser.baseform import Adding
 
 
+@implementer(IPropertyAdding)
 class PropertyAdding(Adding):
-    implements(IPropertyAdding)
 
     def add(self, content):
         """Add the property to the schema
@@ -57,10 +57,10 @@ class PropertyEditForm(LDAPEditForm):
     fieldset = "schema"
 
 
+@implementer(ITraversable)
 class SchemaNamespace(object):
     """LDAP schema traversing.
     """
-    implements(ITraversable)
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):
