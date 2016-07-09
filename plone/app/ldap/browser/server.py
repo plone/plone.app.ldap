@@ -13,14 +13,14 @@ from zope.component import getUtility
 from zope.event import notify
 from zope.formlib.form import FormFields
 from zope.formlib.form import applyChanges
-from zope.interface import implements
+from zope.interface import implementer
 from zope.lifecycleevent import ObjectCreatedEvent
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.traversing.interfaces import ITraversable
 
 
+@implementer(IServerAdding)
 class ServerAdding(Adding):
-    implements(IServerAdding)
 
     def add(self, content):
         """Add the server to the context
@@ -62,13 +62,13 @@ class ServerEditForm(LDAPEditForm):
     fieldset = "servers"
 
 
+@implementer(ITraversable)
 class ServerNamespace(object):
     """LDAP server traversing.
 
     Traversing to portal/++ldapserver++id will traverse to the ldap server and
     return it in the current context, acquisition-wrapped.
     """
-    implements(ITraversable)
     adapts(ISiteRoot, IBrowserRequest)
 
     def __init__(self, context, request=None):

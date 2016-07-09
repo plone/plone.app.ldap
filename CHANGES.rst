@@ -36,6 +36,8 @@ Fixes:
 - Miscellaneous minor bugfixes and documentation improvements.
   [adaugherity]
 
+- Use zope.interface decorator.
+  [gforcada]
 
 1.3.2 (2015-03-02)
 ------------------

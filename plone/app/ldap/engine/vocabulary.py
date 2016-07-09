@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.schema.vocabulary import SimpleTerm
 from zope.component import getUtility
@@ -8,10 +8,10 @@ import ldap
 from zope.schema.interfaces import IVocabularyFactory
 
 
+@implementer(IVocabularyFactory)
 class LDAPServerTypeVocabulary(object):
     """Vocabulary factory for LDAP server types.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary([
@@ -22,10 +22,10 @@ class LDAPServerTypeVocabulary(object):
 LDAPServerTypeVocabularyFactory = LDAPServerTypeVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class LDAPConnectionTypeVocabulary(object):
     """Vocabulary factory for LDAP connection types.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary([
@@ -37,10 +37,10 @@ class LDAPConnectionTypeVocabulary(object):
 LDAPConnectionTypeVocabularyFactory = LDAPConnectionTypeVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class LDAPScopeVocabulary(object):
     """Vocabulary factory for LDAP search scopes.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary([
@@ -51,10 +51,10 @@ class LDAPScopeVocabulary(object):
 LDAPScopeVocabularyFactory = LDAPScopeVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class LDAPAttributesVocabulary(object):
     """Vocabulary factory for LDAP attributes.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         config=getUtility(ILDAPConfiguration)
@@ -64,10 +64,10 @@ class LDAPAttributesVocabulary(object):
 LDAPAttributesVocabularyFactory = LDAPAttributesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class LDAPSingleValueAttributesVocabulary(object):
     """Vocabulary factory for LDAP attributes.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         config=getUtility(ILDAPConfiguration)
@@ -78,10 +78,10 @@ class LDAPSingleValueAttributesVocabulary(object):
 LDAPSingleValueAttributesVocabularyFactory = LDAPSingleValueAttributesVocabulary()
 
 
+@implementer(IVocabularyFactory)
 class LDAPPasswordEncryptionVocabulary(object):
     """Vocabulary factory for LDAP Password encryption.
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         return SimpleVocabulary([

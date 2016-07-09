@@ -1,10 +1,10 @@
 from OFS.SimpleItem import SimpleItem
-from zope.interface import implements
+from zope.interface import implementer
 from plone.app.ldap.engine.interfaces import ILDAPServer
 
 
+@implementer(ILDAPServer)
 class LDAPServer(SimpleItem):
-    implements(ILDAPServer)
 
     __name__ = None
     __parent__ = None

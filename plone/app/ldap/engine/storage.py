@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 from zope.container.ordered import OrderedContainer
 from zope.container.interfaces import INameChooser
 from plone.app.ldap.engine.interfaces import ILDAPServerStorage
@@ -9,8 +9,8 @@ from ldap import SCOPE_SUBTREE
 from plone.app.ldap.engine.schema import LDAPProperty
 
 
+@implementer(ILDAPConfiguration)
 class LDAPConfiguration(OrderedContainer):
-    implements(ILDAPConfiguration)
 
     ldap_type = u"LDAP"
     rdn_attribute = "uid"
@@ -65,13 +65,13 @@ class LDAPContainer(OrderedContainer):
         self[item_id]=item
 
 
+@implementer(ILDAPServerStorage)
 class LDAPServerStorage(LDAPContainer):
     """A container for LDAP servers.
     """
-    implements(ILDAPServerStorage)
 
 
+@implementer(ILDAPSchema)
 class LDAPSchema(LDAPContainer):
     """A container for LDAP properties.
     """
-    implements(ILDAPSchema)
