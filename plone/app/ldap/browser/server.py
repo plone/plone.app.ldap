@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.interfaces import ISiteRoot
 from plone.app.ldap import LDAPMessageFactory as _
 from plone.app.ldap.browser.baseform import Adding

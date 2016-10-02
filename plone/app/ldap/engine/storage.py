@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implementer
 from zope.container.ordered import OrderedContainer
 from zope.container.interfaces import INameChooser

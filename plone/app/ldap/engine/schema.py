@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from OFS.SimpleItem import SimpleItem
 from zope.interface import implementer
 from plone.app.ldap.engine.interfaces import ILDAPProperty

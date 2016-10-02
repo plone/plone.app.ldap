@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.component import adapter
 from plone.app.ldap.engine.interfaces import ILDAPServer
 from plone.app.ldap.ploneldap.util import guaranteePluginExists
