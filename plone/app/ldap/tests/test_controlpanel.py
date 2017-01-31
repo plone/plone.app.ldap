@@ -17,8 +17,8 @@ class ControlPanelTestCase(unittest.TestCase):
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):
-        view = api.content.get_view(u'ldap-controlpanel', self.portal, self.request)
-        view = view.__of__(self.portal)
+        view = api.content.get_view(
+            u'ldap-controlpanel', self.portal, self.request)
         self.assertTrue(view())
 
     def test_controlpanel_view_is_protected(self):
