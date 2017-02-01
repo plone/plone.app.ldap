@@ -17,6 +17,9 @@ Bug fixes:
 - Add coding header on python files.
   [gforcada]
 
+- Remove deprecated __of__ calls on BrowserViews
+  [MrTango]
+
 1.4.0 (2016-08-19)
 ------------------
 
