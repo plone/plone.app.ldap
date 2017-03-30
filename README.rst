@@ -1,5 +1,5 @@
-LDAP control panel for Plone
-============================
+LDAP control panel for Plone 3 and 4
+====================================
 
 .. image:: https://travis-ci.org/plone/plone.app.ldap.svg?branch=master
    :target: https://travis-ci.org/plone/plone.app.ldap
