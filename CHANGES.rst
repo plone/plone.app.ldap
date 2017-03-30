@@ -19,6 +19,9 @@ Bug fixes:
 
 - Remove deprecated __of__ calls on BrowserViews
   [MrTango]
+  
+- make clear this does not work with Plone 5.x
+  [tkimnguyen]
 
 1.4.0 (2016-08-19)
 ------------------
