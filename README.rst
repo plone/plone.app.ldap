@@ -18,6 +18,17 @@ This package succeeds the simplon.plone.ldap package.
 It builds on the functionality provided by LDAPMultiPlugins_, LDAPUserFolder_
 and PloneLDAP_.
 
+Plone Version Compatibility
+---------------------------
+
+This package works with Plone 3 and Plone 4. It does not work with Plone 5. 
+
+For Plone 5, use pas.plugins.ldap at https://pypi.python.org/pypi/pas.plugins.ldap
+
+Plone 3 and Plone 4.0
+users should install a version in the 1.2.* series
+(e.g. plone.app.ldap < 1.3, the latest current release is 1.3.2), as
+release 1.3 will only work with Plone 4.1 or higher.
 
 Active Directory
 ----------------
@@ -56,11 +67,6 @@ deleting users and groups is supported.
 
 Installing
 ----------
-
-This package works with Plone 3 and Plone 4. Plone 3 and Plone 4.0
-users should install a version in the 1.2.* series
-(e.g. plone.app.ldap < 1.3, the latest current release is 1.3.2), as
-release 1.3 will only work with Plone 4.1 or higher.
 
 This package depends on ``python-ldap``. In order to build it correctly you
 need to have some development libraries included in your system. On a typical
