@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
-
-from StringIO import StringIO
 from plone.app.ldap.engine.interfaces import ILDAPConfiguration
 from plone.app.ldap.engine.schema import LDAPProperty
 from plone.app.ldap.engine.server import LDAPServer
-from plone.app.ldap.engine.storage import LDAPServerStorage, LDAPSchema
-from plone.app.ldap.ploneldap.util import getLDAPPlugin, createLDAPPlugin, \
-    getPAS, configureLDAPSchema, configureLDAPServers
+from plone.app.ldap.engine.storage import LDAPSchema
+from plone.app.ldap.engine.storage import LDAPServerStorage
+from plone.app.ldap.ploneldap.util import configureLDAPSchema
+from plone.app.ldap.ploneldap.util import configureLDAPServers
+from plone.app.ldap.ploneldap.util import createLDAPPlugin
+from plone.app.ldap.ploneldap.util import getLDAPPlugin
+from plone.app.ldap.ploneldap.util import getPAS
+from six import StringIO
 from xml.dom.minidom import parseString
 from zope.component import getUtility
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
+
 import ast
 import logging
+
 
 ldap_props = ['_login_attr',
               '_uid_attr',
