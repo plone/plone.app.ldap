@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
 
 version = '1.4.2.dev0'
 
@@ -38,6 +40,7 @@ setup(name='plone.app.ldap',
           'Products.PloneLDAP',
           'python-ldap',
           'setuptools',
+          'six',
           'zope.component',
           'zope.i18nmessageid',
           'zope.interface',
