@@ -36,6 +36,7 @@ setup(name='plone.app.ldap',
       install_requires=[
           'plone.memoize',
           'Products.CMFCore',
+          'Products.CMFDefault',
           'Products.GenericSetup',
           'Products.PloneLDAP',
           'python-ldap',
