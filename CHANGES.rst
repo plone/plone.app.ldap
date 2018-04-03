@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Require in the setup.py Products.CMFDefault
+  [ale-rt]
 
 
 1.4.2 (2017-11-26)
