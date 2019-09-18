@@ -32,8 +32,6 @@ class ControlPanelTestCase(unittest.TestCase):
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
         self.assertIn('ldap', actions)
 
-    # FIXME: https://github.com/plone/plone.app.ldap/issues/26
-    @unittest.expectedFailure
     def test_controlpanel_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 
