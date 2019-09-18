@@ -14,7 +14,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Added dependencies so Plone 5 can start.
+  Removed the Plone 5 classifiers, because there is a test failure,
+  and it can't have worked before.  [maurits]
 
 
 1.4.3 (2018-04-08)
