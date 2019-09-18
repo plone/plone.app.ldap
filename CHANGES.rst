@@ -14,6 +14,11 @@ New features:
 
 Bug fixes:
 
+- Added uninstall profile.
+  This requires Products.GenericSetup 1.8.2+,
+  (available by default in Plone 4.3.8+ and 5.0.3+).
+  [maurits]
+
 - Added dependencies so Plone 5 can start.
   Removed the Plone 5 classifiers, because there is a test failure,
   and it can't have worked before.  [maurits]

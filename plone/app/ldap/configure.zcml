@@ -25,6 +25,15 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
 
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="LDAP support (uninstall)"
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      post_handler=".setuphandlers.uninstall"
+      />
+
   <genericsetup:importStep name="ldap-settings-import"
       title="LDAP Settings Import"
       description="Import custom LDAP and AD settings."
