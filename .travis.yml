@@ -1,9 +1,12 @@
-sudo: false
+dist: bionic
 language: python
-python: 2.7
+sudo: false
 cache:
+  pip: true
   directories:
-    - buildout-cache
+  - eggs
+python:
+  - "2.7"
 env:
   - PLONE_VERSION=4.2
   - PLONE_VERSION=4.3
@@ -12,21 +15,12 @@ matrix:
   allow_failures:
   - env: PLONE_VERSION=5.0
   fast_finish: true
+before_install:
+  - virtualenv -p `which python` .
+  - bin/pip install -r requirements.txt
+  - sed -ie "s#4.3-latest#$PLONE_VERSION-latest#" buildout.cfg
+  - bin/buildout annotate
 install:
-  - sed -ie "s#travis-4.3#travis-$PLONE_VERSION#" travis.cfg
-  - mkdir -p buildout-cache/downloads
-  - python bootstrap.py -c travis.cfg
-  - bin/buildout -c travis.cfg annotate
-# Try this twice, to avoid a possible problem, on Plone 4.3.7 at
-# least, with setuptools as directory instead of zipped egg.
-  - bin/buildout -c travis.cfg -Nq || true
-  - bin/buildout -c travis.cfg -Nq
+  - bin/buildout install test
 script:
-  - bin/code-analysis
   - bin/test
-after_success:
-  - bin/createcoverage --output-dir=htmlcov
-  - pip install -q coveralls
-  - coveralls
-notifications:
-  irc: irc.freenode.org#plone-testing
