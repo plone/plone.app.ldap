@@ -4,7 +4,15 @@ from plone.app.testing import logout
 from plone.app.ldap.config import PROJECTNAME
 from plone.app.ldap.testing import INTEGRATION_TESTING
 
+import pkg_resources
 import unittest
+
+qi_dist = pkg_resources.get_distribution("Products.CMFQuickInstallerTool")
+if qi_dist.parsed_version > pkg_resources.parse_version("3.0.9"):
+    # This version uses the uninstall profile.
+    SKIP_UNINSTALL_TEST = False
+else:
+    SKIP_UNINSTALL_TEST = True
 
 
 class ControlPanelTestCase(unittest.TestCase):
@@ -32,8 +40,8 @@ class ControlPanelTestCase(unittest.TestCase):
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
         self.assertIn('ldap', actions)
 
-    # FIXME: https://github.com/plone/plone.app.ldap/issues/26
-    @unittest.expectedFailure
+    @unittest.skipIf(SKIP_UNINSTALL_TEST,
+                     "uninstall not supported with this old quick installer")
     def test_controlpanel_removed_on_uninstall(self):
         qi = self.portal['portal_quickinstaller']
 

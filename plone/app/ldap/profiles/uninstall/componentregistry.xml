@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <utilities>
+  <utility
+     interface="plone.app.ldap.engine.interfaces.ILDAPConfiguration"
+     factory="plone.app.ldap.engine.storage.LDAPConfiguration"
+     remove="true"
+     />
+ </utilities>
+</componentregistry>
