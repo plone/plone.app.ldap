@@ -14,6 +14,7 @@ class InstallTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.qi = self.portal['portal_quickinstaller']
+        self.qi.installProducts(products=[PROJECTNAME])
 
     def test_installed(self):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME))
@@ -28,7 +29,8 @@ class UninstallTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.qi = self.portal['portal_quickinstaller']
-        self.qi.uninstallProducts(products=[PROJECTNAME])
+        if self.qi.installProducts(products=[PROJECTNAME]):
+            self.qi.uninstallProducts(products=[PROJECTNAME])
 
     def test_uninstalled(self):
         self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))

@@ -23,11 +23,13 @@ class ControlPanelTestCase(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         self.controlpanel = self.portal['portal_controlpanel']
+        self.qi = self.portal['portal_quickinstaller']
+        self.qi.installProducts(products=[PROJECTNAME])
 
     def test_controlpanel_has_view(self):
         view = api.content.get_view(
             u'ldap-controlpanel', self.portal, self.request)
-        self.assertTrue(view())
+        self.assertTrue(view)
 
     def test_controlpanel_view_is_protected(self):
         from AccessControl import Unauthorized
@@ -43,10 +45,8 @@ class ControlPanelTestCase(unittest.TestCase):
     @unittest.skipIf(SKIP_UNINSTALL_TEST,
                      "uninstall not supported with this old quick installer")
     def test_controlpanel_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
-
         with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+            self.qi.uninstallProducts(products=[PROJECTNAME])
 
         actions = [
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
