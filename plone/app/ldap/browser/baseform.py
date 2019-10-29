@@ -14,9 +14,12 @@ try:  # >= 4.1
 except ImportError:  # < 4.1
     from Products.Five.formlib.formbase import AddFormBase
     from Products.Five.formlib.formbase import EditFormBase
-from plone.app.form.validators import null_validator
 
 PMF = MessageFactory('plone')
+
+
+def null_validator(*args, **kwargs):
+    return()
 
 
 class Adding(Implicit, BrowserView):

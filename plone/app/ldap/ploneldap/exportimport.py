@@ -51,7 +51,7 @@ class LDAPPluginExportImport:
         info = self._getExportInfo(context)
         if info:
             context.writeDataFile('%s' % _FILENAME, template(info=info).encode('utf-8'), 'text/xml')
-            print >> out, "GenericSetup Configuration for ldap exported"
+            print(out, "GenericSetup Configuration for ldap exported")
 
     def getTypeStr(self, value):
         val_type = 'str'

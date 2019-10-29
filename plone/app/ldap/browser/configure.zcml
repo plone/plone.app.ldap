@@ -45,11 +45,11 @@
       name="ldapserver"
       />
 
-    <configure package="Products.CMFDefault.skin">
+    <configure package="Products.CMFPlone.browser">
         <browser:page
             name="five_template"
             for="plone.app.ldap.engine.interfaces.ILDAPServer"
-            template="five_template.pt"
+            template="templates/five_template.pt"
             permission="zope2.View"
             />
     </configure>
@@ -83,11 +83,11 @@
       name="ldapschema"
       />
 
-    <configure package="Products.CMFDefault.skin">
+    <configure package="Products.CMFPlone.browser">
         <browser:page
             name="five_template"
             for="plone.app.ldap.engine.interfaces.ILDAPProperty"
-            template="five_template.pt"
+            template="templates/five_template.pt"
             permission="zope2.View"
             />
     </configure>
