@@ -10,14 +10,6 @@ Changelog
 1.4.4 (2019-09-19)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Added uninstall profile.
