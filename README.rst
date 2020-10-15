@@ -18,8 +18,8 @@ This package succeeds the simplon.plone.ldap package.
 It builds on the functionality provided by LDAPMultiPlugins_, LDAPUserFolder_
 and PloneLDAP_.
 
-`plone.app.ldap` targets Plone 4.x. 
-Further on use `pas.plugins.ldap`.
+``plone.app.ldap`` targets the Plone 4.x. series and may run on 5.0/5.1 (not official supported).
+Further on use ``pas.plugins.ldap``.
 
 
 Active Directory
