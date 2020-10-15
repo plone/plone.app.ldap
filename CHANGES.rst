@@ -4,7 +4,9 @@ Changelog
 1.4.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improved uninstall from component registry.
+  ``ILDAPConfiguration`` still lingered.
+  [maurits]
 
 
 1.4.4 (2019-09-19)
